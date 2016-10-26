@@ -146,7 +146,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <!-- BEGIN SIDEBAR MENU -->
-                @include('hnl.layouts._left_menu')
+                @include('ocs.layouts._left_menu')
                 <!-- END SIDEBAR MENU -->
             </div>
         </section>
