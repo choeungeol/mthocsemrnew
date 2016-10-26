@@ -12,7 +12,7 @@ class PinfoController extends Controller
     public function showPinfo()
     {
         if(Sentinel::check())
-            return view('hnl.pinfo.pinfo');
+            return view('ocs.pinfo.pinfo');
         else
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
     }

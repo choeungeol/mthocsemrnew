@@ -13,7 +13,7 @@
             <span class="title">UI Example</span>
         </a>
     </li>
-    <li {!! (Request::is('hnl/basicinfo/basicinfo') || Request::is('hnl/basicinfo/jobtitle') || Request::is('hnl/basicinfo/payitem') || Request::is('hnl/basicinfo/paytype') || Request::is('hnl/basicinfo/worktype') ? 'class="active"' : '') !!}>
+    <li {!! (Request::is('ocs/basicinfo/basicinfo') || Request::is('ocs/basicinfo/jobtitle') || Request::is('ocs/basicinfo/payitem') || Request::is('ocs/basicinfo/paytype') || Request::is('ocs/basicinfo/worktype') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="medal" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
@@ -21,32 +21,32 @@
             <span class="fa arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li {!! (Request::is('hnl/basicinfo/basicinfo') ? 'class="active"' : '') !!}>
-                <a href="{{ URL::to('hnl/basicinfo/basicinfo') }}">
+            <li {!! (Request::is('ocs/basicinfo/basicinfo') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/basicinfo/basicinfo') }}">
                     <i class="fa fa-angle-double-right"></i>
                     사업장 정보
                 </a>
             </li>
-            <li {!! (Request::is('hnl/basicinfo/jobtitle') ? 'class="active"' : '') !!}>
-                <a href="{{ URL::to('hnl/basicinfo/jobtitle') }}">
+            <li {!! (Request::is('ocs/basicinfo/jobtitle') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/basicinfo/jobtitle') }}">
                     <i class="fa fa-angle-double-right"></i>
                     직위 부서
                 </a>
             </li>
-            <li {!! (Request::is('hnl/basicinfo/payitem') ? 'class="active"' : '') !!}>
-                <a href="{{ URL::to('hnl/basicinfo/payitem') }}">
+            <li {!! (Request::is('ocs/basicinfo/payitem') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/basicinfo/payitem') }}">
                     <i class="fa fa-angle-double-right"></i>
                     급여 항목
                 </a>
             </li>
-            <li {!! (Request::is('hnl/basicinfo/paytype') ? 'class="active"' : '') !!}>
-                <a href="{{ URL::to('hnl/basicinfo/paytype') }}">
+            <li {!! (Request::is('ocs/basicinfo/paytype') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/basicinfo/paytype') }}">
                     <i class="fa fa-angle-double-right"></i>
                     급여 유형
                 </a>
             </li>
-            <li {!! (Request::is('hnl/basicinfo/worktype') ? 'class="active"' : '') !!}>
-                <a href="{{ URL::to('hnl/basicinfo/worktype') }}">
+            <li {!! (Request::is('ocs/basicinfo/worktype') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/basicinfo/worktype') }}">
                     <i class="fa fa-angle-double-right"></i>
                     근무 유형
                 </a>
@@ -61,8 +61,8 @@
             <span class="fa arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li {!! (Request::is('hnl/pinfo/pinfo') ? 'class="active"' : '') !!}>
-                <a href="{{ URL::to('hnl/pinfo/pinfo') }}">
+            <li {!! (Request::is('ocs/pinfo/pinfo') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/pinfo/pinfo') }}">
                     <i class="fa fa-angle-double-right"></i>
                     사원 정보
                 </a>

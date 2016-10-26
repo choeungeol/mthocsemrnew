@@ -1,4 +1,4 @@
-@extends('hnl/layouts/default')
+@extends('ocs/layouts/default')
 
 {{-- Page title --}}
 @section('title')

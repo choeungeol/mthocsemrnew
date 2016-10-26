@@ -44,8 +44,8 @@
         </div>
         <div class="navbar-right">
             <ul class="nav navbar-nav">
-                @include('hnl.layouts._messages')
-                @include('hnl.layouts._notifications')
+                @include('ocs.layouts._messages')
+                @include('ocs.layouts._notifications')
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         @if(Sentinel::getUser()->pic)
@@ -119,25 +119,25 @@
                 <div class="nav_icons">
                     <ul class="sidebar_threeicons">
                         <li>
-                            <a href="{{ URL::to('hnl/advanced_tables') }}">
+                            <a href="{{ URL::to('ocs/advanced_tables') }}">
                                 <i class="livicon" data-name="table" title="Advanced tables" data-loop="true"
                                    data-color="#418BCA" data-hc="#418BCA" data-s="25"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ URL::to('hnl/tasks') }}">
+                            <a href="{{ URL::to('ocs/tasks') }}">
                                 <i class="livicon" data-name="list-ul" title="Tasks" data-loop="true"
                                    data-color="#e9573f" data-hc="#e9573f" data-s="25"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ URL::to('hnl/gallery') }}">
+                            <a href="{{ URL::to('ocs/gallery') }}">
                                 <i class="livicon" data-name="image" title="Gallery" data-loop="true"
                                    data-color="#F89A14" data-hc="#F89A14" data-s="25"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ URL::to('hnl/users') }}">
+                            <a href="{{ URL::to('ocs/users') }}">
                                 <i class="livicon" data-name="user" title="Users" data-loop="true"
                                    data-color="#6CC66C" data-hc="#6CC66C" data-s="25"></i>
                             </a>
