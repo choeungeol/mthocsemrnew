@@ -68,19 +68,7 @@ Route::group(array('prefix' => 'ocs', 'middleware' => 'SentinelUser'), function 
     Route::get('/', array('as' => 'ocs','uses' => 'OcsController@showHnl'));
 
     Route::get('/test', array('as' => 'ocs','uses' => 'OcsController@showTest'));
-    # 기본정보 등록
-    Route::get('basicinfo/basicinfo', array('as' => 'ocs', 'uses' => 'OcsController@showBasicInfo'));
 
-    Route::get('basicinfo/jobtitle', array('as' => 'ocs', 'uses' => 'OcsController@showJobtitle'));
-
-    Route::get('basicinfo/payitem', array('as' => 'ocs', 'uses' => 'OcsController@showPayitem'));
-
-    Route::get('basicinfo/paytype', array('as' => 'ocs', 'uses' => 'OcsController@showPaytype'));
-
-    Route::get('basicinfo/worktype', array('as' => 'ocs', 'uses' => 'OcsController@showWorktype'));
-
-    #인사정보 등록
-    Route::get('pinfo/pinfo', array('as' => 'ocs', 'uses' => 'PinfoController@showPinfo'));
 });
 
 Route::group(array('prefix' => 'admin', 'middleware' => 'SentinelAdmin'), function () {
