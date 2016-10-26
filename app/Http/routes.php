@@ -64,10 +64,10 @@ Route::group(array('prefix' => 'admin'), function () {
 });
 
 Route::group(array('prefix' => 'ocs', 'middleware' => 'SentinelUser'), function () {
-    # hnl / Index
-    Route::get('/', array('as' => 'ocs','uses' => 'OcsController@showHnl'));
+    # ocs / Index
+    Route::get('/', array('as' => 'ocs', 'uses' => 'OcsController@showOcs'));
 
-    Route::get('/test', array('as' => 'ocs','uses' => 'OcsController@showTest'));
+    Route::get('/test', array('as' => 'ocs', 'uses' => 'OcsController@showTest'));
 
 });
 
