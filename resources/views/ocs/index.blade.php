@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-    GOOD LABOR Program
+    OCSEMR Program
     @parent
 @stop
 
