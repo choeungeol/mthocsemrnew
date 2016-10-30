@@ -26,4 +26,51 @@ class OcsController extends Controller
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
     }
 
+    public function showBasicBiopsy()
+    {
+        if(Sentinel::check())
+            return view('ocs.basicbiopsy');
+        else
+            return Redirect::to('admin/signin')->with('error','You must be logged in!');
+    }
+
+    public function showReceipt()
+    {
+        if(Sentinel::check())
+            return view('ocs.receipt');
+        else
+            return Redirect::to('admin/signin')->with('error','You must be logged in!');
+    }
+
+    public function showHealthCare()
+    {
+        if(Sentinel::check())
+            return view('ocs.healthcare');
+        else
+            return Redirect::to('admin/signin')->with('error','You must be logged in!');
+    }
+
+    public function showNurseRoom()
+    {
+        if(Sentinel::check())
+            return view('ocs.nurseroom');
+        else
+            return Redirect::to('admin/signin')->with('error','You must be logged in!');
+    }
+
+    public function showPharmacy()
+    {
+        if(Sentinel::check())
+            return view('ocs.pharmacy');
+        else
+            return Redirect::to('admin/signin')->with('error','You must be logged in!');
+    }
+
+    public function showDisease()
+    {
+        if(Sentinel::check())
+            return view('ocs.disease');
+        else
+            return Redirect::to('admin/signin')->with('error','You must be logged in!');
+    }
 }

@@ -69,6 +69,20 @@ Route::group(array('prefix' => 'ocs', 'middleware' => 'SentinelUser'), function 
 
     Route::get('/test', array('as' => 'ocs', 'uses' => 'OcsController@showTest'));
 
+    #ocs / basicbiopsy
+    Route::get('/bb', array('as' => 'ocs', 'uses' => 'OcsController@showBasicBiopsy'));
+    #ocs / receipt
+    Route::get('/rc', array('as' => 'ocs', 'uses' => 'OcsController@showReceipt'));
+    #ocs / healthcare
+    Route::get('/hc', array('as' => 'ocs', 'uses' => 'OcsController@showHealthCare'));
+    #ocs / nurseroom
+    Route::get('/nr', array('as' => 'ocs', 'uses' => 'OcsController@showNurseRoom'));
+    #ocs / pharmacy
+    Route::get('/ph', array('as' => 'ocs', 'uses' => 'OcsController@showPharmacy'));
+    #ocs / disease
+    Route::get('/di', array('as' => 'ocs', 'uses' => 'OcsController@showDisease'));
+
+
 });
 
 Route::group(array('prefix' => 'admin', 'middleware' => 'SentinelAdmin'), function () {

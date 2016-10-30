@@ -95,7 +95,8 @@ Accordion Tabs
                                     <i class="glyphicon glyphicon-chevron-up"></i>
                                 </span>
                             </div>
-                            <div class="panel-body"><div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel-body">
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingOne">
                                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">

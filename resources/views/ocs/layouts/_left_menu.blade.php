@@ -13,21 +13,21 @@
             <span class="title">UI Example</span>
         </a>
     </li>
-    <li {!! (Request::is('ocs/basicinfo/basicinfo') || Request::is('ocs/basicinfo/jobtitle') || Request::is('ocs/basicinfo/payitem') || Request::is('ocs/basicinfo/paytype') || Request::is('ocs/basicinfo/worktype') ? 'class="active"' : '') !!}>
+    <li {!! (Request::is('ocs/rc') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="medal" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
-            <span class="title">기본정보 등록</span>
+            <span class="title">원무과</span>
             <span class="fa arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li {!! (Request::is('ocs/basicinfo/basicinfo') ? 'class="active"' : '') !!}>
-                <a href="{{ URL::to('ocs/basicinfo/basicinfo') }}">
+            <li {!! (Request::is('ocs/rc') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/rc') }}">
                     <i class="fa fa-angle-double-right"></i>
-                    사업장 정보
+                    환자 접수
                 </a>
             </li>
-            <li {!! (Request::is('ocs/basicinfo/jobtitle') ? 'class="active"' : '') !!}>
+            {{--<li {!! (Request::is('ocs/basicinfo/jobtitle') ? 'class="active"' : '') !!}>
                 <a href="{{ URL::to('ocs/basicinfo/jobtitle') }}">
                     <i class="fa fa-angle-double-right"></i>
                     직위 부서
@@ -50,52 +50,52 @@
                     <i class="fa fa-angle-double-right"></i>
                     근무 유형
                 </a>
-            </li>
+            </li>--}}
         </ul>
     </li>
-    <li>
+    <li {!! (Request::is('ocs/bb') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="users-add" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
-            <span class="title">인사정보 등록</span>
+            <span class="title">진료실</span>
             <span class="fa arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li {!! (Request::is('ocs/pinfo/pinfo') ? 'class="active"' : '') !!}>
-                <a href="{{ URL::to('ocs/pinfo/pinfo') }}">
+            <li {!! (Request::is('ocs/bb') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/bb') }}">
                     <i class="fa fa-angle-double-right"></i>
-                    사원 정보
+                    기초검사
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li {!! (Request::is('ocs/hc') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/hc') }}">
                     <i class="fa fa-angle-double-right"></i>
-                    급여 정보
+                    진료실
                 </a>
             </li>
-            <li>
+            {{--<li>
                 <a href="#">
                     <i class="fa fa-angle-double-right"></i>
                     인사기록카드
                 </a>
-            </li>
+            </li>--}}
         </ul>
     </li>
-    <li>
+    <li {!! (Request::is('ocs/nr') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="inbox" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
-            <span class="title">근태관리 등록</span>
+            <span class="title">간호실</span>
             <span class="fa arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li>
-                <a href="#">
+            <li {!! (Request::is('ocs/nr') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/nr') }}">
                     <i class="fa fa-angle-double-right"></i>
-                    연봉/월급제
+                    간호실
                 </a>
             </li>
-            <li>
+            {{--<li>
                 <a href="#">
                     <i class="fa fa-angle-double-right"></i>
                     일용직
@@ -112,24 +112,24 @@
                     <i class="fa fa-angle-double-right"></i>
                     연차 사용
                 </a>
-            </li>
+            </li>--}}
         </ul>
     </li>
-    <li>
+    <li {!! (Request::is('ocs/ph') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="money" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
-            <span class="title">급여 관리</span>
+            <span class="title">약제실</span>
             <span class="fa arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li>
-                <a href="#">
+            <li {!! (Request::is('ocs/ph') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/ph') }}">
                     <i class="fa fa-angle-double-right"></i>
-                    급여 기준표
+                    약제실
                 </a>
             </li>
-            <li>
+            {{--<li>
                 <a href="#">
                     <i class="fa fa-angle-double-right"></i>
                     변동사항 입력
@@ -146,52 +146,52 @@
                     <i class="fa fa-angle-double-right"></i>
                     급여 명세서
                 </a>
-            </li>
+            </li>--}}
         </ul>
     </li>
     <li>
         <a href="#">
             <i class="livicon" data-name="user-remove" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
-            <span class="title">퇴직 관리</span>
+            <span class="title">인사 관리</span>
             <span class="fa arrow"></span>
         </a>
         <ul class="sub-menu">
             <li>
                 <a href="#">
                     <i class="fa fa-angle-double-right"></i>
-                    퇴직금 계산
+                    의사 관리
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class="fa fa-angle-double-right"></i>
-                    퇴직금 연황
+                    간호사 관리
                 </a>
             </li>
-            <li>
+{{--            <li>
                 <a href="#">
                     <i class="fa fa-angle-double-right"></i>
                     퇴직금 내역서
                 </a>
-            </li>
+            </li>--}}
         </ul>
     </li>
-    <li>
+    <li {!! (Request::is('ocs/di') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="notebook" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
-            <span class="title">노무 관리</span>
+            <span class="title">상병 관리</span>
             <span class="fa arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li>
-                <a href="#">
+            <li {!! (Request::is('ocs/di') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/di') }}">
                     <i class="fa fa-angle-double-right"></i>
-                    근로계약서
+                    상병 관리
                 </a>
             </li>
-            <li>
+            {{--<li>
                 <a href="#">
                     <i class="fa fa-angle-double-right"></i>
                     취업 규칙
@@ -220,17 +220,17 @@
                     <i class="fa fa-angle-double-right"></i>
                     노무 관리서식
                 </a>
-            </li>
+            </li>--}}
         </ul>
     </li>
-    <li>
+    {{--<li>
         <a href="#">
             <i class="livicon" data-name="user" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
             <span class="title">상담 센터</span>
             <span class="fa arrow"></span>
         </a>
-    </li>
+    </li>--}}
     {{--<li {!! (Request::is('admin/datatables') || Request::is('admin/editable_datatables') || Request::is('admin/dropzone') || Request::is('admin/multiple_upload')? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="medal" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"

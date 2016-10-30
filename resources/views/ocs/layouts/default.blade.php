@@ -23,9 +23,10 @@
     <!-- end of global css -->
     <link href='https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css' rel='stylesheet' type='text/css'>
 
-    {{-- 어드밴스드 버튼--}}
-    <link rel="stylesheet" href="{{ asset('assets/vendors/Buttons/css/buttons.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/pages/advbuttons.css') }}" />
+    <!-- 버튼-->
+    <link href="{{ asset('assets/vendors/iCheck/css/all.css') }}"  rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/buttons.css') }}" />
+
     <!--page level css-->
     @yield('header_styles')
             <!--end of page level css-->
@@ -43,6 +44,7 @@
             </a>
         </div>
         <div class="navbar-right">
+
             <ul class="nav navbar-nav">
                 @include('ocs.layouts._messages')
                 @include('ocs.layouts._notifications')
@@ -173,6 +175,9 @@
 <!-- end of global js -->
 <!-- begin page level js -->
 @yield('footer_scripts')
+<script src="{{ asset('assets/vendors/iCheck/js/icheck.js') }}"></script>
+<script src="{{ asset('assets/js/pages/custom_buttons.js') }}"></script>
         <!-- end page level js -->
+
 </body>
 </html>
