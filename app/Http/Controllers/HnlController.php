@@ -65,4 +65,12 @@ class HnlController extends Controller
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
     }
 
+    public function showPinfo()
+    {
+        if(Sentinel::check())
+            return view('hnl.pinfo.pinfo');
+        else
+            return Redirect::to('admin/signin')->with('error','You must be logged in!');
+    }
+
 }
