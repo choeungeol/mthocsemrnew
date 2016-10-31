@@ -82,8 +82,17 @@ Route::group(array('prefix' => 'ocs', 'middleware' => 'SentinelUser'), function 
     #ocs / disease
     Route::get('/di', array('as' => 'ocs', 'uses' => 'OcsController@showDisease'));
 
+    #ocs / admin / pinfo
+    Route::get('/ad/pi', array('as' => 'ocs', 'uses' => 'PinfoController@showPinfo'));
+    #ocs / admin / plst 의사
+    Route::get('/ad/do', array('as' => 'ocs', 'uses' => 'PinfoController@showDlist'));
+    #ocs / admin / plist 갆사
+    Route::get('/ad/nu', array('as' => 'ocs', 'uses' => 'PinfoController@showNlist'));
 
 });
+
+
+
 
 Route::group(array('prefix' => 'admin', 'middleware' => 'SentinelAdmin'), function () {
     # Dashboard / Index

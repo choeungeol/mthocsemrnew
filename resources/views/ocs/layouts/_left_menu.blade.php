@@ -53,7 +53,7 @@
             </li>--}}
         </ul>
     </li>
-    <li {!! (Request::is('ocs/bb') ? 'class="active"' : '') !!}>
+    <li {!! (Request::is('ocs/bb') || Request::is('ocs/hc') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="users-add" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
@@ -149,7 +149,7 @@
             </li>--}}
         </ul>
     </li>
-    <li>
+    <li {!! (Request::is('ocs/ad/pi') || Request::is('ocs/ad/do') ||Request::is('ocs/ad/nu') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="user-remove" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
@@ -157,14 +157,20 @@
             <span class="fa arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li>
-                <a href="#">
+            <li {!! (Request::is('ocs/ad/pi') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/ad/pi') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    인사 등록
+                </a>
+            </li>
+            <li {!! (Request::is('ocs/ad/do') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/ad/do') }}">
                     <i class="fa fa-angle-double-right"></i>
                     의사 관리
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li {!! (Request::is('ocs/ad/nu') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('ocs/ad/no') }}">
                     <i class="fa fa-angle-double-right"></i>
                     간호사 관리
                 </a>
