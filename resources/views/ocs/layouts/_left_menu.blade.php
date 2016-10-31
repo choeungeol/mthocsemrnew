@@ -170,7 +170,7 @@
                 </a>
             </li>
             <li {!! (Request::is('ocs/ad/nu') ? 'class="active"' : '') !!}>
-                <a href="{{ URL::to('ocs/ad/no') }}">
+                <a href="{{ URL::to('ocs/ad/nu') }}">
                     <i class="fa fa-angle-double-right"></i>
                     간호사 관리
                 </a>
