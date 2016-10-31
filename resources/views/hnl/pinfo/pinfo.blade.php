@@ -1,4 +1,4 @@
-@extends('ocs/layouts/default')
+@extends('hnl/layouts/default')
 
 {{-- Page title --}}
 @section('title')
@@ -16,7 +16,7 @@
 {{-- Page content --}}
 @section('content')
     <section class="content-header">
-        <h1>Welcome to OCSEMR</h1>
+        <h1>Welcome to GOOD LABOR</h1>
         <ol class="breadcrumb">
             <li class="active">
                 <a href="#">
@@ -28,24 +28,24 @@
     </section>
     <section class="content">
         <form method="post" class="form-horizontal">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading border-light">
-                            <h4 class="panel-title">
-                                <i class="livicon" data-name="doc-portrait" data-size="18" data-color="white" data-hc="white"
-                                   data-l="true"></i> 사원 정보
-                            </h4>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading border-light">
+                        <h4 class="panel-title">
+                            <i class="livicon" data-name="doc-portrait" data-size="18" data-color="white" data-hc="white"
+                               data-l="true"></i> 사원 정보
+                        </h4>
                         <span class="pull-right">
                             <i class="glyphicon glyphicon-chevron-up showhide clickable" title="Hide Panel content"></i>
                         </span>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <img width="200px" src="http://www.iconsfind.com/wp-content/uploads/2015/10/20151012_561baed03a54e.png">
-                                </div>
-                                <div class="col-lg-10">
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <img width="200px" src="http://www.iconsfind.com/wp-content/uploads/2015/10/20151012_561baed03a54e.png">
+                            </div>
+                            <div class="col-lg-10">
 
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -129,96 +129,95 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading border-light">
-                            <h4 class="panel-title">
-                                <i class="livicon" data-name="doc-portrait" data-size="18" data-color="white" data-hc="white"
-                                   data-l="true"></i> 근무 정보
-                            </h4>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading border-light">
+                        <h4 class="panel-title">
+                            <i class="livicon" data-name="doc-portrait" data-size="18" data-color="white" data-hc="white"
+                               data-l="true"></i> 근무 정보
+                        </h4>
                         <span class="pull-right">
                             <i class="glyphicon glyphicon-chevron-up showhide clickable" title="Hide Panel content"></i>
                         </span>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="first_Name">사업장:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control input-sm" id="first_Name" placeholder="사업장">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="input_Email">직위:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control input-sm" id="input_Email" placeholder="직위">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="input_Password">승급일자:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control input-sm" id="input_Password" placeholder="승급일자">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="input_Password">직무:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control input-sm" id="input_Password" placeholder="직무">
-                                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="first_Name">사업장:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-sm" id="first_Name" placeholder="사업장">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="first_Name">재입사일자:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control input-sm" id="first_Name" placeholder="재입사일자">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="input_Email">직책:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control input-sm" id="input_Email" placeholder="직책">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="input_Password">직군:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control input-sm" id="input_Password" placeholder="직군">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="input_Password">퇴직일:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control input-sm" id="input_Password" placeholder="퇴직일">
-                                        </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="input_Email">직위:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-sm" id="input_Email" placeholder="직위">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="first_Name">그룹전입일:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control input-sm" id="first_Name" placeholder="그룹전입일">
-                                        </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="input_Password">승급일자:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-sm" id="input_Password" placeholder="승급일자">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="input_Email">승격일자:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control input-sm" id="input_Email" placeholder="승격일자">
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="input_Password">직무:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-sm" id="input_Password" placeholder="직무">
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="input_Password">직종:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control input-sm" id="input_Password" placeholder="직종">
-                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="first_Name">재입사일자:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-sm" id="first_Name" placeholder="재입사일자">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="input_Email">직책:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-sm" id="input_Email" placeholder="직책">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="input_Password">직군:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-sm" id="input_Password" placeholder="직군">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="input_Password">퇴직일:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-sm" id="input_Password" placeholder="퇴직일">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="first_Name">그룹전입일:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-sm" id="first_Name" placeholder="그룹전입일">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="input_Email">승격일자:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-sm" id="input_Email" placeholder="승격일자">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="input_Password">직종:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-sm" id="input_Password" placeholder="직종">
                                     </div>
                                 </div>
                             </div>
@@ -226,9 +225,10 @@
                     </div>
                 </div>
             </div>
+        </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <button type="submit" class="btn btn-primary col-lg-12 font-size-20"><strong>작성완료</strong></button>
+                    <a href="#" class="button button-block button-rounded button-primary button-large">저장</a>
                 </div>
             </div>
         </form>

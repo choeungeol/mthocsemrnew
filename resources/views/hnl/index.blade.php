@@ -1,8 +1,8 @@
-@extends('ocs/layouts/default')
+@extends('hnl/layouts/default')
 
 {{-- Page title --}}
 @section('title')
-    OCSEMR Program
+    GOOD LABOR Program
     @parent
 @stop
 
@@ -30,7 +30,7 @@
 @section('content')
 
     <section class="content-header">
-        <h1>Welcome to OCSEMR</h1>
+        <h1>Welcome to GOOD LABOR</h1>
         <ol class="breadcrumb">
             <li class="active">
                 <a href="#">
@@ -42,12 +42,6 @@
     </section>
     <section class="content">
         <!--/row-->
-
-        <div class="row">
-            <div class="col-lg-12">
-                <a href="/hnl" class="btn btn-primary btn-large col-lg-12"><h4>노무관리</h4></a>
-            </div>
-        </div>
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-8 margin_10">
                 <div class="panel panel-warning">

@@ -63,6 +63,26 @@ Route::group(array('prefix' => 'admin'), function () {
     Route::get('activate/{userId}/{activationCode}', array('as' => 'activate', 'uses' => 'AuthController@getActivate'));
 });
 
+Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function () {
+    # hnl / Index
+    Route::get('/', array('as' => 'hnl','uses' => 'HnlController@showHnl'));
+
+    Route::get('/test', array('as' => 'hnl','uses' => 'HnlController@showTest'));
+    # 기본정보 등록
+    Route::get('basicinfo/basicinfo', array('as' => 'hnl', 'uses' => 'HnlController@showBasicInfo'));
+
+    Route::get('basicinfo/jobtitle', array('as' => 'hnl', 'uses' => 'HnlController@showJobtitle'));
+
+    Route::get('basicinfo/payitem', array('as' => 'hnl', 'uses' => 'HnlController@showPayitem'));
+
+    Route::get('basicinfo/paytype', array('as' => 'hnl', 'uses' => 'HnlController@showPaytype'));
+
+    Route::get('basicinfo/worktype', array('as' => 'hnl', 'uses' => 'HnlController@showWorktype'));
+
+    #인사정보 등록
+    Route::get('pinfo/pinfo', array('as' => 'hnl', 'uses' => 'PinfoController@showPinfo'));
+});
+
 Route::group(array('prefix' => 'ocs', 'middleware' => 'SentinelUser'), function () {
     # ocs / Index
     Route::get('/', array('as' => 'ocs', 'uses' => 'OcsController@showOcs'));
