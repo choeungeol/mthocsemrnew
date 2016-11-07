@@ -1,7 +1,7 @@
 @extends('ocs/layouts/default')
 
 @section('title')
-    접수실
+    환자 접수
     @parent
 @stop
 
