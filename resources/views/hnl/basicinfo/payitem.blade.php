@@ -16,7 +16,7 @@
 {{-- Page content --}}
 @section('content')
     <section class="content-header">
-        <h1>급여항목</h1>
+        <h1>급여 항목</h1>
         <ol class="breadcrumb">
             <li class="active">
                 <a href="#">
