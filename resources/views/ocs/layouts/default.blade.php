@@ -29,7 +29,7 @@
 
     <!--page level css-->
     @yield('header_styles')
-            <!--end of page level css-->
+    <!--end of page level css-->
 
 <body class="skin-josh">
 <header class="header">

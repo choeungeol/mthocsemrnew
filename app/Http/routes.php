@@ -68,7 +68,7 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
     Route::get('/', array('as' => 'hnl','uses' => 'HnlController@showHnl'));
 
     Route::get('/test', array('as' => 'hnl','uses' => 'HnlController@showTest'));
-    # 기본정보 등록
+    # 기본정보
     Route::get('basicinfo/basicinfo', array('as' => 'hnl', 'uses' => 'HnlController@showBasicInfo'));
 
     Route::get('basicinfo/jobtitle', array('as' => 'hnl', 'uses' => 'HnlController@showJobtitle'));
@@ -79,8 +79,39 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
     Route::get('basicinfo/worktype', array('as' => 'hnl', 'uses' => 'HnlController@showWorktype'));
 
-    #인사정보 등록
-    Route::get('pinfo/pinfo', array('as' => 'hnl', 'uses' => 'HnlController@showPinfo'));
+    #인사정보
+    Route::get('pinfo/pinfo', array('as' => 'hnl', 'uses' => 'PinfoController@showPinfo'));
+
+    Route::get('pinfo/payinfo', array('as' => 'hnl', 'uses' => 'PinfoController@showPayinfo'));
+
+    #근태관리
+    Route::get('work/addwork', array('as' => 'hnl', 'uses' => 'WorkController@showAddwork'));
+
+    Route::get('work/workaday', array('as' => 'hnl', 'uses' => 'WorkController@showWorkADay'));
+
+    Route::get('work/workatime', array('as' => 'hnl', 'uses' => 'WorkController@showWorkATime'));
+
+    Route::get('work/yearoff', array('as' => 'hnl', 'uses' => 'WorkController@showYearOff'));
+
+    #급여관리
+    Route::get('pay/pmanage', array('as' => 'hnl', 'uses' => 'PayController@showPayManager'));
+
+    Route::get('pay/pchange', array('as' => 'hnl','uses' => 'PayController@showPayChange'));
+
+    Route::get('pay/plist', array('as' => 'hnl','uses' => 'PayController@showPayList'));
+
+    Route::get('pay/preceipt', array('as' => 'hnl','uses' => 'PayController@showPayReceipt'));
+
+    Route::get('pay/pchangec', array('as' => 'hnl','uses' => 'PayController@showPayChangeConfirm'));
+
+    #퇴직관리
+    Route::get('retire/rcalc', array('as' => 'hnl', 'uses' => 'RetireController@showRetireCalc'));
+
+    Route::get('retire/rinfo', array('as' => 'hnl','uses' => 'RetireController@showRetireinfo'));
+
+    Route::get('retire/rreceipt', array('as' => 'hnl','uses' => 'RetireController@showRetireReceipt'));
+
+
 });
 
 Route::group(array('prefix' => 'ocs', 'middleware' => 'SentinelUser'), function () {

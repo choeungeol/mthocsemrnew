@@ -12,23 +12,15 @@ class PinfoController extends Controller
     public function showPinfo()
     {
         if(Sentinel::check())
-            return view('ocs.admin.pinfo');
+            return view('hnl.pinfo.pinfo');
         else
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
     }
 
-    public function showDlist()
+    public function showPayinfo()
     {
         if(Sentinel::check())
-            return view('ocs.admin.plist');
-        else
-            return Redirect::to('admin/signin')->with('error','You must be logged in!');
-    }
-
-    public function showNlist()
-    {
-        if(Sentinel::check())
-            return view('ocs.admin.plist1');
+            return view('hnl.pinfo.payinfo');
         else
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
     }

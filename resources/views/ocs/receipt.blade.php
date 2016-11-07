@@ -1,7 +1,7 @@
 @extends('ocs/layouts/default')
 
 @section('title')
-    기초검사
+    접수실
     @parent
 @stop
 
@@ -15,7 +15,7 @@
 @section('content')
 
     <section class="content-header">
-        <h1>Welcome to OCSEMR</h1>
+        <h1>접수실</h1>
         <ol class="breadcrumb">
             <li class="active">
                 <a href="#">

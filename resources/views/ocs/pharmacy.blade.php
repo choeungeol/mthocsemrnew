@@ -12,7 +12,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1>Welcome to OCSEMR</h1>
+        <h1>약제실</h1>
         <ol class="breadcrumb">
             <li class="active">
                 <a href="#">

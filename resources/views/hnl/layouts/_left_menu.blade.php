@@ -7,13 +7,6 @@
         </a>
     </li>
     <li>
-        <a href="/ocs">
-            <i class="livicon" data-name="asterisk" data-size="18" data-c="#418BCA" data-hc="#418BCA"
-               data-loop="true"></i>
-            <span class="title">Back to OCSEMR</span>
-        </a>
-    </li>
-    <li>
         <a href="/hnl/test">
             <i class="livicon" data-name="asterisk" data-size="18" data-c="#418BCA" data-hc="#418BCA"
                data-loop="true"></i>
@@ -60,7 +53,7 @@
             </li>
         </ul>
     </li>
-    <li>
+    <li {!! (Request::is('hnl/pinfo/pinfo') || Request::is('hnl/pinfo/payinfo')  ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="users-add" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
@@ -74,8 +67,8 @@
                     사원 정보
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li {!! (Request::is('hnl/pinfo/payinfo') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('hnl/pinfo/payinfo') }}">
                     <i class="fa fa-angle-double-right"></i>
                     급여 정보
                 </a>
@@ -88,7 +81,7 @@
             </li>
         </ul>
     </li>
-    <li>
+    <li {!! (Request::is('hnl/work/addwork') || Request::is('hnl/work/workaday') || Request::is('hnl/work/workatime') || Request::is('hnl/work/yearoff') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="inbox" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
@@ -96,26 +89,26 @@
             <span class="fa arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li>
-                <a href="#">
+            <li {!! (Request::is('hnl/work/addwork') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('hnl/work/addwork') }}">
                     <i class="fa fa-angle-double-right"></i>
                     연봉/월급제
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li {!! (Request::is('hnl/work/workaday') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('hnl/work/workaday') }}">
                     <i class="fa fa-angle-double-right"></i>
                     일용직
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li {!! (Request::is('hnl/work/workatime') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('hnl/work/workatime') }}">
                     <i class="fa fa-angle-double-right"></i>
                     시급제
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li {!! (Request::is('hnl/work/yearoff') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('hnl/work/yearoff') }}">
                     <i class="fa fa-angle-double-right"></i>
                     연차 사용
                 </a>
@@ -123,6 +116,7 @@
         </ul>
     </li>
     <li>
+    <li {!! (Request::is('hnl/pay/pmanage') || Request::is('hnl/pay/pchange') || Request::is('hnl/pay/plist')  || Request::is('hnl/pay/preceipt') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="money" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
@@ -130,33 +124,33 @@
             <span class="fa arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li>
-                <a href="#">
+            <li {!! (Request::is('hnl/pay/pmanage') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('hnl/pay/pmanage') }}">
                     <i class="fa fa-angle-double-right"></i>
                     급여 기준표
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li {!! (Request::is('hnl/pay/pchange') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('hnl/pay/pchange') }}">
                     <i class="fa fa-angle-double-right"></i>
                     변동사항 입력
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li {!! (Request::is('hnl/pay/plist') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('hnl/pay/plist') }}">
                     <i class="fa fa-angle-double-right"></i>
                     급여 대장
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li {!! (Request::is('hnl/pay/preceipt') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('hnl/pay/preceipt') }}">
                     <i class="fa fa-angle-double-right"></i>
                     급여 명세서
                 </a>
             </li>
         </ul>
     </li>
-    <li>
+    <li {!! (Request::is('hnl/retire/rcalc') || Request::is('hnl/retire/rinfo') || Request::is('hnl/retire/rreceipt')  ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="user-remove" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
@@ -164,20 +158,20 @@
             <span class="fa arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li>
-                <a href="#">
+            <li {!! (Request::is('hnl/retire/rcalc') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('hnl/retire/rcalc') }}">
                     <i class="fa fa-angle-double-right"></i>
                     퇴직금 계산
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li {!! (Request::is('hnl/retire/rinfo') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('hnl/retire/rinfo') }}">
                     <i class="fa fa-angle-double-right"></i>
-                    퇴직금 연황
+                    퇴직금 현황
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li {!! (Request::is('hnl/retire/rreceipt') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('hnl/retire/rreceipt') }}">
                     <i class="fa fa-angle-double-right"></i>
                     퇴직금 내역서
                 </a>
