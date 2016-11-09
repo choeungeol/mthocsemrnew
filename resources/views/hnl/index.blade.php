@@ -443,5 +443,5 @@
     <script src="{{ asset('assets/vendors/flotchart/js/jquery.flot.resize.js') }}"  language="javascript" type="text/javascript" ></script>
     <script src="{{ asset('assets/js/pages/animation-chart.js') }}" ></script>
 
-
+    <script src="{{ asset('assets/js/hnl/app.js') }}" type="text/javascript"></script>
 @stop

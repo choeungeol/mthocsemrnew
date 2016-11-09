@@ -26,7 +26,7 @@
             </li>
         </ol>
     </section>
-    <section class="content">
+    <section class="content" ng-app="worktype" ng-controller="worktypeCtrl">
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-danger">
@@ -53,892 +53,748 @@
                                 </li>
                                 <li class="">
                                     <div class="form-inline">
-                                    <input type="text" class="form-control">
-                                    <label>* 기본설정</label>
-                                    <select class="form-control">
-                                        <option>A형</option>
-                                        <option>B형</option>
-                                        <option>C형</option>
-                                    </select>
-                                    </div>
-                                </li>
-                                <li class="">
-                                    <div class="form-inline">
-                                    <a class="btn btn-primary" style="margin-left:10px;">휴게시간 추가</a>
+                                        <input type="text" class="form-control">
+                                        <label>* 기본설정</label>
+                                        <select class="form-control">
+                                            <option>A형</option>
+                                            <option>B형</option>
+                                            <option>C형</option>
+                                        </select>
                                     </div>
                                 </li>
                             </ul>
-                                <div id="myTabContent" class="tab-content">
-                                    <div class="tab-pane fade active in" id="atype">
-                                        <table class="table table-condensed">
-                                            <thead>
-                                                <tr>
-                                                    <th colspan="2">요일</th>
-                                                    <th>월요일</th>
-                                                    <th>화요일</th>
-                                                    <th>수요일</th>
-                                                    <th>목요일</th>
-                                                    <th>금요일</th>
-                                                    <th>토요일</th>
-                                                    <th>일요일</th>
-                                                </tr>
-                                                <tr>
-                                                    <th colspan="2">근무유형</th>
-                                                    <th>
-                                                        <select class="form-control input-sm">
-                                                            <option>근무일</option>
-                                                            <option>유급휴일</option>
-                                                            <option>무급휴일</option>
-                                                            <option>무급휴무일</option>
-                                                        </select>
-                                                    </th>
-                                                    <th>
-                                                        <select class="form-control input-sm">
-                                                            <option>근무일</option>
-                                                            <option>유급휴일</option>
-                                                            <option>무급휴일</option>
-                                                            <option>무급휴무일</option>
-                                                        </select>
-                                                    </th>
-                                                    <th>
-                                                        <select class="form-control input-sm">
-                                                            <option>근무일</option>
-                                                            <option>유급휴일</option>
-                                                            <option>무급휴일</option>
-                                                            <option>무급휴무일</option>
-                                                        </select>
-                                                    </th>
-                                                    <th>
-                                                        <select class="form-control input-sm">
-                                                            <option>근무일</option>
-                                                            <option>유급휴일</option>
-                                                            <option>무급휴일</option>
-                                                            <option>무급휴무일</option>
-                                                        </select>
-                                                    </th>
-                                                    <th>
-                                                        <select class="form-control input-sm">
-                                                            <option>근무일</option>
-                                                            <option>유급휴일</option>
-                                                            <option>무급휴일</option>
-                                                            <option>무급휴무일</option>
-                                                        </select>
-                                                    </th>
-                                                    <th>
-                                                        <select class="form-control input-sm">
-                                                            <option>근무일</option>
-                                                            <option>유급휴일</option>
-                                                            <option>무급휴일</option>
-                                                            <option>무급휴무일</option>
-                                                        </select>
-                                                    </th>
-                                                    <th>
-                                                        <select class="form-control input-sm">
-                                                            <option>근무일</option>
-                                                            <option>유급휴일</option>
-                                                            <option>무급휴일</option>
-                                                            <option>무급휴무일</option>
-                                                        </select>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td rowspan="2" style="vertical-align: middle;">근무시간</td>
-                                                    <td>시작</td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>종료</td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td rowspan="2" style="vertical-align: middle;">휴게시간</td>
-                                                    <td>시작</td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>종료</td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td rowspan="2" style="vertical-align: middle;">휴게시간2</td>
-                                                    <td>시작</td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>종료</td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td rowspan="2" style="vertical-align: middle;">연장근무</td>
-                                                    <td>시작</td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>종료</td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td rowspan="2" style="vertical-align: middle;">야간근무</td>
-                                                    <td>시작</td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>종료</td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="time">
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane fade" id="btype">
-                                        <table class="table table-condensed">
-                                            <thead>
-                                            <tr>
-                                                <th colspan="2">요일</th>
-                                                <th>월요일</th>
-                                                <th>화요일</th>
-                                                <th>수요일</th>
-                                                <th>목요일</th>
-                                                <th>금요일</th>
-                                                <th>토요일</th>
-                                                <th>일요일</th>
-                                            </tr>
-                                            <tr>
-                                                <th colspan="2">근무유형</th>
-                                                <th>
-                                                    <select class="form-control input-sm">
-                                                        <option>근무일</option>
-                                                        <option>유급휴일</option>
-                                                        <option>무급휴일</option>
-                                                        <option>무급휴무일</option>
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select class="form-control input-sm">
-                                                        <option>근무일</option>
-                                                        <option>유급휴일</option>
-                                                        <option>무급휴일</option>
-                                                        <option>무급휴무일</option>
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select class="form-control input-sm">
-                                                        <option>근무일</option>
-                                                        <option>유급휴일</option>
-                                                        <option>무급휴일</option>
-                                                        <option>무급휴무일</option>
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select class="form-control input-sm">
-                                                        <option>근무일</option>
-                                                        <option>유급휴일</option>
-                                                        <option>무급휴일</option>
-                                                        <option>무급휴무일</option>
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select class="form-control input-sm">
-                                                        <option>근무일</option>
-                                                        <option>유급휴일</option>
-                                                        <option>무급휴일</option>
-                                                        <option>무급휴무일</option>
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select class="form-control input-sm">
-                                                        <option>근무일</option>
-                                                        <option>유급휴일</option>
-                                                        <option>무급휴일</option>
-                                                        <option>무급휴무일</option>
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select class="form-control input-sm">
-                                                        <option>근무일</option>
-                                                        <option>유급휴일</option>
-                                                        <option>무급휴일</option>
-                                                        <option>무급휴무일</option>
-                                                    </select>
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td rowspan="2" style="vertical-align: middle;">근무시간</td>
-                                                <td>시작</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>종료</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td rowspan="2" style="vertical-align: middle;">휴게시간</td>
-                                                <td>시작</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>종료</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td rowspan="2" style="vertical-align: middle;">연장근무</td>
-                                                <td>시작</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>종료</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td rowspan="2" style="vertical-align: middle;">야간근무</td>
-                                                <td>시작</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>종료</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane fade" id="ctype">
-                                        <table class="table table-condensed">
-                                            <thead>
-                                            <tr>
-                                                <th colspan="2">요일</th>
-                                                <th>월요일</th>
-                                                <th>화요일</th>
-                                                <th>수요일</th>
-                                                <th>목요일</th>
-                                                <th>금요일</th>
-                                                <th>토요일</th>
-                                                <th>일요일</th>
-                                            </tr>
-                                            <tr>
-                                                <th colspan="2">근무유형</th>
-                                                <th>
-                                                    <select class="form-control input-sm">
-                                                        <option>근무일</option>
-                                                        <option>유급휴일</option>
-                                                        <option>무급휴일</option>
-                                                        <option>무급휴무일</option>
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select class="form-control input-sm">
-                                                        <option>근무일</option>
-                                                        <option>유급휴일</option>
-                                                        <option>무급휴일</option>
-                                                        <option>무급휴무일</option>
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select class="form-control input-sm">
-                                                        <option>근무일</option>
-                                                        <option>유급휴일</option>
-                                                        <option>무급휴일</option>
-                                                        <option>무급휴무일</option>
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select class="form-control input-sm">
-                                                        <option>근무일</option>
-                                                        <option>유급휴일</option>
-                                                        <option>무급휴일</option>
-                                                        <option>무급휴무일</option>
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select class="form-control input-sm">
-                                                        <option>근무일</option>
-                                                        <option>유급휴일</option>
-                                                        <option>무급휴일</option>
-                                                        <option>무급휴무일</option>
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select class="form-control input-sm">
-                                                        <option>근무일</option>
-                                                        <option>유급휴일</option>
-                                                        <option>무급휴일</option>
-                                                        <option>무급휴무일</option>
-                                                    </select>
-                                                </th>
-                                                <th>
-                                                    <select class="form-control input-sm">
-                                                        <option>근무일</option>
-                                                        <option>유급휴일</option>
-                                                        <option>무급휴일</option>
-                                                        <option>무급휴무일</option>
-                                                    </select>
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td rowspan="2" style="vertical-align: middle;">근무시간</td>
-                                                <td>시작</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>종료</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td rowspan="2" style="vertical-align: middle;">휴게시간</td>
-                                                <td>시작</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>종료</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td rowspan="2" style="vertical-align: middle;">연장근무</td>
-                                                <td>시작</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>종료</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td rowspan="2" style="vertical-align: middle;">야간근무</td>
-                                                <td>시작</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>종료</td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                                <td>
-                                                    <input class="form-control input-sm" type="time">
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                            <div id="myTabContent" class="tab-content">
+                                <div class="tab-pane fade active in" id="atype">
+                                    <table class="table table-condensed">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="2">요일</th>
+                                            <th>월요일</th>
+                                            <th>화요일</th>
+                                            <th>수요일</th>
+                                            <th>목요일</th>
+                                            <th>금요일</th>
+                                            <th>토요일</th>
+                                            <th>일요일</th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2">근무유형</th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td style="vertical-align: middle;">근무시간</td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="vertical-align: middle;">휴게시간<br>
+                                                <a class="btn btn-sm btn-primary" ng-click="addRow()">추가</a>
+                                            </td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat="bt in breaktimes">
+                                            <td style="vertical-align: middle;">
+                                                <% bt.name %> <% bt.num %>
+                                                <br>
+                                                <button type="button" class="btn btn-sm btn-warning" ng-click="removeRow(bt.name)">삭제</button>
+                                            </td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="vertical-align: middle;">연장근무</td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="vertical-align: middle;">야간근무</td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="slimScrollBar" style="background: rgb(216, 74, 56); width: 3px; position: absolute; top: 0px; opacity: 1; display: none; border-radius: 0px; z-index: 99; right: 1px; height: 130px;"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+                                <div class="tab-pane fade" id="btype">
+                                    <table class="table table-condensed">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="2">요일</th>
+                                            <th>월요일</th>
+                                            <th>화요일</th>
+                                            <th>수요일</th>
+                                            <th>목요일</th>
+                                            <th>금요일</th>
+                                            <th>토요일</th>
+                                            <th>일요일</th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2">근무유형</th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td style="vertical-align: middle;">근무시간</td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="vertical-align: middle;">휴게시간<br>
+                                                <a class="btn btn-sm btn-primary" ng-click="addRowb()">추가</a>
+                                            </td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat="bt in breaktimesb">
+                                            <td style="vertical-align: middle;">
+                                                <% bt.name %> <% bt.num %>
+                                                <br>
+                                                <button type="button" class="btn btn-sm btn-warning" ng-click="removeRowb(bt.name)">삭제</button>
+                                            </td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="vertical-align: middle;">연장근무</td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="vertical-align: middle;">야간근무</td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="ctype">
+                                    <table class="table table-condensed">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="2">요일</th>
+                                            <th>월요일</th>
+                                            <th>화요일</th>
+                                            <th>수요일</th>
+                                            <th>목요일</th>
+                                            <th>금요일</th>
+                                            <th>토요일</th>
+                                            <th>일요일</th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2">근무유형</th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <select class="form-control input-sm">
+                                                    <option>근무일</option>
+                                                    <option>유급휴일</option>
+                                                    <option>무급휴일</option>
+                                                    <option>무급휴무일</option>
+                                                </select>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td style="vertical-align: middle;">근무시간</td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="vertical-align: middle;">휴게시간<br>
+                                                <a class="btn btn-sm btn-primary" ng-click="addRowc()">추가</a>
+                                            </td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        <tr ng-repeat="bt in breaktimesc">
+                                            <td style="vertical-align: middle;">
+                                                <% bt.name %> <% bt.num %>
+                                                <br>
+                                                <button type="button" class="btn btn-sm btn-warning" ng-click="removeRowc(bt.name)">삭제</button>
+                                            </td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="vertical-align: middle;">연장근무</td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="vertical-align: middle;">야간근무</td>
+                                            <td>시작<br><br>종료</td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                            <td>
+                                                <input class="form-control input-sm" type="time">
+                                                <input class="form-control input-sm" type="time">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="slimScrollBar" style="background: rgb(216, 74, 56); width: 3px; position: absolute; top: 0px; opacity: 1; display: none; border-radius: 0px; z-index: 99; right: 1px; height: 130px;"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
                     </div>
                 </div>
             </div>
@@ -955,6 +811,6 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
 
-
+    <script src="{{ asset('assets/js/hnl/worktype.js') }}" type="text/javascript"></script>
 
 @stop

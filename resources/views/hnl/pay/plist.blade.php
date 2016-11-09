@@ -43,154 +43,35 @@
                         <div class="bs-example">
                             <ul class="nav nav-tabs" style="margin-bottom: 15px;">
                                 <li class="active">
-                                    <a href="#basic" data-toggle="tab">기본 총괄표</a>
+                                    <a href="#" data-toggle="tab">Home</a>
                                 </li>
                                 <li>
-                                    <a href="#wtime" data-toggle="tab">근로시간 구성</a>
+                                    <a href="#profile" data-toggle="tab">Profile</a>
                                 </li>
-                                <li>
-                                    <a href="#pays" data-toggle="tab">급여 세부항목 구성</a>
+                                <li class="disabled">
+                                    <a>Disabled</a>
                                 </li>
                             </ul>
                             <div id="myTabContent" class="tab-content">
-                                <div class="tab-pane fade active in" id="basic">
-                                    <table class="table table-condensed table-bordered">
-                                        <caption>
-                                            <i class="livicon" data-name="adjust" data-size="12" data-c="#000" data-hc="#fff" data-loop="true"></i> 기본총괄표
-                                        </caption>
-
-                                        <thead>
-                                        <tr>
-                                            <th rowspan="2">순번</th>
-                                            <th rowspan="2">이름</th>
-                                            <th rowspan="2">고정월 총 지급액</th>
-                                            <th rowspan="2">시급</th>
-                                            <th colspan="4">임금구성</th>
-                                            <th colspan="3">급여구분</th>
-                                        </tr>
-                                        <tr>
-                                            <th>통상임금</th>
-                                            <th>포괄법정수당</th>
-                                            <th>포괄약정수당</th>
-                                            <th>복리후생</th>
-                                            <th>비과세</th>
-                                            <th>임금총액</th>
-                                            <th>보수총액</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @for ($i = 1; $i < 5; $i++)
-                                            <tr>
-                                                <td>{{ $i }}</td>
-                                                <td>홍길동</td>
-                                                <td>3,000,000</td>
-                                                <td>13,000</td>
-                                                <td>2,000,000</td>
-                                                <td>600,000</td>
-                                                <td>200,000</td>
-                                                <td>200,000</td>
-                                                <td>400,000</td>
-                                                <td>2,800,000</td>
-                                                <td>2,600,000</td>
-                                            </tr>
-                                        @endfor
-                                        </tbody>
-                                    </table>
+                                <div class="tab-pane fade active in" id="home">
+                                    <p>
+                                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                                    </p>
                                 </div>
-                                <div class="tab-pane fade" id="wtime">
-                                    <table class="table table-condensed table-bordered">
-                                        <caption>
-                                            <i class="livicon" data-name="adjust" data-size="12" data-c="#000" data-hc="#fff" data-loop="true"></i> 근로시간 구성
-                                        </caption>
-                                        <thead>
-                                        <tr>
-                                            <th>순번</th>
-                                            <th>이름</th>
-                                            <th>총 근로시간</th>
-                                            <th>소정 근로시간</th>
-                                            <th>주휴 부여시간</th>
-                                            <th>연장 근로시간</th>
-                                            <th>야간 근로시간</th>
-                                            <th>휴일 근로시간</th>
-                                            <th>휴일연장 근로시간</th>
-                                            <th>휴일야간 근로시간</th>
-                                            <th>연차 부여시간</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @for ($i = 1; $i < 5; $i++)
-                                            <tr>
-                                                <td>{{ $i }}</td>
-                                                <td>홍길동</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        @endfor
-                                        </tbody>
-                                    </table>
+                                <div class="tab-pane fade" id="profile">
+                                    <p>
+                                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+                                    </p>
                                 </div>
-                                <div class="tab-pane fade" id="pays">
-                                    <table class="table table-condensed table-bordered">
-                                        <caption>
-                                            <i class="livicon" data-name="adjust" data-size="12" data-c="#000" data-hc="#fff" data-loop="true"></i> 수당?
-                                        </caption>
-                                        <thead>
-                                        <tr>
-                                            <th rowspan="2">순번</th>
-                                            <th rowspan="2">이름</th>
-                                            <th colspan="2">통상임금 기본급</th>
-                                            <th colspan="4">통상임금 수당</th>
-                                            <th colspan="4">평균임금 법정수당</th>
-                                            <th colspan="2">약정수당</th>
-                                            <th colspan="2">복리후생</th>
-                                        </tr>
-                                        <tr>
-                                            <th>기본급여</th>
-                                            <th>주휴수당</th>
-                                            <th>직책수당</th>
-                                            <th>근속수당</th>
-                                            <th>자격수당</th>
-                                            <th>직무수당</th>
-                                            <th>연장수당</th>
-                                            <th>야간수당</th>
-                                            <th>휴일수당</th>
-                                            <th>연차수당</th>
-                                            <th>성과급</th>
-                                            <th>ㅡ</th>
-                                            <th>식대</th>
-                                            <th>차량</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @for ($i = 1; $i < 5; $i++)
-                                            <tr>
-                                                <td>{{ $i }}</td>
-                                                <td>홍길동</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        @endfor
-                                        </tbody>
-                                    </table>
+                                <div class="tab-pane fade" id="dropdown1">
+                                    <p>
+                                        Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+                                    </p>
+                                </div>
+                                <div class="tab-pane fade" id="dropdown2">
+                                    <p>
+                                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                                    </p>
                                 </div>
                             </div>
                         </div>
