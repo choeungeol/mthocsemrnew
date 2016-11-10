@@ -10,6 +10,8 @@
 @section('header_styles')
 
     <meta name="_token" content="{{ csrf_token() }}">
+    <link href="{{ asset('assets/vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}"  rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/vendors/iCheck/css/all.css') }}"  rel="stylesheet" type="text/css" />
 
 @stop
 
@@ -33,48 +35,360 @@
                     <div class="panel-heading border-light">
                         <h4 class="panel-title">
                             <i class="livicon" data-name="doc-portrait" data-size="18" data-color="white" data-hc="white"
-                               data-l="true"></i> 급여대장
+                               data-l="true"></i> 검색
                         </h4>
                             <span class="pull-right">
                                 <i class="glyphicon glyphicon-chevron-up showhide clickable" title="Hide Panel content"></i>
                             </span>
                     </div>
                     <div class="panel-body">
-                        <div class="bs-example">
-                            <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-                                <li class="active">
-                                    <a href="#" data-toggle="tab">Home</a>
-                                </li>
-                                <li>
-                                    <a href="#profile" data-toggle="tab">Profile</a>
-                                </li>
-                                <li class="disabled">
-                                    <a>Disabled</a>
-                                </li>
-                            </ul>
-                            <div id="myTabContent" class="tab-content">
-                                <div class="tab-pane fade active in" id="home">
-                                    <p>
-                                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                                    </p>
-                                </div>
-                                <div class="tab-pane fade" id="profile">
-                                    <p>
-                                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
-                                    </p>
-                                </div>
-                                <div class="tab-pane fade" id="dropdown1">
-                                    <p>
-                                        Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
-                                    </p>
-                                </div>
-                                <div class="tab-pane fade" id="dropdown2">
-                                    <p>
-                                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-                                    </p>
-                                </div>
+                        <form class="form-inline" role="form">
+                            <div class="col-xs-6">
+                                <label class="control-label">
+                                    급여년도 / 월
+                                    <select class="form-control input-sm">
+                                        <option>Year</option>
+                                        <option>1991</option>
+                                        <option>1992</option>
+                                        <option>1993</option>
+                                        <option>1994</option>
+                                        <option>1995</option>
+                                        <option>1996</option>
+                                        <option>1997</option>
+                                        <option>1998</option>
+                                        <option>1999</option>
+                                        <option>2000</option>
+                                        <option>2001</option>
+                                        <option>2002</option>
+                                        <option>2003</option>
+                                        <option>2004</option>
+                                        <option>2005</option>
+                                        <option>2006</option>
+                                        <option>2007</option>
+                                        <option>2008</option>
+                                        <option>2009</option>
+                                        <option>2000</option>
+                                        <option>2011</option>
+                                        <option>2012</option>
+                                        <option>2013</option>
+                                        <option>2014</option>
+                                        <option>2015</option>
+                                        <option>2016</option>
+                                        <option>2017</option>
+                                        <option>2018</option>
+                                    </select>년
+                                    <select class="form-control input-sm">
+                                        <option>Month</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>월
+                                </label>
+                                <label>
+                                    <button type="button" class="btn btn-sm btn-default"> + </button>
+                                    <button type="button" class="btn btn-sm btn-default"> - </button>
+                                </label>
                             </div>
-                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading border-light">
+                        <h4 class="panel-title">
+                            <i class="livicon" data-name="doc-portrait" data-size="18" data-color="white" data-hc="white"
+                               data-l="true"></i> 리스트
+                        </h4>
+                            <span class="pull-right">
+                                <i class="glyphicon glyphicon-chevron-up showhide clickable" title="Hide Panel content"></i>
+                            </span>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th><input type="checkbox" class="custom-checkbox"></th>
+                                <th>연도</th>
+                                <th>월</th>
+                                <th>급여대장명</th>
+                                <th>등록일</th>
+                                <th>저장횟수</th>
+                                <th>부서명</th>
+                                <th>급여대장</th>
+                                <th>엑셀</th>
+                                <th>수정</th>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="custom-checkbox"></td>
+                                <td>2016년</td>
+                                <td>07월</td>
+                                <td>2016년 07월 급여대장</td>
+                                <td>2016-07-28</td>
+                                <td>2</td>
+                                <td>,</td>
+                                <td colspan="3"><- 급여대장명을 클릭하십시오.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="custom-checkbox"></td>
+                                <td>2016년</td>
+                                <td>06월</td>
+                                <td>2016년 06월 급여대장</td>
+                                <td>2016-06-28</td>
+                                <td>2</td>
+                                <td>,</td>
+                                <td colspan="3"><- 급여대장명을 클릭하십시오.</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="custom-checkbox"></td>
+                                <td>2016년</td>
+                                <td>05월</td>
+                                <td>2016년 05월 급여대장</td>
+                                <td>2016-05-28</td>
+                                <td>2</td>
+                                <td>,</td>
+                                <td colspan="3"><- 급여대장명을 클릭하십시오.</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading border-light">
+                        <h4 class="panel-title">
+                            <i class="livicon" data-name="doc-portrait" data-size="18" data-color="white" data-hc="white"
+                               data-l="true"></i> 리스트
+                        </h4>
+                            <span class="pull-right">
+                                <i class="glyphicon glyphicon-chevron-up showhide clickable" title="Hide Panel content"></i>
+                            </span>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th colspan="3">인적사항</th>
+                                <th colspan="2">통상임금</th>
+                                <th colspan="3">법정수당</th>
+                                <th colspan="2">복리후생</th>
+                                <th colspan="2">약정수당</th>
+                                <th>변동사항</th>
+                                <th>임금총액</th>
+                                <th colspan="3">공제사항</th>
+                                <th>공제총액</th>
+                                <th>차인지급액</th>
+                            </tr>
+                            <tr>
+                                <th>이름</th>
+                                <th>채용형태</th>
+                                <th>부서</th>
+                                <th>기본급</th>
+                                <th>추가1</th>
+                                <th>연장수당</th>
+                                <th>휴일연장수당</th>
+                                <th>추가3</th>
+                                <th>식대</th>
+                                <th>추가5</th>
+                                <th>상여금</th>
+                                <th>특근수당</th>
+                                <th>근태공제</th>
+                                <th></th>
+                                <th>소득세</th>
+                                <th>국민연금</th>
+                                <th>추가1</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th>입사일</th>
+                                <th>급여형태</th>
+                                <th>직위</th>
+                                <th>주휴수당</th>
+                                <th>추가2</th>
+                                <th>야간수당</th>
+                                <th>휴일야간수당</th>
+                                <th>추가4</th>
+                                <th>차량유지비</th>
+                                <th>추가6</th>
+                                <th>특별성과급</th>
+                                <th>추가7</th>
+                                <th>추가근무</th>
+                                <th></th>
+                                <th>주민세</th>
+                                <th>건강보험</th>
+                                <th>추가2</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th>퇴사일</th>
+                                <th>생년월일</th>
+                                <th></th>
+                                <th>직책수당</th>
+                                <th></th>
+                                <th>휴일수당</th>
+                                <th>연차수당</th>
+                                <th></th>
+                                <th>육아수당</th>
+                                <th></th>
+                                <th>특별수당</th>
+                                <th>추가8</th>
+                                <th></th>
+                                <th></th>
+                                <th>고용보험</th>
+                                <th>장기요양</th>
+                                <th>추가3</th>
+                                <th></th>
+                                <th></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>홍길동</td>
+                                <td>정규직</td>
+                                <td>본사</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2012-08-21</td>
+                                <td>연봉제</td>
+                                <td>과장</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2016-09-01</td>
+                                <td>770816</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                            <tbody>
+                            <tr>
+                                <td>김만홍</td>
+                                <td>기간제</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2014-06-01</td>
+                                <td>월급제</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>801106</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered">
+
+                        </table>
                     </div>
                 </div>
             </div>
@@ -86,6 +400,8 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
 
-
+    <script src="{{ asset('assets/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" ></script>
+    <script src="{{ asset('assets/vendors/iCheck/js/icheck.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form_examples.js') }}"></script
 
 @stop
