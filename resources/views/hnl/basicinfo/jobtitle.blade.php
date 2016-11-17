@@ -10,7 +10,8 @@
 @section('header_styles')
 
     <meta name="_token" content="{{ csrf_token() }}">
-
+    <link href="{{ asset('assets/vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}"  rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/vendors/iCheck/css/all.css') }}"  rel="stylesheet" type="text/css" />
 @stop
 
 {{-- Page content --}}
@@ -44,33 +45,34 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>실부서 코드</th><th>입력 코드</th><th>명칭</th><th>사용여부</th><th>출력순서</th>
+                                    <th>ID</th><th>실부서 코드</th><th>입력 코드</th><th>명칭</th><th>사용여부</th><th>출력순서</th><th>삭제</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach ($jobtitles as $jt)
                                 <tr>
-                                    <td>0001</td>
-                                    <td>01</td>
-                                    <td>본사</td>
-                                    <td><input class="custom-checkbox" type="checkbox"></td>
-                                    <td>1</td>
+                                    <td>{{ $jt->id }}</td>
+                                    <td>{{ $jt->jobcode }}</td>
+                                    <td>{{ $jt->code }}</td>
+                                    <td>
+                                        <a href="{{ route('update/jobtitle', $jt->id) }}" data-toggle="modal" data-target="#edit_modal">{{ $jt->name }}</a>
+                                    </td>
+                                    <td>
+                                        @if($jt->use == 1)
+                                        사용
+                                        @else
+                                        미사용
+                                        @endif
+                                    </td>
+                                    <td>{{ $jt->id }} </td>
+                                    <td><a href="{{ route('confirm-delete/jobtitle', $jt->id) }}" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#delete_confirm">지우기</a></td>
                                 </tr>
-                                <tr>
-                                    <td>0002</td>
-                                    <td>02</td>
-                                    <td>총무</td>
-                                    <td><input class="custom-checkbox" type="checkbox"></td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>0003</td>
-                                    <td>03</td>
-                                    <td>경영지원</td>
-                                    <td><input class="custom-checkbox" type="checkbox"></td>
-                                    <td>3</td>
-                                </tr>
+                                @endforeach
                                 </tbody>
                             </table>
+                            <div>
+                                <a class="btn btn-raised btn-info btn-large" data-toggle="modal" data-href="#jobcreate" href="#jobcreate">등록</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,46 +93,188 @@
                             <table class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>코드</th><th>코드명</th><th>사용여부</th><th>출력순서</th>
+                                    <th>ID</th><th>직위코드</th><th>직위구분코드</th><th>직위명</th><th>사용여부</th><th>부서명</th><th>출력순서</th><th>삭제</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach ($postitles as $pt)
                                 <tr>
-                                    <td>000</td>
-                                    <td>회장</td>
-                                    <td><input class="custom-checkbox" type="checkbox" id="autoopen"></td>
+                                    <td>{{ $pt->id }}</td>
+                                    <td>{{ $pt->pos_code }}</td>
+                                    <td>{{ $pt->pos_div_code }}</td>
                                     <td>
-                                        1
+                                        <a href="{{ route('edit/postitle', $pt->id) }}" data-toggle="modal" data-target="#pos_edit_modal">{{ $pt->pos_name }}</a>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>001</td>
-                                    <td>대표</td>
-                                    <td><input class="custom-checkbox" type="checkbox" id="autoopen"></td>
                                     <td>
-                                        2
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>000</td>
-                                    <td>이사</td>
-                                    <td><input class="custom-checkbox" type="checkbox" id="autoopen"></td>
+                                        @if($pt->pos_use == 1)
+                                            사용
+                                        @else
+                                            미사용
+                                        @endif</td>
+                                    <td>{{ $pt->name }}</td>
                                     <td>
-                                        3
+                                        {{ $pt->id }}
                                     </td>
+                                    <td><a href="{{ route('confirm-delete/postitle', $pt->id) }}" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#pos_delete_confirm">지우기</a></td>
                                 </tr>
+                                @endforeach
                                 </tbody>
                             </table>
+                            <div>
+                                <a class="btn btn-raised btn-info btn-large" data-toggle="modal" data-href="#poscreate" href="#poscreate">등록</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- jobtitle modal-->
+        <div class="modal fade in" id="jobcreate" tabindex="-1" role="dialog" aria-hidden="false">
+            <form class="modal-dialog modal-lg" action="./jobtitle/create"  method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">부서등록</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="jobcode">실부서코드</label>
+                            <div class="col-md-9">
+                                <input id="jobcode" name="jobcode" type="text" class="form-control" required></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="code" required>구분코드</label>
+                            <div class="col-md-9">
+                                <input id="code" name="code" type="text" class="form-control"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="name" required>부서명</label>
+                            <div class="col-md-9">
+                                <input id="name" name="name" type="text" class="form-control"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="memo" required>비고</label>
+                            <div class="col-md-9">
+                                <input id="memo" name="memo" type="text" class="form-control"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>사용여부</label>
+                            <label class="radio-inline">
+                                <input type="radio" class="custom-radio" name="use" value="1" required>예</label>
+                            <label class="radio-inline">
+                                <input type="radio" class="custom-radio" name="use" value="0" required>아니오</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                        <button class="btn btn-primary">등록</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- END modal-->
+
+        <!-- postitle modal-->
+        <div class="modal fade in" id="poscreate" tabindex="-1" role="dialog" aria-hidden="false">
+            <form class="modal-dialog modal-lg" action="./jobtitle/pos_create"  method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">직위등록</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="job_id">부서 선택</label>
+                            <div class="col-md-9">
+                                <select id="job_id" name="job_id" class="form-control" required>
+                                    @foreach($jobtitles as $jt)
+                                        <option value="{{ $jt->id }}">{{ $jt->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="pos_code">직위코드</label>
+                            <div class="col-md-9">
+                                <input type="text" id="pos_code" name="pos_code" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="pos_div_code">직위구분코드</label>
+                            <div class="col-md-9">
+                                <input id="pos_div_code" name="pos_div_code" type="text" class="form-control" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="pos_name">직위명</label>
+                            <div class="col-md-9">
+                                <input id="pos_name" name="pos_name" type="text" class="form-control" required></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="pos_memo">비고</label>
+                            <div class="col-md-9">
+                                <input id="pos_memo" name="pos_memo" type="text" class="form-control" required></div>
+                        </div>
+                        <div class="form-group">
+                            <label>사용여부</label>
+                            <label class="radio-inline">
+                                <input type="radio" class="custom-radio" name="pos_use" value="1" required>예</label>
+                            <label class="radio-inline">
+                                <input type="radio" class="custom-radio" name="pos_use" value="0" required>아니오</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+                        <button class="btn btn-primary">등록</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- END modal-->
+
+
+        <!-- confirm modal -->
+        <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
     </section>
+    <!-- pos confirm modal -->
+    <div class="modal fade" id="pos_delete_confirm" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- edit modal -->
+    <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+    <!-- pos edit modal -->
+    <div class="modal fade" id="pos_edit_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    </section>
+
 
 @stop
 
 {{-- page level scripts --}}
 @section('footer_scripts')
-
+    <script src="{{ asset('assets/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" ></script>
+    <script src="{{ asset('assets/vendors/iCheck/js/icheck.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form_examples.js') }}"></script>
 @stop

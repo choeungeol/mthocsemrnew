@@ -37,7 +37,7 @@ Accordion Tabs
                 <!--main content-->
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="panell panel-primary">
+                        <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     <i class="livicon" data-name="printer" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>

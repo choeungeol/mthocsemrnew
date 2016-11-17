@@ -1,8 +1,8 @@
-@extends('admin/layouts/default')
+@extends('hnl/layouts/default')
 
 {{-- Page title --}}
 @section('title')
-User Profile
+사용자 정보
 @parent
 @stop
 

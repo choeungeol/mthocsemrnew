@@ -1,8 +1,8 @@
-@extends('admin/layouts/default')
+@extends('hnl/layouts/default')
 
 {{-- Page title --}}
 @section('title')
-Users List
+사용자 목록
 @parent
 @stop
 
@@ -16,16 +16,16 @@ Users List
 {{-- Page content --}}
 @section('content')
 <section class="content-header">
-    <h1>Users</h1>
+    <h1>사용자</h1>
     <ol class="breadcrumb">
         <li>
-            <a href="{{ route('dashboard') }}">
+            <a href="#">
                 <i class="livicon" data-name="home" data-size="14" data-color="#000"></i>
-                Dashboard
+                메인으로
             </a>
         </li>
-        <li><a href="#"> Users</a></li>
-        <li class="active">Users List</li>
+{{--        <li><a href="#"> Users</a></li>
+        <li class="active">Users List</li>--}}
     </ol>
 </section>
 
@@ -35,7 +35,7 @@ Users List
         <div class="panel panel-primary ">
             <div class="panel-heading">
                 <h4 class="panel-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                    Users List
+                    사용자 목록
                 </h4>
             </div>
             <br />
@@ -44,12 +44,12 @@ Users List
                     <thead>
                         <tr class="filters">
                             <th>ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>User E-mail</th>
-                            <th>Status</th>
-                            <th>Created At</th>
-                            <th>Actions</th>
+                            <th>성</th>
+                            <th>이름</th>
+                            <th>사용자 Email</th>
+                            <th>상태</th>
+                            <th>생성일</th>
+                            <th>설정</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,30 +68,30 @@ Users List
     <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
     <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
 
-<script>
-    $(function() {
-        var table = $('#table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{!! route('users.data') !!}',
-            columns: [
-                { data: 'id', name: 'id' },
-                { data: 'first_name', name: 'first_name' },
-                { data: 'last_name', name: 'last_name' },
-                { data: 'email', name: 'email' },
-                { data: 'status', name: 'status'},
-                { data: 'created_at', name:'created_at'},
-                { data: 'actions', name: 'actions', orderable: false, searchable: false }
-            ]
-        });
-        table.on( 'draw', function () {
-            $('.livicon').each(function(){
-                $(this).updateLivicon();
+    <script>
+        $(function() {
+            var table = $('#table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('hnl_users.data') !!}',
+                columns: [
+                    { data: 'id', name: 'id' },
+                    { data: 'first_name', name: 'first_name' },
+                    { data: 'last_name', name: 'last_name' },
+                    { data: 'email', name: 'email' },
+                    { data: 'status', name: 'status'},
+                    { data: 'created_at', name:'created_at'},
+                    { data: 'actions', name: 'actions', orderable: false, searchable: false }
+                ]
             });
-        } );
-    });
+            table.on( 'draw', function () {
+                $('.livicon').each(function(){
+                    $(this).updateLivicon();
+                });
+            } );
+        });
 
-</script>
+    </script>
 
 <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
 	<div class="modal-dialog">

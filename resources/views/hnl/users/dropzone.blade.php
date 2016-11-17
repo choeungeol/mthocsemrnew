@@ -1,4 +1,4 @@
-@extends('admin/layouts/default')
+@extends('hnl/layouts/default')
 
 {{-- Page title --}}
 @section('title')
@@ -20,9 +20,9 @@
         <h1>File Drop Zone</h1>
         <ol class="breadcrumb">
             <li>
-                <a href="{{ route('dashboard') }}">
+                <a href="#">
                     <i class="livicon" data-name="home" data-size="14" data-color="#000"></i>
-                    Dashboard
+                    메인으로
                 </a>
             </li>
             <li><a href="#">Laravel Examples</a></li>
@@ -50,7 +50,7 @@
                             {!! Form::open(array('url' => URL::to('admin/file/create'), 'method' => 'post', 'id'=>'myDropzone','class' => 'dropzone', 'files'=> true)) !!}
                             <div class="fallback">
                                 <input name="file" type="file" multiple />
-                            </div>
+                            </div>ㅇ
                             {!! Form::close() !!}
                         </div>
                     </div>

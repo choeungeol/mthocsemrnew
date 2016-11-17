@@ -64,20 +64,84 @@ Route::group(array('prefix' => 'admin'), function () {
 });
 
 Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function () {
+
+    # User Management
+    Route::group(array('prefix' => 'users'), function () {
+        Route::get('/', array('as' => 'hnl_users', 'uses' => 'HnlUsersController@index'));
+        Route::get('data',['as' => 'hnl_users.data', 'uses' =>'HnlUsersController@data']);
+        Route::get('create', 'HnlUsersController@create');
+        Route::post('create', 'HnlUsersController@store');
+        Route::get('{userId}/delete', array('as' => 'delete/hnl_user', 'uses' => 'HnlUsersController@destroy'));
+        Route::get('{userId}/confirm-delete', array('as' => 'confirm-delete/hnl_user', 'uses' => 'HnlUsersController@getModalDelete'));
+        Route::get('{userId}/restore', array('as' => 'restore/hnl_user', 'uses' => 'HnlUsersController@getRestore'));
+        Route::get('{userId}', array('as' => 'hnl_users.show', 'uses' => 'HnlUsersController@show'));
+        Route::post('{userId}/passwordreset', array('as' => 'hnl_passwordreset', 'uses' => 'HnlUsersController@passwordreset'));
+    });
+    Route::resource('users', 'HnlUsersController');
+
+    Route::get('deleted_users',array('as' => 'deleted_users','before' => 'Sentinel', 'uses' => 'HnlUsersController@getDeletedUsers'));
+
+    # Group Management
+    Route::group(array('prefix' => 'groups'), function () {
+        Route::get('/', array('as' => 'hnl_groups', 'uses' => 'HnlGroupsController@index'));
+        Route::get('create', array('as' => 'create/hnl_group', 'uses' => 'HnlGroupsController@create'));
+        Route::post('create', 'HnlGroupsController@store');
+        Route::get('{groupId}/hnl_edit', array('as' => 'update/hnl_group', 'uses' => 'HnlGroupsController@edit'));
+        Route::post('{groupId}/hnl_edit', 'HnlGroupsController@update');
+        Route::get('{groupId}/hnl_group_delete', array('as' => 'delete/hnl_group', 'uses' => 'HnlGroupsController@destroy'));
+        Route::get('{groupId}/hnl_group_confirm-delete', array('as' => 'confirm-delete/hnl_group', 'uses' => 'HnlGroupsController@getModalDelete'));
+        Route::get('{groupId}hnl_group_restore', array('as' => 'restore/hnl_group', 'uses' => 'HnlGroupsController@getRestore'));
+    });
+
+    # Job Code Management
+    Route::group(array('prefix' => 'basicinfo'), function () {
+
+
+        Route::get('basicinfo', array('as' => 'hnl', 'uses' => 'HnlController@showBasicInfo'));
+
+        Route::group(array('prefix' => 'jobtitle'), function () {
+
+            Route::get('/', array('as' => 'jobtitle', 'uses' => 'HnlJobtitleController@index'));
+
+            //직위 라우터
+            Route::post('create', array('as'=> 'create/jobtitle', 'uses' => 'HnlJobtitleController@store'));
+
+            Route::get('{jobtitleId}/confirm-delete', array('as' => 'confirm-delete/jobtitle', 'uses' => 'HnlJobtitleController@getModalDelete'));
+            Route::get('{jobtitleId}/delete', array('as' => 'delete/jobtitle', 'uses' => 'HnlJobtitleController@destroy'));
+            Route::get('{jobtitleId}/edit', array('as' => 'edit/jobtitle', 'uses' => 'HnlJobtitleController@edit'));
+            Route::post('{jobtitleId}/edit', array('as' => 'update/jobtitle' , 'uses' => 'HnlJobtitleController@update'));
+
+
+            // 부서 라우트
+            Route::get('{postitleId}/pos_confirm-delete', array('as' => 'confirm-delete/postitle', 'uses' => 'HnlPosController@getModalDelete'));
+            Route::get('{postitleId}/pos_delete', array('as' => 'delete/postitle', 'uses' => 'HnlPosController@destroy'));
+            Route::post('pos_create', array('as' => 'create/postitle', 'uses' => 'HnlPosController@store'));
+            Route::get('{postitleId}/pos_edit', array('as' => 'edit/postitle', 'uses' => 'HnlPosController@edit'));
+            Route::post('{postitleId}/pos_edit', array('as' => 'update/postitle' , 'uses' => 'HnlPosController@update'));
+
+
+        });
+
+
+
+        Route::get('payitem', array('as' => 'hnl', 'uses' => 'HnlController@showPayitem'));
+
+        Route::get('paytype', array('as' => 'hnl', 'uses' => 'HnlController@showPaytype'));
+
+        Route::group(array('prefix' => 'worktype'), function () {
+
+            Route::get('/', array('as' => 'hnl', 'uses' => 'HnlWorktypeController@index'));
+
+        });
+
+    });
+    
     # hnl / Index
     Route::get('/', array('as' => 'hnl','uses' => 'HnlController@showHnl'));
 
     Route::get('/test', array('as' => 'hnl','uses' => 'HnlController@showTest'));
     # 기본정보
-    Route::get('basicinfo/basicinfo', array('as' => 'hnl', 'uses' => 'HnlController@showBasicInfo'));
 
-    Route::get('basicinfo/jobtitle', array('as' => 'hnl', 'uses' => 'HnlController@showJobtitle'));
-
-    Route::get('basicinfo/payitem', array('as' => 'hnl', 'uses' => 'HnlController@showPayitem'));
-
-    Route::get('basicinfo/paytype', array('as' => 'hnl', 'uses' => 'HnlController@showPaytype'));
-
-    Route::get('basicinfo/worktype', array('as' => 'hnl', 'uses' => 'HnlController@showWorktype'));
 
     #인사정보
     Route::get('pinfo/pinfo', array('as' => 'hnl', 'uses' => 'PinfoController@showPinfo'));
@@ -85,6 +149,7 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
     Route::get('pinfo/payinfo', array('as' => 'hnl', 'uses' => 'PinfoController@showPayinfo'));
 
     Route::get('pinfo/pcard', array('as' => 'hnl', 'uses' => 'PinfoController@showPcard'));
+
 
     #근태관리
     Route::get('work/addwork', array('as' => 'hnl', 'uses' => 'WorkController@showAddwork'));
