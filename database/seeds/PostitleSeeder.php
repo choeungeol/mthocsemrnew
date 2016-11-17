@@ -14,7 +14,7 @@ class PostitleSeeder extends Seeder
         /*// Auto Increments 초기화
         DB::table('postitles')->truncate();*/
 
-        for ($i=0; $i < 7; $i++){
+        for ($i=1; $i < 7; $i++){
             DB::table('postitles')->insert([
                 'job_id'      => $i,
                 'pos_code'    => '001',
