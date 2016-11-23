@@ -5,12 +5,32 @@
 
     app.controller('worktypeCtrl', function($scope, $http, $element, $compile) {
 
+
+
+
+        //A ~ B휴게시간 초기화
         $scope.breaktimes = [];
         $scope.breaktimesb = [];
         $scope.breaktimesc = [];
+        $scope.breaktimesd = [];
+        $scope.breaktimese = [];
+        $scope.breaktimesf = [];
+        $scope.breaktimesg = [];
+        $scope.breaktimesh = [];
+        $scope.breaktimesi = [];
+        $scope.breaktimesj = [];
+
+        //A ~ B 휴게시간 카운터
         $scope.counter = 1;
         $scope.counterb = 1;
         $scope.counterc = 1;
+        $scope.counterd = 1;
+        $scope.countere = 1;
+        $scope.counterf = 1;
+        $scope.counterg = 1;
+        $scope.counterh = 1;
+        $scope.counteri = 1;
+        $scope.counterj = 1;
 
         //a 형 선택
         $scope.now_0 = '매주';  // 월 근무횟수
@@ -244,6 +264,28 @@
         var jbst = {};          // J형 휴게 시작시간
         var jbet = {};          // J형 휴게 종료시간
 
+        // A~J형  휴게시간1
+        var aabst = {};
+        var bbbst = {};
+        var ccbst = {};
+        var ddbst = {};
+        var eebst = {};
+        var ffbst = {};
+        var ggbst = {};
+        var hhbst = {};
+        var iibst = {};
+        var jjbst = {};
+
+        var aabet = {};
+        var bbbet = {};
+        var ccbet = {};
+        var ddbet = {};
+        var eebet = {};
+        var ffbet = {};
+        var ggbet = {};
+        var hhbet = {};
+        var iibet = {};
+        var jjbet = {};
 
         var anow = {};
         var aworktype = {};
@@ -287,6 +329,8 @@
                 var calcatypewet = [];      // A형 근무 종료시간 계산
                 var calcatypebst = [];      // A형 휴게 시작시간 계산
                 var calcatypebet = [];      // A형 휴게 시작종료 시간
+                var calcaatypebst = [];      // A형 휴게1 시작종료 시간
+                var calcaatypebet = [];      // A형 휴게1 시작종료 시간
 
                 for (var i in awst) {
                     var amondayws = awst[i];
@@ -368,18 +412,57 @@
 
                 }
 
+                for (var i in aabst) {
+                    var amondaybs = aabst[i];
+                    if (aabst[i] != 0) {
+                        var timebs = amondaybs.substring(0, 5)
+                        var tibs = timebs.split(':');
+                        var tbs = tibs[0] + tibs[1];
+                        var tbs = Number(tbs);
+                    } else {
+                        var tbs = Number(amondaybs);
+                    }
 
+                    if(calcaatypebst.length < 8){
+                        calcaatypebst.push(tbs);
+                    }else{
+                        var calcaatypebst = [];
+                        calcaatypebst.push(tbs);
+                    }
+                }
+
+                for (var i in aabet) {
+                    var amondaybe = aabet[i];
+                    if (aabet[i] != 0) {
+                        var timebe = amondaybe.substring(0, 5)
+                        var tibe = timebe.split(':');
+                        var tbe = tibe[0] + tibe[1];
+                        var tbe = Number(tbe);
+                    }else{
+                        var tbe = Number(amondaybe);
+                    }
+
+                    if(calcaatypebet.length < 8){
+                        calcaatypebet.push(tbe);
+                    }else{
+                        var calcaatypebet = [];
+                        calcaatypebet.push(tbe);
+                    }
+
+                }
 
 
 
                 var calcw = 0.0;        // A형 근무 시작시간 - A형 휴게 종료시간
                 var calcb = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
+                var calcab = 0.0;        // A형 추가 휴게 시작시간 - A형 추가 휴게 종료시간.
 
                 var calcweekw = [];     // A형 1달 휴일근로시간
                 var lastcalcweek = [];  // A형 1달 총 휴일근로시간
 
                 var lastcalcw = [];     // A형 1주 근무 시작시간 - A형 휴게 종료시간
                 var lastcalcb = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
+                var lastcalcab = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
 
 
                 for (var i = 0; i < 7; i++) {
@@ -392,7 +475,7 @@
                     if(anow[i] === '없음'){
                         calcw = calcw * 0;
                     }else if(anow[i] === '격주'){
-                        calcw = calcw / 2;
+                        calcw = calcw / 2 ;
                     }else if(anow[i] === '매주'){
                         calcw = calcw * 4;
                     }else if(anow[i] === '월1회'){
@@ -432,23 +515,43 @@
 
                 }
 
+                for (var i = 0; i < 7; i++){
+
+                    var bst = calcaatypebst[i];
+                    var wet = calcaatypebet[i];
+
+                    calcab = Number(calcaatypebet[i])-Number(calcaatypebst[i]);
+
+                    if(lastcalcab.length < 8){
+                        lastcalcab.push(calcab);
+                    }else{
+                        var lastcalcab = [];
+                        lastcalcab.push(calcab);
+                    }
+
+                }
+
 
                 var cbt = 0 ;   // 1주 휴게시간 최종계산 총합
+                var cabt = 0 ;   // 1주 추가 휴게시간 최종계산 총합
                 var cwt = 0 ;   // 1주 근무시간 최종계산 총합
-                var cwwt = 0;
+                var cwwt = 0;  //1주 주말 근무시간 최종계산.
                 for(var i = 0; i< lastcalcb.length; i++)
                 {
                     cbt += Number(lastcalcb[i]);
                 }
+
+                for(var i = 0; i< lastcalcab.length; i++)
+                {
+                    cabt += Number(lastcalcab[i]);
+                }
+
 
                 for(var i = 0; i< lastcalcw.length; i++)
                 {
                     cwt += Number(lastcalcw[i]);
                 }
                 cwwt = lastcalcw[5]+ lastcalcw[6];
-
-
-
 
 
 
@@ -466,6 +569,7 @@
                     $scope.cbt = [ cbt.toString().substr(-2,2), cbt.toString().substr(-3,1) ];
                 }
 
+
                 //총 휴일 근무시간 시간 분 나눔
                 if(cwwt.toString().length == 4){
                     $scope.cwwt = [ cwwt.toString().substr(-2,2), cwwt.toString().substr(0,2) ];
@@ -476,7 +580,7 @@
 
 
                 var cwtmonth = cwt;     // 월 근무시간 총합 계산
-                var cbtmonth = cbt * 4;     // 월 휴게시간 총합 계산.
+                var cbtmonth = cbt * 4 + cabt * 4;     // 월 휴게시간 총합 계산.
 
                 if(cwtmonth.toString().length == 4){        //
                     $scope.cwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(0,2)];
@@ -516,10 +620,12 @@
             }else{
 
 
-                var calcatypewst = [];      // A형 근무 시작시간 계산
-                var calcatypewet = [];      // A형 근무 종료시간 계산
-                var calcatypebst = [];      // A형 휴게 시작시간 계산
-                var calcatypebet = [];      // A형 휴게 시작종료 시간
+                var calcatypewst = [];      // B형 근무 시작시간 계산
+                var calcatypewet = [];      // B형 근무 종료시간 계산
+                var calcatypebst = [];      // B형 휴게 시작시간 계산
+                var calcatypebet = [];      // B형 휴게 시작종료 시간
+                var calcaatypebst = [];      // B형 휴게1 시작종료 시간
+                var calcaatypebet = [];      // B형 휴게1 시작종료 시간
 
                 for (var i in bwst) {
                     var amondayws = bwst[i];
@@ -600,19 +706,58 @@
                     }
 
                 }
+                for (var i in bbbst) {
+                    var amondaybs = bbbst[i];
+                    if (bbbst[i] != 0) {
+                        var timebs = amondaybs.substring(0, 5)
+                        var tibs = timebs.split(':');
+                        var tbs = tibs[0] + tibs[1];
+                        var tbs = Number(tbs);
+                    } else {
+                        var tbs = Number(amondaybs);
+                    }
 
+                    if(calcaatypebst.length < 8){
+                        calcaatypebst.push(tbs);
+                    }else{
+                        var calcaatypebst = [];
+                        calcaatypebst.push(tbs);
+                    }
+                }
+
+                for (var i in bbbet) {
+                    var amondaybe = bbbet[i];
+                    if (bbbet[i] != 0) {
+                        var timebe = amondaybe.substring(0, 5)
+                        var tibe = timebe.split(':');
+                        var tbe = tibe[0] + tibe[1];
+                        var tbe = Number(tbe);
+                    }else{
+                        var tbe = Number(amondaybe);
+                    }
+
+                    if(calcaatypebet.length < 8){
+                        calcaatypebet.push(tbe);
+                    }else{
+                        var calcaatypebet = [];
+                        calcaatypebet.push(tbe);
+                    }
+
+                }
 
 
 
 
                 var calcw = 0.0;        // A형 근무 시작시간 - A형 휴게 종료시간
                 var calcb = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
+                var calcab = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
 
                 var calcweekw = [];     // A형 1달 휴일근로시간
                 var lastcalcweek = [];  // A형 1달 총 휴일근로시간
 
                 var lastcalcw = [];     // A형 1주 근무 시작시간 - A형 휴게 종료시간
                 var lastcalcb = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
+                var lastcalcab = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
 
 
                 for (var i = 0; i < 7; i++) {
@@ -665,8 +810,40 @@
 
                 }
 
+                for (var i = 0; i < 7; i++){
+
+                    var bst = calcatypebst[i];
+                    var wet = calcatypebet[i];
+
+                    calcb = Number(calcatypebet[i])-Number(calcatypebst[i]);
+
+                    if(lastcalcb.length < 8){
+                        lastcalcb.push(calcb);
+                    }else{
+                        var lastcalcb = [];
+                        lastcalcb.push(calcb);
+                    }
+
+                }
+
+                for (var i = 0; i < 7; i++){
+
+                    var bst = calcaatypebst[i];
+                    var wet = calcaatypebet[i];
+
+                    calcab = Number(calcaatypebet[i])-Number(calcaatypebst[i]);
+
+                    if(lastcalcab.length < 8){
+                        lastcalcab.push(calcab);
+                    }else{
+                        var lastcalcab = [];
+                        lastcalcab.push(calcab);
+                    }
+
+                }
 
                 var cbt = 0 ;   // 1주 휴게시간 최종계산 총합
+                var cabt = 0 ;   // 1주 휴게시간 최종계산 총합
                 var cwt = 0 ;   // 1주 근무시간 최종계산 총합
                 var cwwt = 0;
                 for(var i = 0; i< lastcalcb.length; i++)
@@ -674,14 +851,17 @@
                     cbt += Number(lastcalcb[i]);
                 }
 
+                for(var i = 0; i< lastcalcab.length; i++)
+                {
+                    cabt += Number(lastcalcab[i]);
+                }
+
+
                 for(var i = 0; i< lastcalcw.length; i++)
                 {
                     cwt += Number(lastcalcw[i]);
                 }
                 cwwt = lastcalcw[5]+ lastcalcw[6];
-
-
-
 
 
 
@@ -707,7 +887,8 @@
                 }
 
                 var cwtmonth = cwt;     // 월 근무시간 총합 계산
-                var cbtmonth = cbt * 4;     // 월 휴게시간 총합 계산.
+                var cbtmonth = cbt * 4 + cabt * 4;     // 월 휴게시간 총합 계산.
+
 
                 if(cwtmonth.toString().length == 4){        //
                     $scope.bcwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(0,2)];
@@ -747,10 +928,12 @@
             }else{
 
 
-                var calcatypewst = [];      // A형 근무 시작시간 계산
-                var calcatypewet = [];      // A형 근무 종료시간 계산
-                var calcatypebst = [];      // A형 휴게 시작시간 계산
-                var calcatypebet = [];      // A형 휴게 시작종료 시간
+                var calcatypewst = [];      // C형 근무 시작시간 계산
+                var calcatypewet = [];      // C형 근무 종료시간 계산
+                var calcatypebst = [];      // C형 휴게 시작시간 계산
+                var calcatypebet = [];      // C형 휴게 시작종료 시간
+                var calcaatypebst = [];      // C형 휴게1 시작종료 시간
+                var calcaatypebet = [];      // C형 휴게1 시작종료 시간
 
                 for (var i in cwst) {
                     var amondayws = cwst[i];
@@ -832,18 +1015,57 @@
 
                 }
 
+                for (var i in ccbst) {
+                    var amondaybs = ccbst[i];
+                    if (aabst[i] != 0) {
+                        var timebs = amondaybs.substring(0, 5)
+                        var tibs = timebs.split(':');
+                        var tbs = tibs[0] + tibs[1];
+                        var tbs = Number(tbs);
+                    } else {
+                        var tbs = Number(amondaybs);
+                    }
 
+                    if(calcaatypebst.length < 8){
+                        calcaatypebst.push(tbs);
+                    }else{
+                        var calcaatypebst = [];
+                        calcaatypebst.push(tbs);
+                    }
+                }
+
+                for (var i in ccbet) {
+                    var amondaybe = ccbet[i];
+                    if (aabet[i] != 0) {
+                        var timebe = amondaybe.substring(0, 5)
+                        var tibe = timebe.split(':');
+                        var tbe = tibe[0] + tibe[1];
+                        var tbe = Number(tbe);
+                    }else{
+                        var tbe = Number(amondaybe);
+                    }
+
+                    if(calcaatypebet.length < 8){
+                        calcaatypebet.push(tbe);
+                    }else{
+                        var calcaatypebet = [];
+                        calcaatypebet.push(tbe);
+                    }
+
+                }
 
 
 
                 var calcw = 0.0;        // A형 근무 시작시간 - A형 휴게 종료시간
                 var calcb = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
+                var calcab = 0.0;        // A형 추가 휴게 시작시간 - A형 추가 휴게 종료시간.
 
                 var calcweekw = [];     // A형 1달 휴일근로시간
                 var lastcalcweek = [];  // A형 1달 총 휴일근로시간
 
                 var lastcalcw = [];     // A형 1주 근무 시작시간 - A형 휴게 종료시간
                 var lastcalcb = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
+                var lastcalcab = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
 
 
                 for (var i = 0; i < 7; i++) {
@@ -896,14 +1118,37 @@
 
                 }
 
+                for (var i = 0; i < 7; i++){
+
+                    var bst = calcaatypebst[i];
+                    var wet = calcaatypebet[i];
+
+                    calcab = Number(calcaatypebet[i])-Number(calcaatypebst[i]);
+
+                    if(lastcalcab.length < 8){
+                        lastcalcab.push(calcab);
+                    }else{
+                        var lastcalcab = [];
+                        lastcalcab.push(calcab);
+                    }
+
+                }
+
 
                 var cbt = 0 ;   // 1주 휴게시간 최종계산 총합
+                var cabt = 0 ;   // 1주 휴게시간 최종계산 총합
                 var cwt = 0 ;   // 1주 근무시간 최종계산 총합
                 var cwwt = 0;
                 for(var i = 0; i< lastcalcb.length; i++)
                 {
                     cbt += Number(lastcalcb[i]);
                 }
+
+                for(var i = 0; i< lastcalcab.length; i++)
+                {
+                    cabt += Number(lastcalcab[i]);
+                }
+
 
                 for(var i = 0; i< lastcalcw.length; i++)
                 {
@@ -940,7 +1185,8 @@
 
 
                 var cwtmonth = cwt;     // 월 근무시간 총합 계산
-                var cbtmonth = cbt * 4;     // 월 휴게시간 총합 계산.
+                var cbtmonth = cbt * 4 + cabt * 4;     // 월 휴게시간 총합 계산.
+
 
                 if(cwtmonth.toString().length == 4){        //
                     $scope.ccwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(0,2)];
@@ -949,6 +1195,7 @@
                 }else{
                     $scope.ccwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(-3,1)];
                 }
+
 
                 if(cbtmonth.toString().length == 4) {
                     $scope.ccbtmonth = [cbtmonth.toString().substr(-2, 2), cbtmonth.toString().substr(0, 2)];
@@ -984,6 +1231,8 @@
                 var calcatypewet = [];      // A형 근무 종료시간 계산
                 var calcatypebst = [];      // A형 휴게 시작시간 계산
                 var calcatypebet = [];      // A형 휴게 시작종료 시간
+                var calcaatypebst = [];      // B형 휴게1 시작종료 시간
+                var calcaatypebet = [];      // B형 휴게1 시작종료 시간
 
                 for (var i in dwst) {
                     var amondayws = dwst[i];
@@ -1065,18 +1314,57 @@
 
                 }
 
+                for (var i in ddbst) {
+                    var amondaybs = ddbst[i];
+                    if (ddbst[i] != 0) {
+                        var timebs = amondaybs.substring(0, 5)
+                        var tibs = timebs.split(':');
+                        var tbs = tibs[0] + tibs[1];
+                        var tbs = Number(tbs);
+                    } else {
+                        var tbs = Number(amondaybs);
+                    }
 
+                    if(calcaatypebst.length < 8){
+                        calcaatypebst.push(tbs);
+                    }else{
+                        var calcaatypebst = [];
+                        calcaatypebst.push(tbs);
+                    }
+                }
+
+                for (var i in ddbet) {
+                    var amondaybe = ddbet[i];
+                    if (ddbet[i] != 0) {
+                        var timebe = amondaybe.substring(0, 5)
+                        var tibe = timebe.split(':');
+                        var tbe = tibe[0] + tibe[1];
+                        var tbe = Number(tbe);
+                    }else{
+                        var tbe = Number(amondaybe);
+                    }
+
+                    if(calcaatypebet.length < 8){
+                        calcaatypebet.push(tbe);
+                    }else{
+                        var calcaatypebet = [];
+                        calcaatypebet.push(tbe);
+                    }
+
+                }
 
 
 
                 var calcw = 0.0;        // A형 근무 시작시간 - A형 휴게 종료시간
                 var calcb = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
+                var calcab = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
 
                 var calcweekw = [];     // A형 1달 휴일근로시간
                 var lastcalcweek = [];  // A형 1달 총 휴일근로시간
 
                 var lastcalcw = [];     // A형 1주 근무 시작시간 - A형 휴게 종료시간
                 var lastcalcb = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
+                var lastcalcab = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
 
 
                 for (var i = 0; i < 7; i++) {
@@ -1129,8 +1417,25 @@
 
                 }
 
+                for (var i = 0; i < 7; i++){
+
+                    var bst = calcaatypebst[i];
+                    var wet = calcaatypebet[i];
+
+                    calcab = Number(calcaatypebet[i])-Number(calcaatypebst[i]);
+
+                    if(lastcalcab.length < 8){
+                        lastcalcab.push(calcab);
+                    }else{
+                        var lastcalcab = [];
+                        lastcalcab.push(calcab);
+                    }
+
+                }
+
 
                 var cbt = 0 ;   // 1주 휴게시간 최종계산 총합
+                var cabt = 0 ;   // 1주 휴게시간 최종계산 총합
                 var cwt = 0 ;   // 1주 근무시간 최종계산 총합
                 var cwwt = 0;
                 for(var i = 0; i< lastcalcb.length; i++)
@@ -1138,13 +1443,16 @@
                     cbt += Number(lastcalcb[i]);
                 }
 
+                for(var i = 0; i< lastcalcab.length; i++)
+                {
+                    cabt += Number(lastcalcab[i]);
+                }
+
                 for(var i = 0; i< lastcalcw.length; i++)
                 {
                     cwt += Number(lastcalcw[i]);
                 }
                 cwwt = lastcalcw[5]+ lastcalcw[6];
-
-
 
 
 
@@ -1173,7 +1481,7 @@
 
 
                 var cwtmonth = cwt;     // 월 근무시간 총합 계산
-                var cbtmonth = cbt * 4;     // 월 휴게시간 총합 계산.
+                var cbtmonth = cbt * 4 + cabt * 4;     // 월 휴게시간 총합 계산.
 
                 if(cwtmonth.toString().length == 4){        //
                     $scope.dcwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(0,2)];
@@ -1217,6 +1525,8 @@
                 var calcatypewet = [];      // A형 근무 종료시간 계산
                 var calcatypebst = [];      // A형 휴게 시작시간 계산
                 var calcatypebet = [];      // A형 휴게 시작종료 시간
+                var calcaatypebst = [];      // A형 휴게1 시작종료 시간
+                var calcaatypebet = [];      // A형 휴게1 시작종료 시간
 
                 for (var i in ewst) {
                     var amondayws = ewst[i];
@@ -1298,18 +1608,58 @@
 
                 }
 
+                for (var i in eebst) {
+                    var amondaybs = eebst[i];
+                    if (eebst[i] != 0) {
+                        var timebs = amondaybs.substring(0, 5)
+                        var tibs = timebs.split(':');
+                        var tbs = tibs[0] + tibs[1];
+                        var tbs = Number(tbs);
+                    } else {
+                        var tbs = Number(amondaybs);
+                    }
+
+                    if(calcaatypebst.length < 8){
+                        calcaatypebst.push(tbs);
+                    }else{
+                        var calcaatypebst = [];
+                        calcaatypebst.push(tbs);
+                    }
+                }
+
+                for (var i in eebet) {
+                    var amondaybe = eebet[i];
+                    if (eebet[i] != 0) {
+                        var timebe = amondaybe.substring(0, 5)
+                        var tibe = timebe.split(':');
+                        var tbe = tibe[0] + tibe[1];
+                        var tbe = Number(tbe);
+                    }else{
+                        var tbe = Number(amondaybe);
+                    }
+
+                    if(calcaatypebet.length < 8){
+                        calcaatypebet.push(tbe);
+                    }else{
+                        var calcaatypebet = [];
+                        calcaatypebet.push(tbe);
+                    }
+
+                }
 
 
 
 
                 var calcw = 0.0;        // A형 근무 시작시간 - A형 휴게 종료시간
                 var calcb = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
+                var calcab = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
 
                 var calcweekw = [];     // A형 1달 휴일근로시간
                 var lastcalcweek = [];  // A형 1달 총 휴일근로시간
 
                 var lastcalcw = [];     // A형 1주 근무 시작시간 - A형 휴게 종료시간
                 var lastcalcb = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
+                var lastcalcab = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
 
 
                 for (var i = 0; i < 7; i++) {
@@ -1362,13 +1712,34 @@
 
                 }
 
+                for (var i = 0; i < 7; i++){
+
+                    var bst = calcaatypebst[i];
+                    var wet = calcaatypebet[i];
+
+                    calcab = Number(calcaatypebet[i])-Number(calcaatypebst[i]);
+
+                    if(lastcalcab.length < 8){
+                        lastcalcab.push(calcab);
+                    }else{
+                        var lastcalcab = [];
+                        lastcalcab.push(calcab);
+                    }
+
+                }
 
                 var cbt = 0 ;   // 1주 휴게시간 최종계산 총합
+                var cabt = 0 ;   // 1주 휴게시간 최종계산 총합
                 var cwt = 0 ;   // 1주 근무시간 최종계산 총합
                 var cwwt = 0;
                 for(var i = 0; i< lastcalcb.length; i++)
                 {
                     cbt += Number(lastcalcb[i]);
+                }
+
+                for(var i = 0; i< lastcalcab.length; i++)
+                {
+                    cabt += Number(lastcalcab[i]);
                 }
 
                 for(var i = 0; i< lastcalcw.length; i++)
@@ -1406,7 +1777,8 @@
 
 
                 var cwtmonth = cwt;     // 월 근무시간 총합 계산
-                var cbtmonth = cbt * 4;     // 월 휴게시간 총합 계산.
+                var cbtmonth = cbt * 4 + cabt * 4;     // 월 휴게시간 총합 계산.
+
 
                 if(cwtmonth.toString().length == 4){        //
                     $scope.ecwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(0,2)];
@@ -1424,6 +1796,13 @@
                     $scope.ecbtmonth = [cbtmonth.toString().substr(-2,2), cbtmonth.toString().substr(-3,1)];
                 }
 
+                if(cwwtmonth.toString().length == 4){        //
+                    $scope.ecwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(0,2)];
+                }else if(cwwtmonth.toString().length == 5){
+                    $scope.ecwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(0,3)];
+                }else{
+                    $scope.ecwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(-3,1)];
+                }
                 //총 근로시간
 
                 var allc = cwtmonth + cbtmonth + cwwt ;
@@ -1450,6 +1829,8 @@
                 var calcatypewet = [];      // A형 근무 종료시간 계산
                 var calcatypebst = [];      // A형 휴게 시작시간 계산
                 var calcatypebet = [];      // A형 휴게 시작종료 시간
+                var calcaatypebst = [];      // A형 휴게1 시작종료 시간
+                var calcaatypebet = [];      // A형 휴게1 시작종료 시간
 
                 for (var i in fwst) {
                     var amondayws = fwst[i];
@@ -1531,18 +1912,58 @@
 
                 }
 
+                for (var i in ffbst) {
+                    var amondaybs = ffbst[i];
+                    if (ffbst[i] != 0) {
+                        var timebs = amondaybs.substring(0, 5)
+                        var tibs = timebs.split(':');
+                        var tbs = tibs[0] + tibs[1];
+                        var tbs = Number(tbs);
+                    } else {
+                        var tbs = Number(amondaybs);
+                    }
+
+                    if(calcaatypebst.length < 8){
+                        calcaatypebst.push(tbs);
+                    }else{
+                        var calcaatypebst = [];
+                        calcaatypebst.push(tbs);
+                    }
+                }
+
+                for (var i in ffbet) {
+                    var amondaybe = ffbet[i];
+                    if (ffbet[i] != 0) {
+                        var timebe = amondaybe.substring(0, 5)
+                        var tibe = timebe.split(':');
+                        var tbe = tibe[0] + tibe[1];
+                        var tbe = Number(tbe);
+                    }else{
+                        var tbe = Number(amondaybe);
+                    }
+
+                    if(calcaatypebet.length < 8){
+                        calcaatypebet.push(tbe);
+                    }else{
+                        var calcaatypebet = [];
+                        calcaatypebet.push(tbe);
+                    }
+
+                }
 
 
 
 
                 var calcw = 0.0;        // A형 근무 시작시간 - A형 휴게 종료시간
                 var calcb = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
+                var calcab = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
 
                 var calcweekw = [];     // A형 1달 휴일근로시간
                 var lastcalcweek = [];  // A형 1달 총 휴일근로시간
 
                 var lastcalcw = [];     // A형 1주 근무 시작시간 - A형 휴게 종료시간
                 var lastcalcb = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
+                var lastcalcab = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
 
 
                 for (var i = 0; i < 7; i++) {
@@ -1595,13 +2016,35 @@
 
                 }
 
+                for (var i = 0; i < 7; i++){
+
+                    var bst = calcaatypebst[i];
+                    var wet = calcaatypebet[i];
+
+                    calcab = Number(calcaatypebet[i])-Number(calcaatypebst[i]);
+
+                    if(lastcalcab.length < 8){
+                        lastcalcab.push(calcab);
+                    }else{
+                        var lastcalcab = [];
+                        lastcalcab.push(calcab);
+                    }
+
+                }
+
 
                 var cbt = 0 ;   // 1주 휴게시간 최종계산 총합
+                var cabt = 0 ;   // 1주 휴게시간 최종계산 총합
                 var cwt = 0 ;   // 1주 근무시간 최종계산 총합
                 var cwwt = 0;
                 for(var i = 0; i< lastcalcb.length; i++)
                 {
                     cbt += Number(lastcalcb[i]);
+                }
+
+                for(var i = 0; i< lastcalcab.length; i++)
+                {
+                    cabt += Number(lastcalcab[i]);
                 }
 
                 for(var i = 0; i< lastcalcw.length; i++)
@@ -1639,7 +2082,7 @@
 
 
                 var cwtmonth = cwt;     // 월 근무시간 총합 계산
-                var cbtmonth = cbt * 4;     // 월 휴게시간 총합 계산.
+                var cbtmonth = cbt * 4 + cabt * 4;     // 월 휴게시간 총합 계산.
 
                 if(cwtmonth.toString().length == 4){        //
                     $scope.fcwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(0,2)];
@@ -1657,6 +2100,13 @@
                     $scope.fcbtmonth = [cbtmonth.toString().substr(-2,2), cbtmonth.toString().substr(-3,1)];
                 }
 
+                if(cwwtmonth.toString().length == 4){        //
+                    $scope.fcwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(0,2)];
+                }else if(cwwtmonth.toString().length == 5){
+                    $scope.fcwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(0,3)];
+                }else{
+                    $scope.fcwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(-3,1)];
+                }
                 //총 근로시간
 
                 var allc = cwtmonth + cbtmonth + cwwt ;
@@ -1683,6 +2133,8 @@
                 var calcatypewet = [];      // A형 근무 종료시간 계산
                 var calcatypebst = [];      // A형 휴게 시작시간 계산
                 var calcatypebet = [];      // A형 휴게 시작종료 시간
+                var calcaatypebst = [];      // A형 휴게1 시작종료 시간
+                var calcaatypebet = [];      // A형 휴게1 시작종료 시간
 
                 for (var i in gwst) {
                     var amondayws = gwst[i];
@@ -1764,18 +2216,58 @@
 
                 }
 
+                for (var i in ggbst) {
+                    var amondaybs = ggbst[i];
+                    if (ggbst[i] != 0) {
+                        var timebs = amondaybs.substring(0, 5)
+                        var tibs = timebs.split(':');
+                        var tbs = tibs[0] + tibs[1];
+                        var tbs = Number(tbs);
+                    } else {
+                        var tbs = Number(amondaybs);
+                    }
+
+                    if(calcaatypebst.length < 8){
+                        calcaatypebst.push(tbs);
+                    }else{
+                        var calcaatypebst = [];
+                        calcaatypebst.push(tbs);
+                    }
+                }
+
+                for (var i in ggbet) {
+                    var amondaybe = ggbet[i];
+                    if (ggbet[i] != 0) {
+                        var timebe = amondaybe.substring(0, 5)
+                        var tibe = timebe.split(':');
+                        var tbe = tibe[0] + tibe[1];
+                        var tbe = Number(tbe);
+                    }else{
+                        var tbe = Number(amondaybe);
+                    }
+
+                    if(calcaatypebet.length < 8){
+                        calcaatypebet.push(tbe);
+                    }else{
+                        var calcaatypebet = [];
+                        calcaatypebet.push(tbe);
+                    }
+
+                }
 
 
 
 
                 var calcw = 0.0;        // A형 근무 시작시간 - A형 휴게 종료시간
                 var calcb = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
+                var calcab = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
 
                 var calcweekw = [];     // A형 1달 휴일근로시간
                 var lastcalcweek = [];  // A형 1달 총 휴일근로시간
 
                 var lastcalcw = [];     // A형 1주 근무 시작시간 - A형 휴게 종료시간
                 var lastcalcb = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
+                var lastcalcab = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
 
 
                 for (var i = 0; i < 7; i++) {
@@ -1828,13 +2320,34 @@
 
                 }
 
+                for (var i = 0; i < 7; i++){
+
+                    var bst = calcaatypebst[i];
+                    var wet = calcaatypebet[i];
+
+                    calcab = Number(calcaatypebet[i])-Number(calcaatypebst[i]);
+
+                    if(lastcalcab.length < 8){
+                        lastcalcab.push(calcab);
+                    }else{
+                        var lastcalcab = [];
+                        lastcalcab.push(calcab);
+                    }
+
+                }
 
                 var cbt = 0 ;   // 1주 휴게시간 최종계산 총합
+                var cabt = 0 ;   // 1주 휴게시간 최종계산 총합
                 var cwt = 0 ;   // 1주 근무시간 최종계산 총합
                 var cwwt = 0;
                 for(var i = 0; i< lastcalcb.length; i++)
                 {
                     cbt += Number(lastcalcb[i]);
+                }
+
+                for(var i = 0; i< lastcalcab.length; i++)
+                {
+                    cabt += Number(lastcalcab[i]);
                 }
 
                 for(var i = 0; i< lastcalcw.length; i++)
@@ -1872,7 +2385,8 @@
 
 
                 var cwtmonth = cwt;     // 월 근무시간 총합 계산
-                var cbtmonth = cbt * 4;     // 월 휴게시간 총합 계산.
+                var cbtmonth = cbt * 4 + cabt * 4;     // 월 휴게시간 총합 계산.
+
 
                 if(cwtmonth.toString().length == 4){        //
                     $scope.gcwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(0,2)];
@@ -1880,6 +2394,14 @@
                     $scope.gcwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(0,3)];
                 }else{
                     $scope.gcwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(-3,1)];
+                }
+
+                if(cwwtmonth.toString().length == 4){        //
+                    $scope.gcwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(0,2)];
+                }else if(cwwtmonth.toString().length == 5){
+                    $scope.gcwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(0,3)];
+                }else{
+                    $scope.gcwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(-3,1)];
                 }
 
                 if(cbtmonth.toString().length == 4) {
@@ -1916,6 +2438,8 @@
                 var calcatypewet = [];      // A형 근무 종료시간 계산
                 var calcatypebst = [];      // A형 휴게 시작시간 계산
                 var calcatypebet = [];      // A형 휴게 시작종료 시간
+                var calcaatypebst = [];      // A형 휴게1 시작종료 시간
+                var calcaatypebet = [];      // A형 휴게1 시작종료 시간
 
                 for (var i in hwst) {
                     var amondayws = hwst[i];
@@ -1997,18 +2521,60 @@
 
                 }
 
+                for (var i in hhbst) {
+                    var amondaybs = hhbst[i];
+                    if (hhbst[i] != 0) {
+                        var timebs = amondaybs.substring(0, 5)
+                        var tibs = timebs.split(':');
+                        var tbs = tibs[0] + tibs[1];
+                        var tbs = Number(tbs);
+                    } else {
+                        var tbs = Number(amondaybs);
+                    }
+
+                    if(calcaatypebst.length < 8){
+                        calcaatypebst.push(tbs);
+                    }else{
+                        var calcaatypebst = [];
+                        calcaatypebst.push(tbs);
+                    }
+                }
+
+                for (var i in hhbet) {
+                    var amondaybe = hhbet[i];
+                    if (hhbet[i] != 0) {
+                        var timebe = amondaybe.substring(0, 5)
+                        var tibe = timebe.split(':');
+                        var tbe = tibe[0] + tibe[1];
+                        var tbe = Number(tbe);
+                    }else{
+                        var tbe = Number(amondaybe);
+                    }
+
+                    if(calcaatypebet.length < 8){
+                        calcaatypebet.push(tbe);
+                    }else{
+                        var calcaatypebet = [];
+                        calcaatypebet.push(tbe);
+                    }
+
+                }
+
+
 
 
 
 
                 var calcw = 0.0;        // A형 근무 시작시간 - A형 휴게 종료시간
                 var calcb = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
+                var calcab = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
 
                 var calcweekw = [];     // A형 1달 휴일근로시간
                 var lastcalcweek = [];  // A형 1달 총 휴일근로시간
 
                 var lastcalcw = [];     // A형 1주 근무 시작시간 - A형 휴게 종료시간
                 var lastcalcb = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
+                var lastcalcab = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
 
 
                 for (var i = 0; i < 7; i++) {
@@ -2061,8 +2627,24 @@
 
                 }
 
+                for (var i = 0; i < 7; i++){
+
+                    var bst = calcaatypebst[i];
+                    var wet = calcaatypebet[i];
+
+                    calcab = Number(calcaatypebet[i])-Number(calcaatypebst[i]);
+
+                    if(lastcalcab.length < 8){
+                        lastcalcab.push(calcab);
+                    }else{
+                        var lastcalcab = [];
+                        lastcalcab.push(calcab);
+                    }
+
+                }
 
                 var cbt = 0 ;   // 1주 휴게시간 최종계산 총합
+                var cabt = 0 ;   // 1주 휴게시간 최종계산 총합
                 var cwt = 0 ;   // 1주 근무시간 최종계산 총합
                 var cwwt = 0;
                 for(var i = 0; i< lastcalcb.length; i++)
@@ -2070,13 +2652,18 @@
                     cbt += Number(lastcalcb[i]);
                 }
 
+
+                for(var i = 0; i< lastcalcab.length; i++)
+                {
+                    cabt += Number(lastcalcab[i]);
+                }
+
+
                 for(var i = 0; i< lastcalcw.length; i++)
                 {
                     cwt += Number(lastcalcw[i]);
                 }
                 cwwt = lastcalcw[5]+ lastcalcw[6];
-
-
 
 
 
@@ -2105,7 +2692,7 @@
 
 
                 var cwtmonth = cwt;     // 월 근무시간 총합 계산
-                var cbtmonth = cbt * 4;     // 월 휴게시간 총합 계산.
+                var cbtmonth = cbt * 4 + cabt * 4;     // 월 휴게시간 총합 계산.
 
                 if(cwtmonth.toString().length == 4){        //
                     $scope.hcwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(0,2)];
@@ -2113,6 +2700,13 @@
                     $scope.hcwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(0,3)];
                 }else{
                     $scope.hcwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(-3,1)];
+                }
+                if(cwwtmonth.toString().length == 4){        //
+                    $scope.hcwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(0,2)];
+                }else if(cwwtmonth.toString().length == 5){
+                    $scope.hcwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(0,3)];
+                }else{
+                    $scope.hcwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(-3,1)];
                 }
 
                 if(cbtmonth.toString().length == 4) {
@@ -2149,6 +2743,8 @@
                 var calcatypewet = [];      // A형 근무 종료시간 계산
                 var calcatypebst = [];      // A형 휴게 시작시간 계산
                 var calcatypebet = [];      // A형 휴게 시작종료 시간
+                var calcaatypebst = [];      // A형 휴게1 시작종료 시간
+                var calcaatypebet = [];      // A형 휴게1 시작종료 시간
 
                 for (var i in iwst) {
                     var amondayws = iwst[i];
@@ -2230,18 +2826,58 @@
 
                 }
 
+                for (var i in iibst) {
+                    var amondaybs = iibst[i];
+                    if (iibst[i] != 0) {
+                        var timebs = amondaybs.substring(0, 5)
+                        var tibs = timebs.split(':');
+                        var tbs = tibs[0] + tibs[1];
+                        var tbs = Number(tbs);
+                    } else {
+                        var tbs = Number(amondaybs);
+                    }
+
+                    if(calcaatypebst.length < 8){
+                        calcaatypebst.push(tbs);
+                    }else{
+                        var calcaatypebst = [];
+                        calcaatypebst.push(tbs);
+                    }
+                }
+
+                for (var i in iibet) {
+                    var amondaybe = iibet[i];
+                    if (iibet[i] != 0) {
+                        var timebe = amondaybe.substring(0, 5)
+                        var tibe = timebe.split(':');
+                        var tbe = tibe[0] + tibe[1];
+                        var tbe = Number(tbe);
+                    }else{
+                        var tbe = Number(amondaybe);
+                    }
+
+                    if(calcaatypebet.length < 8){
+                        calcaatypebet.push(tbe);
+                    }else{
+                        var calcaatypebet = [];
+                        calcaatypebet.push(tbe);
+                    }
+
+                }
 
 
 
 
                 var calcw = 0.0;        // A형 근무 시작시간 - A형 휴게 종료시간
                 var calcb = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
+                var calcab = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
 
                 var calcweekw = [];     // A형 1달 휴일근로시간
                 var lastcalcweek = [];  // A형 1달 총 휴일근로시간
 
                 var lastcalcw = [];     // A형 1주 근무 시작시간 - A형 휴게 종료시간
                 var lastcalcb = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
+                var lastcalcab = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
 
 
                 for (var i = 0; i < 7; i++) {
@@ -2293,15 +2929,36 @@
                     }
 
                 }
+                for (var i = 0; i < 7; i++){
 
+                    var bst = calcaatypebst[i];
+                    var wet = calcaatypebet[i];
+
+                    calcab = Number(calcaatypebet[i])-Number(calcaatypebst[i]);
+
+                    if(lastcalcab.length < 8){
+                        lastcalcab.push(calcab);
+                    }else{
+                        var lastcalcab = [];
+                        lastcalcab.push(calcab);
+                    }
+
+                }
 
                 var cbt = 0 ;   // 1주 휴게시간 최종계산 총합
+                var cabt = 0 ;   // 1주 휴게시간 최종계산 총합
                 var cwt = 0 ;   // 1주 근무시간 최종계산 총합
                 var cwwt = 0;
                 for(var i = 0; i< lastcalcb.length; i++)
                 {
                     cbt += Number(lastcalcb[i]);
                 }
+
+                for(var i = 0; i< lastcalcab.length; i++)
+                {
+                    cabt += Number(lastcalcab[i]);
+                }
+
 
                 for(var i = 0; i< lastcalcw.length; i++)
                 {
@@ -2338,7 +2995,8 @@
 
 
                 var cwtmonth = cwt;     // 월 근무시간 총합 계산
-                var cbtmonth = cbt * 4;     // 월 휴게시간 총합 계산.
+                var cbtmonth = cbt * 4 + cabt * 4;     // 월 휴게시간 총합 계산.
+                var cwwtmonth = cwwt * 4;
 
                 if(cwtmonth.toString().length == 4){        //
                     $scope.icwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(0,2)];
@@ -2346,6 +3004,14 @@
                     $scope.icwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(0,3)];
                 }else{
                     $scope.icwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(-3,1)];
+                }
+
+                if(cwwtmonth.toString().length == 4){        //
+                    $scope.icwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(0,2)];
+                }else if(cwwtmonth.toString().length == 5){
+                    $scope.icwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(0,3)];
+                }else{
+                    $scope.icwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(-3,1)];
                 }
 
                 if(cbtmonth.toString().length == 4) {
@@ -2382,6 +3048,8 @@
                 var calcatypewet = [];      // A형 근무 종료시간 계산
                 var calcatypebst = [];      // A형 휴게 시작시간 계산
                 var calcatypebet = [];      // A형 휴게 시작종료 시간
+                var calcaatypebst = [];      // A형 휴게1 시작종료 시간
+                var calcaatypebet = [];      // A형 휴게1 시작종료 시간
 
                 for (var i in jwst) {
                     var amondayws = jwst[i];
@@ -2464,17 +3132,56 @@
                 }
 
 
+                for (var i in jjbst) {
+                    var amondaybs = jjbst[i];
+                    if (jjbst[i] != 0) {
+                        var timebs = amondaybs.substring(0, 5)
+                        var tibs = timebs.split(':');
+                        var tbs = tibs[0] + tibs[1];
+                        var tbs = Number(tbs);
+                    } else {
+                        var tbs = Number(amondaybs);
+                    }
 
+                    if(calcaatypebst.length < 8){
+                        calcaatypebst.push(tbs);
+                    }else{
+                        var calcaatypebst = [];
+                        calcaatypebst.push(tbs);
+                    }
+                }
+
+                for (var i in jjbet) {
+                    var amondaybe = jjbet[i];
+                    if (jjbet[i] != 0) {
+                        var timebe = amondaybe.substring(0, 5)
+                        var tibe = timebe.split(':');
+                        var tbe = tibe[0] + tibe[1];
+                        var tbe = Number(tbe);
+                    }else{
+                        var tbe = Number(amondaybe);
+                    }
+
+                    if(calcaatypebet.length < 8){
+                        calcaatypebet.push(tbe);
+                    }else{
+                        var calcaatypebet = [];
+                        calcaatypebet.push(tbe);
+                    }
+
+                }
 
 
                 var calcw = 0.0;        // A형 근무 시작시간 - A형 휴게 종료시간
                 var calcb = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
+                var calcab = 0.0;        // A형 휴게 시작시간 - A형 휴게 종료시간.
 
                 var calcweekw = [];     // A형 1달 휴일근로시간
                 var lastcalcweek = [];  // A형 1달 총 휴일근로시간
 
                 var lastcalcw = [];     // A형 1주 근무 시작시간 - A형 휴게 종료시간
                 var lastcalcb = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
+                var lastcalcab = [];     // A형 1주 휴게 시작시간 - A형 휴게 종료시간
 
 
                 for (var i = 0; i < 7; i++) {
@@ -2527,8 +3234,24 @@
 
                 }
 
+                for (var i = 0; i < 7; i++){
+
+                    var bst = calcaatypebst[i];
+                    var wet = calcaatypebet[i];
+
+                    calcab = Number(calcaatypebet[i])-Number(calcaatypebst[i]);
+
+                    if(lastcalcab.length < 8){
+                        lastcalcab.push(calcab);
+                    }else{
+                        var lastcalcab = [];
+                        lastcalcab.push(calcab);
+                    }
+
+                }
 
                 var cbt = 0 ;   // 1주 휴게시간 최종계산 총합
+                var cabt = 0 ;   // 1주 휴게시간 최종계산 총합
                 var cwt = 0 ;   // 1주 근무시간 최종계산 총합
                 var cwwt = 0;
                 for(var i = 0; i< lastcalcb.length; i++)
@@ -2536,15 +3259,16 @@
                     cbt += Number(lastcalcb[i]);
                 }
 
+                for(var i = 0; i< lastcalcab.length; i++)
+                {
+                    cabt += Number(lastcalcab[i]);
+                }
+
                 for(var i = 0; i< lastcalcw.length; i++)
                 {
                     cwt += Number(lastcalcw[i]);
                 }
                 cwwt = lastcalcw[5]+ lastcalcw[6];
-
-
-
-
 
 
                 //총 근무시간 시간 분 나눔
@@ -2571,7 +3295,8 @@
 
 
                 var cwtmonth = cwt;     // 월 근무시간 총합 계산
-                var cbtmonth = cbt * 4;     // 월 휴게시간 총합 계산.
+                var cbtmonth = cbt * 4 + cabt * 4;     // 월 휴게시간 총합 계산.
+                var cwwtmonth = cwwt;
 
                 if(cwtmonth.toString().length == 4){        //
                     $scope.jcwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(0,2)];
@@ -2579,6 +3304,14 @@
                     $scope.jcwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(0,3)];
                 }else{
                     $scope.jcwtmonth = [cwtmonth.toString().substr(-2,2), cwtmonth.toString().substr(-3,1)];
+                }
+
+                if(cwwtmonth.toString().length == 4){        //
+                    $scope.jcwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(0,2)];
+                }else if(cwwtmonth.toString().length == 5){
+                    $scope.jcwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(0,3)];
+                }else{
+                    $scope.jcwwtmonth = [cwwtmonth.toString().substr(-2,2), cwwtmonth.toString().substr(-3,1)];
                 }
 
                 if(cbtmonth.toString().length == 4) {
@@ -2602,7 +3335,6 @@
 
             }
         };
-
 
         $scope.aworkadd = function () {
 
@@ -3155,6 +3887,34 @@
                 abet.splice(abet.indexOf(undefined),1,0);
             }
 
+
+            aabst = [
+                $scope.aa_break_start_time1,
+                $scope.aa_break_start_time2,
+                $scope.aa_break_start_time3,
+                $scope.aa_break_start_time4,
+                $scope.aa_break_start_time5,
+                $scope.aa_break_start_time6,
+                $scope.aa_break_start_time7
+            ];
+
+            while(aabst.indexOf(undefined) != -1){
+                aabst.splice(aabst.indexOf(undefined),1,0);
+            }
+
+            aabet = [
+                $scope.aa_break_end_time1,
+                $scope.aa_break_end_time2,
+                $scope.aa_break_end_time3,
+                $scope.aa_break_end_time4,
+                $scope.aa_break_end_time5,
+                $scope.aa_break_end_time6,
+                $scope.aa_break_end_time7
+            ];
+
+            while(aabet.indexOf(undefined) != -1){
+                aabet.splice(aabet.indexOf(undefined),1,0);
+            }
             var test = '';
         };
         $scope.bbreakadd = function () {
@@ -3185,6 +3945,34 @@
 
             while(bbet.indexOf(undefined) != -1){
                 bbet.splice(bbet.indexOf(undefined),1,0);
+            }
+
+            bbbst = [
+                $scope.bb_break_start_time1,
+                $scope.bb_break_start_time2,
+                $scope.bb_break_start_time3,
+                $scope.bb_break_start_time4,
+                $scope.bb_break_start_time5,
+                $scope.bb_break_start_time6,
+                $scope.bb_break_start_time7
+            ];
+
+            while(bbbst.indexOf(undefined) != -1){
+                bbbst.splice(bbbst.indexOf(undefined),1,0);
+            }
+
+            bbbet = [
+                $scope.bb_break_end_time1,
+                $scope.bb_break_end_time2,
+                $scope.bb_break_end_time3,
+                $scope.bb_break_end_time4,
+                $scope.bb_break_end_time5,
+                $scope.bb_break_end_time6,
+                $scope.bb_break_end_time7
+            ];
+
+            while(bbbet.indexOf(undefined) != -1){
+                bbbet.splice(bbbet.indexOf(undefined),1,0);
             }
 
             var test = '';
@@ -3219,6 +4007,33 @@
                 cbet.splice(cbet.indexOf(undefined),1,0);
             }
 
+            ccbst = [
+                $scope.cc_break_start_time1,
+                $scope.cc_break_start_time2,
+                $scope.cc_break_start_time3,
+                $scope.cc_break_start_time4,
+                $scope.cc_break_start_time5,
+                $scope.cc_break_start_time6,
+                $scope.cc_break_start_time7
+            ];
+
+            while(ccbst.indexOf(undefined) != -1){
+                ccbst.splice(ccbst.indexOf(undefined),1,0);
+            }
+
+            ccbet = [
+                $scope.cc_break_end_time1,
+                $scope.cc_break_end_time2,
+                $scope.cc_break_end_time3,
+                $scope.cc_break_end_time4,
+                $scope.cc_break_end_time5,
+                $scope.cc_break_end_time6,
+                $scope.cc_break_end_time7
+            ];
+
+            while(ccbet.indexOf(undefined) != -1){
+                ccbet.splice(ccbet.indexOf(undefined),1,0);
+            }
             var test = '';
         };
         $scope.dbreakadd = function () {
@@ -3251,6 +4066,33 @@
                 dbet.splice(dbet.indexOf(undefined),1,0);
             }
 
+            ddbst = [
+                $scope.dd_break_start_time1,
+                $scope.dd_break_start_time2,
+                $scope.dd_break_start_time3,
+                $scope.dd_break_start_time4,
+                $scope.dd_break_start_time5,
+                $scope.dd_break_start_time6,
+                $scope.dd_break_start_time7
+            ];
+
+            while(ddbst.indexOf(undefined) != -1){
+                ddbst.splice(ddbst.indexOf(undefined),1,0);
+            }
+
+            ddbet = [
+                $scope.dd_break_end_time1,
+                $scope.dd_break_end_time2,
+                $scope.dd_break_end_time3,
+                $scope.dd_break_end_time4,
+                $scope.dd_break_end_time5,
+                $scope.dd_break_end_time6,
+                $scope.dd_break_end_time7
+            ];
+
+            while(ddbet.indexOf(undefined) != -1){
+                ddbet.splice(ddbet.indexOf(undefined),1,0);
+            }
             var test = '';
         };
         $scope.ebreakadd = function () {
@@ -3281,6 +4123,34 @@
 
             while(ebet.indexOf(undefined) != -1){
                 ebet.splice(ebet.indexOf(undefined),1,0);
+            }
+
+            eebst = [
+                $scope.ee_break_start_time1,
+                $scope.ee_break_start_time2,
+                $scope.ee_break_start_time3,
+                $scope.ee_break_start_time4,
+                $scope.ee_break_start_time5,
+                $scope.ee_break_start_time6,
+                $scope.ee_break_start_time7
+            ];
+
+            while(eebst.indexOf(undefined) != -1){
+                eebst.splice(eebst.indexOf(undefined),1,0);
+            }
+
+            eebet = [
+                $scope.ee_break_end_time1,
+                $scope.ee_break_end_time2,
+                $scope.ee_break_end_time3,
+                $scope.ee_break_end_time4,
+                $scope.ee_break_end_time5,
+                $scope.ee_break_end_time6,
+                $scope.ee_break_end_time7
+            ];
+
+            while(eebet.indexOf(undefined) != -1){
+                eebet.splice(eebet.indexOf(undefined),1,0);
             }
 
             var test = '';
@@ -3315,6 +4185,35 @@
                 fbet.splice(fbet.indexOf(undefined),1,0);
             }
 
+            ffbst = [
+                $scope.ff_break_start_time1,
+                $scope.ff_break_start_time2,
+                $scope.ff_break_start_time3,
+                $scope.ff_break_start_time4,
+                $scope.ff_break_start_time5,
+                $scope.ff_break_start_time6,
+                $scope.ff_break_start_time7
+            ];
+
+            while(ffbst.indexOf(undefined) != -1){
+                ffbst.splice(ffbst.indexOf(undefined),1,0);
+            }
+
+            ffbet = [
+                $scope.ff_break_end_time1,
+                $scope.ff_break_end_time2,
+                $scope.ff_break_end_time3,
+                $scope.ff_break_end_time4,
+                $scope.ff_break_end_time5,
+                $scope.ff_break_end_time6,
+                $scope.ff_break_end_time7
+            ];
+
+            while(ffbet.indexOf(undefined) != -1){
+                ffbet.splice(ffbet.indexOf(undefined),1,0);
+            }
+
+
             var test = '';
         };
         $scope.gbreakadd = function () {
@@ -3347,6 +4246,34 @@
                 gbet.splice(gbet.indexOf(undefined),1,0);
             }
 
+            ggbst = [
+                $scope.gg_break_start_time1,
+                $scope.gg_break_start_time2,
+                $scope.gg_break_start_time3,
+                $scope.gg_break_start_time4,
+                $scope.gg_break_start_time5,
+                $scope.gg_break_start_time6,
+                $scope.gg_break_start_time7
+            ];
+
+            while(ggbst.indexOf(undefined) != -1){
+                ggbst.splice(ggbst.indexOf(undefined),1,0);
+            }
+
+            ggbet = [
+                $scope.gg_break_end_time1,
+                $scope.gg_break_end_time2,
+                $scope.gg_break_end_time3,
+                $scope.gg_break_end_time4,
+                $scope.gg_break_end_time5,
+                $scope.gg_break_end_time6,
+                $scope.gg_break_end_time7
+            ];
+
+
+            while(ggbet.indexOf(undefined) != -1){
+                ggbet.splice(ggbet.indexOf(undefined),1,0);
+            }
             var test = '';
         };
         $scope.hbreakadd = function () {
@@ -3379,7 +4306,38 @@
                 hbet.splice(hbet.indexOf(undefined),1,0);
             }
 
+            hhbst = [
+                $scope.hh_break_start_time1,
+                $scope.hh_break_start_time2,
+                $scope.hh_break_start_time3,
+                $scope.hh_break_start_time4,
+                $scope.hh_break_start_time5,
+                $scope.hh_break_start_time6,
+                $scope.hh_break_start_time7
+            ];
+
+            while(hhbst.indexOf(undefined) != -1){
+                hhbst.splice(hhbst.indexOf(undefined),1,0);
+            }
+
+            hhbet = [
+                $scope.hh_break_end_time1,
+                $scope.hh_break_end_time2,
+                $scope.hh_break_end_time3,
+                $scope.hh_break_end_time4,
+                $scope.hh_break_end_time5,
+                $scope.hh_break_end_time6,
+                $scope.hh_break_end_time7
+            ];
+
+            while(hhbet.indexOf(undefined) != -1){
+                hhbet.splice(hhbet.indexOf(undefined),1,0);
+            }
+
+
             var test = '';
+
+
         };
         $scope.ibreakadd = function () {
 
@@ -3411,6 +4369,33 @@
                 ibet.splice(ibet.indexOf(undefined),1,0);
             }
 
+            iibst = [
+                $scope.ii_break_start_time1,
+                $scope.ii_break_start_time2,
+                $scope.ii_break_start_time3,
+                $scope.ii_break_start_time4,
+                $scope.ii_break_start_time5,
+                $scope.ii_break_start_time6,
+                $scope.ii_break_start_time7
+            ];
+
+            while(iibst.indexOf(undefined) != -1){
+                iibst.splice(iibst.indexOf(undefined),1,0);
+            }
+
+            iibet = [
+                $scope.ii_break_end_time1,
+                $scope.ii_break_end_time2,
+                $scope.ii_break_end_time3,
+                $scope.ii_break_end_time4,
+                $scope.ii_break_end_time5,
+                $scope.ii_break_end_time6,
+                $scope.ii_break_end_time7
+            ];
+
+            while(iibet.indexOf(undefined) != -1){
+                iibet.splice(iibet.indexOf(undefined),1,0);
+            }
             var test = '';
         };
         $scope.jbreakadd = function () {
@@ -3443,29 +4428,418 @@
                 jbet.splice(jbet.indexOf(undefined),1,0);
             }
 
+            jjbst = [
+                $scope.jj_break_start_time1,
+                $scope.jj_break_start_time2,
+                $scope.jj_break_start_time3,
+                $scope.jj_break_start_time4,
+                $scope.jj_break_start_time5,
+                $scope.jj_break_start_time6,
+                $scope.jj_break_start_time7
+            ];
+
+            while(jjbst.indexOf(undefined) != -1){
+                jjbst.splice(jjbst.indexOf(undefined),1,0);
+            }
+
+            jjbet = [
+                $scope.jj_break_end_time1,
+                $scope.jj_break_end_time2,
+                $scope.jj_break_end_time3,
+                $scope.jj_break_end_time4,
+                $scope.jj_break_end_time5,
+                $scope.jj_break_end_time6,
+                $scope.jj_break_end_time7
+            ];
+
+            while(jjbet.indexOf(undefined) != -1){
+                jjbet.splice(jjbet.indexOf(undefined),1,0);
+            }
+
             var test = '';
         };
 
+        $scope.aabreakadd = function () {
+
+            aabst = [
+                $scope.aa_break_start_time1,
+                $scope.aa_break_start_time2,
+                $scope.aa_break_start_time3,
+                $scope.aa_break_start_time4,
+                $scope.aa_break_start_time5,
+                $scope.aa_break_start_time6,
+                $scope.aa_break_start_time7
+            ];
+
+            while(aabst.indexOf(undefined) != -1){
+                aabst.splice(aabst.indexOf(undefined),1,0);
+            }
+
+            aabet = [
+                $scope.aa_break_end_time1,
+                $scope.aa_break_end_time2,
+                $scope.aa_break_end_time3,
+                $scope.aa_break_end_time4,
+                $scope.aa_break_end_time5,
+                $scope.aa_break_end_time6,
+                $scope.aa_break_end_time7
+            ];
+
+            while(aabet.indexOf(undefined) != -1){
+                aabet.splice(aabet.indexOf(undefined),1,0);
+            }
+
+            var test = '';
+        };
+        $scope.bbbreakadd = function () {
+
+            bbbst = [
+                $scope.bb_break_start_time1,
+                $scope.bb_break_start_time2,
+                $scope.bb_break_start_time3,
+                $scope.bb_break_start_time4,
+                $scope.bb_break_start_time5,
+                $scope.bb_break_start_time6,
+                $scope.bb_break_start_time7
+            ];
+
+            while(bbbst.indexOf(undefined) != -1){
+                bbbst.splice(bbbst.indexOf(undefined),1,0);
+            }
+
+            bbbet = [
+                $scope.bb_break_end_time1,
+                $scope.bb_break_end_time2,
+                $scope.bb_break_end_time3,
+                $scope.bb_break_end_time4,
+                $scope.bb_break_end_time5,
+                $scope.bb_break_end_time6,
+                $scope.bb_break_end_time7
+            ];
+
+            while(bbbet.indexOf(undefined) != -1){
+                bbbet.splice(bbbet.indexOf(undefined),1,0);
+            }
+
+            var test = '';
+        };
+        $scope.ccbreakadd = function () {
+
+            ccbst = [
+                $scope.cc_break_start_time1,
+                $scope.cc_break_start_time2,
+                $scope.cc_break_start_time3,
+                $scope.cc_break_start_time4,
+                $scope.cc_break_start_time5,
+                $scope.cc_break_start_time6,
+                $scope.cc_break_start_time7
+            ];
+
+            while(ccbst.indexOf(undefined) != -1){
+                ccbst.splice(ccbst.indexOf(undefined),1,0);
+            }
+
+            ccbet = [
+                $scope.cc_break_end_time1,
+                $scope.cc_break_end_time2,
+                $scope.cc_break_end_time3,
+                $scope.cc_break_end_time4,
+                $scope.cc_break_end_time5,
+                $scope.cc_break_end_time6,
+                $scope.cc_break_end_time7
+            ];
+
+            while(ccbet.indexOf(undefined) != -1){
+                ccbet.splice(ccbet.indexOf(undefined),1,0);
+            }
+
+            var test = '';
+        };
+        $scope.ddbreakadd = function () {
+
+            ddbst = [
+                $scope.dd_break_start_time1,
+                $scope.dd_break_start_time2,
+                $scope.dd_break_start_time3,
+                $scope.dd_break_start_time4,
+                $scope.dd_break_start_time5,
+                $scope.dd_break_start_time6,
+                $scope.dd_break_start_time7
+            ];
+
+            while(ddbst.indexOf(undefined) != -1){
+                ddbst.splice(ddbst.indexOf(undefined),1,0);
+            }
+
+            ddbet = [
+                $scope.dd_break_end_time1,
+                $scope.dd_break_end_time2,
+                $scope.dd_break_end_time3,
+                $scope.dd_break_end_time4,
+                $scope.dd_break_end_time5,
+                $scope.dd_break_end_time6,
+                $scope.dd_break_end_time7
+            ];
+
+            while(ddbet.indexOf(undefined) != -1){
+                ddbet.splice(ddbet.indexOf(undefined),1,0);
+            }
+
+            var test = '';
+        };
+        $scope.eebreakadd = function () {
+
+            eebst = [
+                $scope.ee_break_start_time1,
+                $scope.ee_break_start_time2,
+                $scope.ee_break_start_time3,
+                $scope.ee_break_start_time4,
+                $scope.ee_break_start_time5,
+                $scope.ee_break_start_time6,
+                $scope.ee_break_start_time7
+            ];
+
+            while(eebst.indexOf(undefined) != -1){
+                eebst.splice(eebst.indexOf(undefined),1,0);
+            }
+
+            eebet = [
+                $scope.ee_break_end_time1,
+                $scope.ee_break_end_time2,
+                $scope.ee_break_end_time3,
+                $scope.ee_break_end_time4,
+                $scope.ee_break_end_time5,
+                $scope.ee_break_end_time6,
+                $scope.ee_break_end_time7
+            ];
+
+            while(eebet.indexOf(undefined) != -1){
+                eebet.splice(eebet.indexOf(undefined),1,0);
+            }
+
+            var test = '';
+        };
+        $scope.ffbreakadd = function () {
+
+            ffbst = [
+                $scope.ff_break_start_time1,
+                $scope.ff_break_start_time2,
+                $scope.ff_break_start_time3,
+                $scope.ff_break_start_time4,
+                $scope.ff_break_start_time5,
+                $scope.ff_break_start_time6,
+                $scope.ff_break_start_time7
+            ];
+
+            while(ffbst.indexOf(undefined) != -1){
+                ffbst.splice(ffbst.indexOf(undefined),1,0);
+            }
+
+            ffbet = [
+                $scope.ff_break_end_time1,
+                $scope.ff_break_end_time2,
+                $scope.ff_break_end_time3,
+                $scope.ff_break_end_time4,
+                $scope.ff_break_end_time5,
+                $scope.ff_break_end_time6,
+                $scope.ff_break_end_time7
+            ];
+
+            while(ffbet.indexOf(undefined) != -1){
+                ffbet.splice(ffbet.indexOf(undefined),1,0);
+            }
+
+            var test = '';
+        };
+        $scope.ggbreakadd = function () {
+
+            ggbst = [
+                $scope.gg_break_start_time1,
+                $scope.gg_break_start_time2,
+                $scope.gg_break_start_time3,
+                $scope.gg_break_start_time4,
+                $scope.gg_break_start_time5,
+                $scope.gg_break_start_time6,
+                $scope.gg_break_start_time7
+            ];
+
+            while(ggbst.indexOf(undefined) != -1){
+                ggbst.splice(ggbst.indexOf(undefined),1,0);
+            }
+
+            ggbet = [
+                $scope.gg_break_end_time1,
+                $scope.gg_break_end_time2,
+                $scope.gg_break_end_time3,
+                $scope.gg_break_end_time4,
+                $scope.gg_break_end_time5,
+                $scope.gg_break_end_time6,
+                $scope.gg_break_end_time7
+            ];
+
+
+            while(ggbet.indexOf(undefined) != -1){
+                ggbet.splice(ggbet.indexOf(undefined),1,0);
+            }
+
+            var test = '';
+        };
+        $scope.hhbreakadd = function () {
+
+            hhbst = [
+                $scope.hh_break_start_time1,
+                $scope.hh_break_start_time2,
+                $scope.hh_break_start_time3,
+                $scope.hh_break_start_time4,
+                $scope.hh_break_start_time5,
+                $scope.hh_break_start_time6,
+                $scope.hh_break_start_time7
+            ];
+
+            while(hhbst.indexOf(undefined) != -1){
+                hhbst.splice(hhbst.indexOf(undefined),1,0);
+            }
+
+            hhbet = [
+                $scope.hh_break_end_time1,
+                $scope.hh_break_end_time2,
+                $scope.hh_break_end_time3,
+                $scope.hh_break_end_time4,
+                $scope.hh_break_end_time5,
+                $scope.hh_break_end_time6,
+                $scope.hh_break_end_time7
+            ];
+
+            while(hhbet.indexOf(undefined) != -1){
+                hhbet.splice(hhbet.indexOf(undefined),1,0);
+            }
+
+            var test = '';
+        };
+        $scope.iibreakadd = function () {
+
+            iibst = [
+                $scope.ii_break_start_time1,
+                $scope.ii_break_start_time2,
+                $scope.ii_break_start_time3,
+                $scope.ii_break_start_time4,
+                $scope.ii_break_start_time5,
+                $scope.ii_break_start_time6,
+                $scope.ii_break_start_time7
+            ];
+
+            while(iibst.indexOf(undefined) != -1){
+                iibst.splice(iibst.indexOf(undefined),1,0);
+            }
+
+            iibet = [
+                $scope.ii_break_end_time1,
+                $scope.ii_break_end_time2,
+                $scope.ii_break_end_time3,
+                $scope.ii_break_end_time4,
+                $scope.ii_break_end_time5,
+                $scope.ii_break_end_time6,
+                $scope.ii_break_end_time7
+            ];
+
+            while(iibet.indexOf(undefined) != -1){
+                iibet.splice(iibet.indexOf(undefined),1,0);
+            }
+
+            var test = '';
+        };
+        $scope.jjbreakadd = function () {
+
+            jjbst = [
+                $scope.jj_break_start_time1,
+                $scope.jj_break_start_time2,
+                $scope.jj_break_start_time3,
+                $scope.jj_break_start_time4,
+                $scope.jj_break_start_time5,
+                $scope.jj_break_start_time6,
+                $scope.jj_break_start_time7
+            ];
+
+            while(jjbst.indexOf(undefined) != -1){
+                jjbst.splice(jjbst.indexOf(undefined),1,0);
+            }
+
+            jjbet = [
+                $scope.jj_break_end_time1,
+                $scope.jj_break_end_time2,
+                $scope.jj_break_end_time3,
+                $scope.jj_break_end_time4,
+                $scope.jj_break_end_time5,
+                $scope.jj_break_end_time6,
+                $scope.jj_break_end_time7
+            ];
+
+            while(jjbet.indexOf(undefined) != -1){
+                jjbet.splice(jjbet.indexOf(undefined),1,0);
+            }
+
+            var test = '';
+        };
 
         $scope.addRow = function () {
 
-            $scope.breaktimes.push({'name': '휴게시간 ', 'num': $scope.counter});
+            $scope.breaktimes.push({'name': '휴게시간 ', 'num': $scope.counter, 'cc': $scope.counter });
 
             $scope.counter++
         };
-
         $scope.addRowb = function () {
 
             $scope.breaktimesb.push({'name': '휴게시간 ', 'num': $scope.counterb});
 
             $scope.counterb++
         };
-
         $scope.addRowc = function () {
 
             $scope.breaktimesc.push({'name': '휴게시간 ', 'num': $scope.counterc});
 
             $scope.counterc++
+        };
+        $scope.addRowd = function () {
+
+            $scope.breaktimesd.push({'name': '휴게시간 ', 'num': $scope.counterd});
+
+            $scope.counterd++
+        };
+        $scope.addRowe = function () {
+
+            $scope.breaktimese.push({'name': '휴게시간 ', 'num': $scope.countere});
+
+            $scope.countere++
+        };
+        $scope.addRowf = function () {
+
+            $scope.breaktimef.push({'name': '휴게시간 ', 'num': $scope.counterf});
+
+            $scope.counterf++
+        };
+        $scope.addRowg = function () {
+
+            $scope.breaktimesg.push({'name': '휴게시간 ', 'num': $scope.counterg});
+
+            $scope.counterg++
+        };
+        $scope.addRowh = function () {
+
+            $scope.breaktimesh.push({'name': '휴게시간 ', 'num': $scope.counterh});
+
+            $scope.counterh++
+        };
+        $scope.addRowi = function () {
+
+            $scope.breaktimesi.push({'name': '휴게시간 ', 'num': $scope.counteri});
+
+            $scope.counteri++
+        };
+        $scope.addRowj = function () {
+
+            $scope.breaktimesj.push({'name': '휴게시간 ', 'num': $scope.counterj});
+
+            $scope.counterj++
         };
 
         $scope.removeRow = function (name) {
@@ -3486,7 +4860,6 @@
 
 
         };
-
         $scope.removeRowb = function (name) {
             var index = -1;
             var comArr = eval($scope.breaktimesb);
@@ -3505,7 +4878,6 @@
 
 
         };
-
         $scope.removeRowc = function (name) {
             var index = -1;
             var comArr = eval($scope.breaktimesc);
@@ -3524,6 +4896,132 @@
 
 
         };
+        $scope.removeRowd = function (name) {
+            var index = -1;
+            var comArr = eval($scope.breaktimesd);
+            for (var i = 0; i < comArr.length; i++) {
+                if (comArr[i].name === name) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index === -1) {
+                alert("Something gone wrong");
+            }
+            $scope.breaktimesd.splice(index, 1);
+
+            $scope.counterd--
+
+
+        };
+        $scope.removeRowe = function (name) {
+            var index = -1;
+            var comArr = eval($scope.breaktimese);
+            for (var i = 0; i < comArr.length; i++) {
+                if (comArr[i].name === name) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index === -1) {
+                alert("Something gone wrong");
+            }
+            $scope.breaktimese.splice(index, 1);
+
+            $scope.countere--
+
+
+        };
+        $scope.removeRowf = function (name) {
+            var index = -1;
+            var comArr = eval($scope.breaktimesf);
+            for (var i = 0; i < comArr.length; i++) {
+                if (comArr[i].name === name) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index === -1) {
+                alert("Something gone wrong");
+            }
+            $scope.breaktimesf.splice(index, 1);
+
+            $scope.counterf--
+
+
+        };
+        $scope.removeRowg = function (name) {
+            var index = -1;
+            var comArr = eval($scope.breaktimesg);
+            for (var i = 0; i < comArr.length; i++) {
+                if (comArr[i].name === name) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index === -1) {
+                alert("Something gone wrong");
+            }
+            $scope.breaktimesg.splice(index, 1);
+
+            $scope.counterg--
+
+
+        };
+        $scope.removeRowh = function (name) {
+            var index = -1;
+            var comArr = eval($scope.breaktimesh);
+            for (var i = 0; i < comArr.length; i++) {
+                if (comArr[i].name === name) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index === -1) {
+                alert("Something gone wrong");
+            }
+            $scope.breaktimesh.splice(index, 1);
+
+            $scope.counterh--
+
+
+        };
+        $scope.removeRowi = function (name) {
+            var index = -1;
+            var comArr = eval($scope.breaktimesi);
+            for (var i = 0; i < comArr.length; i++) {
+                if (comArr[i].name === name) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index === -1) {
+                alert("Something gone wrong");
+            }
+            $scope.breaktimesi.splice(index, 1);
+
+            $scope.counteri--
+
+
+        };
+        $scope.removeRowj = function (name) {
+            var index = -1;
+            var comArr = eval($scope.breaktimesj);
+            for (var i = 0; i < comArr.length; i++) {
+                if (comArr[i].name === name) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index === -1) {
+                alert("Something gone wrong");
+            }
+            $scope.breaktimesj.splice(index, 1);
+
+            $scope.counterj--
+
+
+        };
 
         var tabs = [
             { title:'A', href:'A'},
@@ -3534,13 +5032,12 @@
 
         ];
 
-
-
         var alphabet = ['F','G','H','I','J'];
         var al = alphabet.splice(0,5);
 
         var lastal = [];
         var last = '';
+
         $scope.tabs = tabs;
 
         $scope.addTab = function () {
