@@ -96,8 +96,15 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
     # Job Code Management
     Route::group(array('prefix' => 'basicinfo'), function () {
 
+        Route::group(array('prefix' => 'basicinfo'), function (){
 
-        Route::get('basicinfo', array('as' => 'hnl', 'uses' => 'HnlController@showBasicInfo'));
+            Route::get('/', array('as' => 'hnl', 'uses' => 'HnlBasicinfoController@index'));
+
+            //사업장 기본정보
+            Route::post('create', array('as' => 'insert/cbinfo', 'uses' => 'HnlBasicinfoController@store'));
+
+        });
+
 
         Route::group(array('prefix' => 'jobtitle'), function () {
 
@@ -122,14 +129,18 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
         });
 
+        Route::group(array('prefix' => 'payitem'), function (){
+
+            Route::get('/', array('as' => 'hnl', 'uses' => 'HnlPayItemController@index'));
 
 
-        Route::get('payitem', array('as' => 'hnl', 'uses' => 'HnlController@showPayitem'));
+
+        });
 
         Route::get('paytype', array('as' => 'hnl', 'uses' => 'HnlController@showPaytype'));
 
         Route::group(array('prefix' => 'worktype'), function () {
-            
+
             Route::get('/', array('as' => 'hnl', 'uses' => 'HnlWorktypeController@index'));
 
             Route::post('insert' , array('as' => 'insert/worktype', 'uses' => 'HnlWorktypeController@typeInsert'));
