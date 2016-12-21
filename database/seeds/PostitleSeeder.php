@@ -11,15 +11,15 @@ class PostitleSeeder extends Seeder
      */
     public function run()
     {
-
+/*
         DB::statement('SET FOREIGN_KEY_CHECKS = 0'); // disable foreign key constraints
         // Auto Increments 초기화
-        DB::table('postitles')->truncate();
+        DB::table('postitles')->truncate();*/
 
 
         for ($i=1; $i < 7; $i++){
             DB::table('postitles')->insert([
-                'job_id'      => $i,
+                'jobtitle_id'      => $i,
                 'pos_code'    => '001',
                 'pos_div_code' => '01',
                 'pos_name'       => '대표',
@@ -30,7 +30,7 @@ class PostitleSeeder extends Seeder
             ]);
 
             DB::table('postitles')->insert([
-                'job_id'      => $i,
+                'jobtitle_id'      => $i,
                 'pos_code'    => '002',
                 'pos_div_code' => '02',
                 'pos_name'       => '부사장',
@@ -41,7 +41,7 @@ class PostitleSeeder extends Seeder
             ]);
 
             DB::table('postitles')->insert([
-                'job_id'      => $i,
+                'jobtitle_id'      => $i,
                 'pos_code'    => '003',
                 'pos_div_code' => '03',
                 'pos_name'       => '이사',
@@ -52,7 +52,7 @@ class PostitleSeeder extends Seeder
             ]);
 
             DB::table('postitles')->insert([
-                'job_id'      => $i,
+                'jobtitle_id'      => $i,
                 'pos_code'    => '004',
                 'pos_div_code' => '04',
                 'pos_name'       => '전무',
@@ -63,7 +63,7 @@ class PostitleSeeder extends Seeder
             ]);
 
             DB::table('postitles')->insert([
-                'job_id'      => $i,
+                'jobtitle_id'      => $i,
                 'pos_code'    => '005',
                 'pos_div_code' => '05',
                 'pos_name'       => '상무',
@@ -74,7 +74,7 @@ class PostitleSeeder extends Seeder
             ]);
 
             DB::table('postitles')->insert([
-                'job_id'      => $i,
+                'jobtitle_id'      => $i,
                 'pos_code'    => '006',
                 'pos_div_code' => '06',
                 'pos_name'       => '부장',
@@ -85,7 +85,7 @@ class PostitleSeeder extends Seeder
             ]);
 
             DB::table('postitles')->insert([
-                'job_id'      => $i,
+                'jobtitle_id'      => $i,
                 'pos_code'    => '007',
                 'pos_div_code' => '07',
                 'pos_name'       => '차장',
@@ -96,7 +96,7 @@ class PostitleSeeder extends Seeder
             ]);
 
             DB::table('postitles')->insert([
-                'job_id'      => $i,
+                'jobtitle_id'      => $i,
                 'pos_code'    => '008',
                 'pos_div_code' => '08',
                 'pos_name'       => '실장',
@@ -107,7 +107,7 @@ class PostitleSeeder extends Seeder
             ]);
 
             DB::table('postitles')->insert([
-                'job_id'      => $i,
+                'jobtitle_id'      => $i,
                 'pos_code'    => '009',
                 'pos_div_code' => '09',
                 'pos_name'       => '과장',
@@ -118,7 +118,7 @@ class PostitleSeeder extends Seeder
             ]);
 
             DB::table('postitles')->insert([
-                'job_id'      => $i,
+                'jobtitle_id'      => $i,
                 'pos_code'    => '010',
                 'pos_div_code' => '10',
                 'pos_name'       => '대리',
@@ -129,7 +129,7 @@ class PostitleSeeder extends Seeder
             ]);
 
             DB::table('postitles')->insert([
-                'job_id'      => $i,
+                'jobtitle_id'      => $i,
                 'pos_code'    => '011',
                 'pos_div_code' => '11',
                 'pos_name'       => '사원',
@@ -139,7 +139,7 @@ class PostitleSeeder extends Seeder
                 'updated_at'    => \Carbon\Carbon::now(),
             ]);
         }
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1'); // enable foreign key constraints
+/*        DB::statement('SET FOREIGN_KEY_CHECKS = 1'); // enable foreign key constraints*/
 
     }
 }

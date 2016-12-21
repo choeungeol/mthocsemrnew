@@ -164,12 +164,29 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
 
     #인사정보
-    Route::get('pinfo/pinfo', array('as' => 'hnl', 'uses' => 'PinfoController@showPinfo'));
+    Route::group(array('prefix' => 'pinfo'), function (){
 
-    Route::get('pinfo/payinfo', array('as' => 'hnl', 'uses' => 'PinfoController@showPayinfo'));
+        Route::group(array('prefix'=> 'pinfo'), function (){
 
-    Route::get('pinfo/pcard', array('as' => 'hnl', 'uses' => 'PinfoController@showPcard'));
+            Route::get('/', array('as' => 'hnl', 'uses' => 'PinfoController@showPinfo'));
 
+            Route::post('insert' , array('as' => 'insert/pinfo', 'uses' => 'HnlPinfoController@store'));
+
+        });
+
+        Route::group(array('prefix'=> 'payinfo'), function (){
+
+            Route::get('/', array('as' => 'hnl', 'uses' => 'PinfoController@showPayinfo'));
+
+        });
+
+        Route::group(array('prefix'=> 'pcard'), function (){
+
+            Route::get('/', array('as' => 'hnl', 'uses' => 'PinfoController@showPcard'));
+
+        });
+
+    });
 
     #근태관리
     Route::get('work/addwork', array('as' => 'hnl', 'uses' => 'WorkController@showAddwork'));

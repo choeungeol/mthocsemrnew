@@ -15,8 +15,8 @@ class CreatePosTitleTable extends Migration
     {
         Schema::create('postitles', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('job_id')->unsigned();
-            $table->foreign('job_id')->references('id')->on('jobtitles');       //부서 ID
+            $table->integer('jobtitle_id')->unsigned();
+            $table->foreign('jobtitle_id')->references('id')->on('jobtitles');       //부서 ID
             $table->string('pos_code');     // 직위코드
             $table->string('pos_div_code');        //직위 구분코드
             $table->string('pos_name');     //명칭
