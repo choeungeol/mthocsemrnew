@@ -150,12 +150,41 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
             Route::post('insert' , array('as' => 'insert/worktype', 'uses' => 'HnlWorktypeController@typeInsert'));
 
+        });
 
+        Route::group(array('prefix' => 'worktype1'), function () {
+
+            Route::get('/', array('as' => 'hnl', 'uses' => 'HnlWorktypeController@index1'));
+
+            Route::post('insert' , array('as' => 'insert/worktype1', 'uses' => 'HnlWorktypeController@typeInsert1'));
 
         });
 
+        Route::group(array('prefix' => 'worktype2'), function () {
+
+            Route::get('/', array('as' => 'hnl', 'uses' => 'HnlWorktypeController@index2'));
+
+            Route::post('insert' , array('as' => 'insert/worktype2', 'uses' => 'HnlWorktypeController@typeInsert2'));
+
+        });
+
+        Route::group(array('prefix' => 'worktype3'), function () {
+
+            Route::get('/', array('as' => 'hnl', 'uses' => 'HnlWorktypeController@index3'));
+
+            Route::post('insert' , array('as' => 'insert/worktype3', 'uses' => 'HnlWorktypeController@typeInsert3'));
+
+        });
+
+        Route::group(array('prefix' => 'worktype4'), function () {
+
+            Route::get('/', array('as' => 'hnl', 'uses' => 'HnlWorktypeController@index4'));
+
+            Route::post('insert' , array('as' => 'insert/worktype4', 'uses' => 'HnlWorktypeController@typeinsert4'));
+
+        });
     });
-    
+
     # hnl / Index
     Route::get('/', array('as' => 'hnl','uses' => 'HnlController@showHnl'));
 
@@ -168,7 +197,7 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
         Route::group(array('prefix'=> 'pinfo'), function (){
 
-            Route::get('/', array('as' => 'hnl', 'uses' => 'PinfoController@showPinfo'));
+            Route::get('{company_id?}', array('as' => 'pinfo_index', 'uses' => 'HnlPinfoController@index'));
 
             Route::post('insert' , array('as' => 'insert/pinfo', 'uses' => 'HnlPinfoController@store'));
 
@@ -176,7 +205,7 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
         Route::group(array('prefix'=> 'payinfo'), function (){
 
-            Route::get('/', array('as' => 'hnl', 'uses' => 'PinfoController@showPayinfo'));
+            Route::get('{pinfo_id?}', array('as' => 'payinfo_index', 'uses' => 'HnlPayinfoController@index'));
 
         });
 
@@ -187,6 +216,9 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
         });
 
     });
+
+
+
 
     #근태관리
     Route::get('work/addwork', array('as' => 'hnl', 'uses' => 'WorkController@showAddwork'));

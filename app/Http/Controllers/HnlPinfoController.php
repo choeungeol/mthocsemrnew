@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\CompanyBasicinfo;
+use App\Jobtitle;
 use App\Pinfo;
 use App\Worktype;
 use Illuminate\Http\Request;
@@ -19,9 +21,18 @@ class HnlPinfoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id = null)
     {
+        $jobtitle = Jobtitle::All();
+        $position = Jobtitle::findOrFail(1)->postitles;
+        $worktype = Worktype::All();
+        $companypinfo = CompanyBasicinfo::find($id)->person_infos;
 
+
+        if(Sentinel::check())
+            return view('hnl.pinfo.pinfo',compact('worktype','jobtitle','position','companypinfo','id'));
+        else
+            return Redirect::to('admin/signin')->with('error','You must be logged in!');
     }
 
     /**
@@ -123,8 +134,9 @@ class HnlPinfoController extends Controller
         }   //채용형태
 
         $test = $request->isveterans;
-
+        $cbid = $request->get('id');
         $pinfo = new Pinfo([
+            'company_basicinfo_id' => $cbid,
             'employee_num' => $request->get('employee_num'),
             'employee_post' => $request->get('employee_post'),
             'employee_addr1' => $request->get('employee_addr1'),
@@ -172,7 +184,7 @@ class HnlPinfoController extends Controller
         ]);
         $pinfo->save();
 
-        return Redirect::to('hnl/pinfo/pinfo')->with('success', Lang::get('users/message.success.create'));
+        return Redirect::to('hnl/pinfo/pinfo/'.$cbid)->with('success', Lang::get('users/message.success.create'));
 
     }
 

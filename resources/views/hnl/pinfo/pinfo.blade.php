@@ -1,4 +1,4 @@
-@extends('hnl/layouts/default')
+@extends('hnl/layouts/person_default')
 
 {{-- Page title --}}
 @section('title')
@@ -72,6 +72,7 @@
                                 <div id="myTabContent" class="tab-content">
                                     <form class="tab-pane fade active in" id="pregi" method="POST" action="{{ route('insert/pinfo') }}">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                        <input type="hidden" name="id" value="{{ $id  }}" />
                                         <div class="panel panel-primary">
                                             <div class="panel-heading border-light">
                                                 <h4 class="panel-title">
@@ -88,7 +89,7 @@
                                                         <img width="200px" src="http://www.iconsfind.com/wp-content/uploads/2015/10/20151012_561baed03a54e.png">
                                                         <div class="form-group">
                                                             <label class="col-md-3 control-label" for="form-file-input">사원 사진</label>
-                                                            <div class="col-md-9 pad-top20 ">
+                                                            <div class="col-md-9 pad-top20">
                                                                 <input type="file" id="profile_pic">
                                                             </div>
                                                         </div>
@@ -198,7 +199,11 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3">부서:</label>
                                                             <div class="col-md-9">
-                                                                <input type="text" class="form-control input-sm" name="job" placeholder="부서">
+                                                                <select class="form-control input-sm" name="job">
+                                                                    @foreach($jobtitle as $job)
+                                                                        <option value="{{$job->id}}">{{ $job->name }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -246,7 +251,11 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3">직위:</label>
                                                             <div class="col-md-9">
-                                                                <input type="text" class="form-control input-sm" name="position" placeholder="직위">
+                                                                <select class="form-control input-sm" name="position">
+                                                                    @foreach($position as $pos)
+                                                                        <option value="{{$pos->id}}">{{ $pos->pos_name }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -462,10 +471,10 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @foreach($pinfo as $p)
+                                                        @foreach($companypinfo as $p)
                                                         <tr>
                                                             <td>{{ $p->employee_num }}</td>
-                                                            <td>{{ $p->name }}</td>
+                                                            <td><a href="{{route('payinfo_index',$p->id )}}">{{ $p->name }}</a></td>
                                                             <td>{{ $p->country }}</td>
                                                             <td>{{ $p->job }}</td>
                                                             <td>{{ $p->position }}</td>
@@ -475,7 +484,7 @@
                                                             <td>{{ $p->employee_post }} {{ $p->employee_addr1 }} {{ $p->employee_addr2 }}</td>
                                                             <td>{{ $p->tel }}</td>
                                                             <td>{{ $p->email }}</td>
-                                                            <td>{{ $p->paybank }}</td>
+                                                            <td>{{ $p->pay_bank }}</td>
                                                             <td>{{ $p->account_num }}</td>
                                                         </tr>
                                                         @endforeach
@@ -502,24 +511,24 @@
                                                 <div class="table-scrollable">
                                                     <table class="table table-hover table-bordered">
                                                         <thead>
-                                                        <tr>
-                                                            <th>사번</th>
-                                                            <th>이름</th>
-                                                            <th>담당업무</th>
-                                                            <th>취업장소</th>
-                                                            <th>출근시각</th>
-                                                            <th>퇴근시각</th>
-                                                            <th>총휴게시간</th>
-                                                            <th>근무유형</th>
-                                                            <th>급여유형</th>
-                                                            <th>급여액</th>
-                                                            <th>채용형태</th>
-                                                            <th>수습여부</th>
-                                                            <th>수습율</th>
-                                                        </tr>
+                                                            <tr>
+                                                                <th>사번</th>
+                                                                <th>이름</th>
+                                                                <th>담당업무</th>
+                                                                <th>취업장소</th>
+                                                                <th>출근시각</th>
+                                                                <th>퇴근시각</th>
+                                                                <th>총휴게시간</th>
+                                                                <th>근무유형</th>
+                                                                <th>급여유형</th>
+                                                                <th>급여액</th>
+                                                                <th>채용형태</th>
+                                                                <th>수습여부</th>
+                                                                <th>수습율</th>
+                                                            </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @foreach($pinfo as $p)
+                                                        @foreach($companypinfo as $p)
                                                             <tr>
                                                                 <td>{{ $p->employee_num }}</td>
                                                                 <td>{{ $p->name }}</td>
@@ -558,8 +567,7 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
 
-
-        <!-- begining of page level js -->
+    <!-- begining of page level js -->
     <script src="{{ asset('assets/vendors/moment/js/moment.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/vendors/daterangepicker/js/daterangepicker.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
@@ -576,4 +584,5 @@
     <script src="{{ asset('assets/vendors/airDatepicker/js/datepicker.en.js') }}" type="text/javascript"></script>
 
     <script type="text/javascript" src="{{ asset('assets/js/hnl/src/timepickerdirective.js') }}"></script>
+
 @stop

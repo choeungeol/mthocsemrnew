@@ -20,7 +20,7 @@ class CreatePosTitleTable extends Migration
             $table->string('pos_code');     // 직위코드
             $table->string('pos_div_code');        //직위 구분코드
             $table->string('pos_name');     //명칭
-            $table->boolean('pos_use');     //사용여부
+            $table->boolean('pos_use');      //사용여부
             $table->string('pos_memo');     //비고
             $table->timestamps();
         });
@@ -34,7 +34,7 @@ class CreatePosTitleTable extends Migration
     public function down()
     {
         Schema::table('postitles', function (Blueprint $table) {
-           $table->dropForeign('postitles_job_id_foreign');
+           $table->dropForeign('postitles_jobtitle_id_foreign');
         });
         Schema::drop('postitles');
 
