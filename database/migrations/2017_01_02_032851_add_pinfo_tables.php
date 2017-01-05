@@ -29,7 +29,7 @@ class AddPinfoTables extends Migration
     {
         Schema::table('person_infos', function(Blueprint $table)
         {
-            // delete above columns/*
+            /*// delete above columns
             $table->dropForeign('person_infos_company_basicinfo_id_foreign');
             $table->dropColumn('company_basicinfo_id');*/
         });
