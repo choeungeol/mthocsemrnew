@@ -2,32 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobtitle;
-use App\Pinfo;
-use App\Postitle;
-use Illuminate\Support\Facades\Redirect;
 use Sentinel;
 use Illuminate\Http\Request;
 
-
 use App\Http\Requests;
 
-class HnlPayinfoController extends Controller
+class HnlPcardController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($searchp = null)
+    public function index($id = null)
     {
-        $pinfo = Pinfo::all();
-        $jobtitle = Jobtitle::All();
-        $position = Postitle::All();
-        $searchp = $searchp;
-
         if(Sentinel::check())
-            return view('hnl.pinfo.payinfo', compact('pinfo','jobtitle','position','searchp'));
+            return view('hnl.pinfo.pcard');
         else
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
     }
@@ -61,19 +51,7 @@ class HnlPayinfoController extends Controller
      */
     public function show($id)
     {
-        $pinfo = Pinfo::all();
-        $jobtitle = Jobtitle::All();
-        $position = Postitle::All();
-        $searchp = Pinfo::findOrFail($id);
-
-        if(Sentinel::check())
-
-            return view('hnl.pinfo.payinfo', compact('pinfo','jobtitle','position','searchp'));
-
-        else
-
-            return Redirect::to('admin/signin')->with('error','You must be logged in!');
-
+        //
     }
 
     /**
