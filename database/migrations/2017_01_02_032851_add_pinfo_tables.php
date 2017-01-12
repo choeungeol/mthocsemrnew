@@ -32,7 +32,7 @@ class AddPinfoTables extends Migration
             // delete above columns
             $table->dropForeign('person_infos_company_basicinfo_id_foreign');
             $table->dropColumn('company_basicinfo_id');
-        });
-    }*/
+        });*/
+    }
 
 }
