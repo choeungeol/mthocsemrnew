@@ -98,10 +98,12 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
         Route::group(array('prefix' => 'basicinfo'), function (){
 
-            Route::get('/', array('as' => 'hnl', 'uses' => 'HnlBasicinfoController@index'));
+            Route::get('/', array('as' => 'basicinfo', 'uses' => 'HnlBasicinfoController@index'));
 
             //사업장 기본정보
             Route::post('create', array('as' => 'insert/cbinfo', 'uses' => 'HnlBasicinfoController@store'));
+            //사업장 기본정보
+            Route::post('update', array('as' => 'update/cbinfo', 'uses' => 'HnlBasicinfoController@update'));
 
         });
 
@@ -131,7 +133,7 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
         Route::group(array('prefix' => 'payitem'), function (){
 
-            Route::get('/', array('as' => 'hnl', 'uses' => 'HnlPayItemController@index'));
+            Route::get('/', array('as' => 'payitem', 'uses' => 'HnlPayItemController@index'));
 
             Route::post('insert', array('as' => 'insert/payitem1', 'uses' => 'HnlPayItemController@store1'));
             Route::post('insert2', array('as' => 'insert/payitem2', 'uses' => 'HnlPayItemController@store2'));
@@ -157,14 +159,14 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
             Route::post('{tdeductionId}/check}', array('as' => 'check/tdeduction', 'uses' => 'HnlPayItemController@clickcheck'));
 
 
-            
-
         });
-
 
         Route::group(array('prefix' => 'paytype'), function(){
 
             Route::get('/', array('uses' => 'HnlPaytypeController@index'));
+
+
+
 
         });
 
@@ -222,7 +224,7 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
         Route::group(array('prefix'=> 'pinfo'), function (){
 
-            Route::get('{company_id?}', array('as' => 'pinfo_index', 'uses' => 'HnlPinfoController@index'));
+            Route::get('/', array('as' => 'hnl', 'uses' => 'HnlPinfoController@index'));
 
             Route::post('insert' , array('as' => 'insert/pinfo', 'uses' => 'HnlPinfoController@store'));
 
@@ -230,13 +232,17 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
         Route::group(array('prefix'=> 'payinfo'), function (){
 
-            Route::get('{pinfo_id?}', array('as' => 'payinfo_index', 'uses' => 'HnlPayinfoController@index'));
+            Route::get('/', array('as' => 'payinfo_index', 'uses' => 'HnlPayinfoController@index'));
+
+
+            Route::get('/{payinfoId?}', array('as' => 'payinfo_view', 'uses' => 'HnlPayinfoController@show'));
+
 
         });
 
         Route::group(array('prefix'=> 'pcard'), function (){
 
-            Route::get('/', array('as' => 'hnl', 'uses' => 'PinfoController@showPcard'));
+            Route::get('/', array('as' => 'pcard_index', 'uses' => 'HnlPcardController@index'));
 
         });
 
