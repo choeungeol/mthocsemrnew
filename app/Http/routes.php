@@ -244,6 +244,8 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
             Route::get('/', array('as' => 'pcard_index', 'uses' => 'HnlPcardController@index'));
 
+            Route::get('/{pcardId?}', array('as' => 'pcard_view', 'uses' => 'HnlPcardController@show'));
+
         });
 
     });

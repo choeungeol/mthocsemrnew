@@ -4,10 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Postitle extends Model
+class Worktypes2Calc extends Model
 {
-    protected $table = 'postitles';
+    protected $table = 'worktypes2_calc';
 
     protected $guarded  = ['id'];
-
 }
