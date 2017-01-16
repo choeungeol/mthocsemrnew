@@ -1,13 +1,13 @@
 @extends('hnl/layouts/default')
 
- Page title
+{{-- Page title--}}
 
 @section('title')
     기본정보 등록
     @parent
 @stop
 
- page level styles
+{{-- page level styles--}}
 
 @section('header_styles')
 
