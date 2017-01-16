@@ -41,7 +41,7 @@
 
 @stop
 
- Page content
+{{-- Page content--}}
 
 @section('content')
     <section class="content-header">
@@ -256,7 +256,7 @@
 
 @stop
 
- page level scripts
+{{-- page level scripts--}}
 
 @section('footer_scripts')
 
