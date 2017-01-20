@@ -34,6 +34,6 @@ class CreateCalcTable extends Migration
      */
     public function down()
     {
-        Schema::drop('calc_tables');
+      /*  Schema::drop('calc_tables');*/
     }
 }
