@@ -157,6 +157,17 @@ class HnlWorktypeController extends Controller
     {
 
         $type = $request->type;
+        $isnextday = array(
+            0 => $request->is_next_day0,
+            1 => $request->is_next_day1,
+            2 => $request->is_next_day2,
+            3 => $request->is_next_day3,
+            4 => $request->is_next_day4,
+            5 => $request->is_next_day5,
+            6 => $request->is_next_day6,
+        );
+
+
         $workstart = array(
 
             0 => $request->work_start_time0,
@@ -166,8 +177,8 @@ class HnlWorktypeController extends Controller
             4 => $request->work_start_time4,
             5 => $request->work_start_time5,
             6 => $request->work_start_time6
-
         );
+
         $workend = array(
 
             0 => $request->work_end_time0,
@@ -177,7 +188,6 @@ class HnlWorktypeController extends Controller
             4 => $request->work_end_time4,
             5 => $request->work_end_time5,
             6 => $request->work_end_time6
-
         );
 
         $sbtime1 = array(
@@ -189,7 +199,6 @@ class HnlWorktypeController extends Controller
             4 => $request->break_stime14,
             5 => $request->break_stime15,
             6 => $request->break_stime16
-
         );
 
         $ebtime1 = array(
@@ -201,7 +210,6 @@ class HnlWorktypeController extends Controller
             4 => $request->break_etime14,
             5 => $request->break_etime15,
             6 => $request->break_etime16
-
         );
 
         $sbtime2 = array(
@@ -213,7 +221,6 @@ class HnlWorktypeController extends Controller
             4 => $request->break_stime24,
             5 => $request->break_stime25,
             6 => $request->break_stime26
-
         );
 
         $ebtime2 = array(
@@ -225,7 +232,6 @@ class HnlWorktypeController extends Controller
             4 => $request->break_etime24,
             5 => $request->break_etime25,
             6 => $request->break_etime26
-
         );
 
         $sbtime3 = array(
@@ -237,7 +243,6 @@ class HnlWorktypeController extends Controller
             4 => $request->break_stime34,
             5 => $request->break_stime35,
             6 => $request->break_stime36
-
         );
 
         $ebtime3 = array(
@@ -249,7 +254,6 @@ class HnlWorktypeController extends Controller
             4 => $request->break_etime34,
             5 => $request->break_etime35,
             6 => $request->break_etime36
-
         );
 
         $worktype = array($request->worktype_0, $request->worktype_1, $request->worktype_2, $request->worktype_3, $request->worktype_4, $request->worktype_5, $request->worktype_6);
@@ -336,7 +340,12 @@ class HnlWorktypeController extends Controller
         //계산
         for($i=0; $i < 7; ++$i){
 
-            $weekwork[] = sprintf('%02.2f', floor(($workend[$i] - $workstart[$i]) * 100) / 10000);  //업무종료시간 - 업무시작시간 = 총 근로시간;
+
+            if($isnextday[$i] === 'on'){
+                $weekwork[] = sprintf('%02.2f', floor((2400 + $workend[$i] - $workstart[$i]) * 100) / 10000);   //업무종료시간 - 업무시작시간 = 총 근로시간;
+            }else{
+                $weekwork[] = sprintf('%02.2f', floor(($workend[$i] - $workstart[$i]) * 100) / 10000);  //업무종료시간 - 업무시작시간 = 총 근로시간;
+            }
             $break1[] = sprintf('%02.2f', floor(($ebtime1[$i] - $sbtime1[$i]) * 100) / 10000);       //휴게종료시간1 - 휴게시작시간1
             $break2[] = sprintf('%02.2f', floor(($ebtime2[$i] - $sbtime2[$i]) * 100) / 10000);       //휴게종료시간2 - 휴게시작시간2
             $break3[] = sprintf('%02.2f', floor(($ebtime3[$i] - $sbtime3[$i]) * 100) / 10000);       //휴게종료시간3 - 휴게시작시간3
@@ -1072,6 +1081,7 @@ class HnlWorktypeController extends Controller
             $types->ebtime2 = $ebtime2[$i];
             $types->sbtime3 = $sbtime3[$i];
             $types->ebtime3 = $ebtime3[$i];
+            $types->isnextday = $isnextday[$i];
             $types->save();
         }
 
@@ -1248,8 +1258,8 @@ class HnlWorktypeController extends Controller
 
         $type = $request->type;
         $workstart = $request->work_start_time;
-        $workend = '24:00';
-        $nextdaytime = $request->next_day_time;
+        $workend = $request->work_end_time;
+        $nextdaytime = $request->is_next_time;
         $sbtime1 = $request->break_stime1;
         $ebtime1 = $request->break_etime1;
         $sbtime2 = $request->break_stime2;
@@ -1263,8 +1273,8 @@ class HnlWorktypeController extends Controller
             $workstart = '00:00';
         } // 시작 시간 입력값이 비어있으면 0
 
-        if($nextdaytime == null){
-            $nextdaytime = '00:00';
+        if($workend == null){
+            $workend = '00:00';
         } // 끝 시간 입력값이 비어있으면 0
 
         if($sbtime1 == null){
@@ -1301,7 +1311,6 @@ class HnlWorktypeController extends Controller
 
         $workstart = str_replace(':','',$workstart);    //업무시작시간 : 표시 없애기
         $workend = str_replace(':','',$workend);        //업무종료시간 : 표시 없애기
-        $nextdaytime = str_replace(':','',$nextdaytime);        //업무종료시간 : 표시 없애기
         $sbtime1 = str_replace(':','',$sbtime1);    //휴식시작시간1 : 표시 없애기
         $ebtime1 = str_replace(':','',$ebtime1);    //휴식종료시간1 : 표시 없애기
         $sbtime2 = str_replace(':','',$sbtime2);    //휴식시작시간2 : 표시 없애기
@@ -1311,13 +1320,18 @@ class HnlWorktypeController extends Controller
         $sbtime4 = str_replace(':','',$sbtime4);    //휴식시작시간4 : 표시 없애기
         $ebtime4 = str_replace(':','',$ebtime4);    //휴식종료시간4 : 표시 없애기
 
-        $btime1 = ((float)$ebtime1 - (float)$sbtime1);    // 휴게시간1
+        $btime1 = (float)$ebtime1 - (float)$sbtime1;    // 휴게시간1
         $btime2 = (float)$ebtime2 - (float)$sbtime2;    // 휴게시간2
         $btime3 = (float)$ebtime3 - (float)$sbtime3;    // 휴게시간3
-        $btime4 = (2400 + (float)$ebtime4) - (float)$sbtime4;    // 총 야간 휴게시간
+        $btime4 = (float)$ebtime4 - (float)$sbtime4;    // 총 야간 휴게시간
         $allbtime = $btime1 + $btime2 + $btime3 + $btime4;
 
-        $exittime = $nextdaytime + $workend;    // 퇴근시간
+        if($nextdaytime === 'on'){
+            $exittime = 2400 + $workend;
+        }else{
+            $exittime = $workend;
+        }// 익일 체크시 + 2400
+
 
         $worktime = $exittime - $workstart;  // 근로시간
 

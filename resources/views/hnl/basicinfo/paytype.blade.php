@@ -1,14 +1,11 @@
 @extends('hnl/layouts/default')
-
 {{-- Page title--}}
-
 @section('title')
     기본정보 등록
     @parent
 @stop
 
-{{-- page level styles--}}
-
+{{--page level styles--}}
 @section('header_styles')
 
     <meta name="_token" content="{{ csrf_token() }}">
@@ -41,7 +38,9 @@
 
 @stop
 
-{{-- Page content--}}
+{{--
+ Page content
+--}}
 
 @section('content')
     <section class="content-header">
