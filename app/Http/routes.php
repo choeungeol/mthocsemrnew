@@ -185,6 +185,9 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
             Route::post('insert' , array('as' => 'insert/worktype1', 'uses' => 'HnlWorktypeController@typeInsert1'));
 
+            Route::post('insertChange' , array('as' => 'insert/worktypechange', 'uses' => 'HnlWorktypeController@typeinsert1change'));
+
+
         });
 
         Route::group(array('prefix' => 'worktype2'), function () {
