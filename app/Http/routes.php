@@ -163,9 +163,9 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
         Route::group(array('prefix' => 'paytype'), function(){
 
-            Route::get('/', array('uses' => 'HnlPaytypeController@index'));
+            Route::get('/', array('as' => 'paytype' , 'uses' => 'HnlPaytypeController@index'));
 
-
+            Route::post('{paytypeId}/check', array('as' => 'check/paytype', 'uses' => 'HnlPaytypeController@clickcheck'));
 
 
         });
