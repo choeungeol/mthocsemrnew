@@ -1,12 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Sentinel;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 class OcsController extends Controller
 {
     public function showOcs()
@@ -16,8 +12,6 @@ class OcsController extends Controller
         else
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
     }
-
-
     public function showTest()
     {
         if(Sentinel::check())
@@ -25,7 +19,6 @@ class OcsController extends Controller
         else
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
     }
-
     public function showBasicBiopsy()
     {
         if(Sentinel::check())
@@ -33,7 +26,6 @@ class OcsController extends Controller
         else
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
     }
-
     public function showReceipt()
     {
         if(Sentinel::check())
@@ -41,7 +33,6 @@ class OcsController extends Controller
         else
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
     }
-
     public function showHealthCare()
     {
         if(Sentinel::check())
@@ -49,7 +40,6 @@ class OcsController extends Controller
         else
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
     }
-
     public function showNurseRoom()
     {
         if(Sentinel::check())
@@ -57,7 +47,6 @@ class OcsController extends Controller
         else
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
     }
-
     public function showPharmacy()
     {
         if(Sentinel::check())
@@ -65,7 +54,6 @@ class OcsController extends Controller
         else
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
     }
-
     public function showDisease()
     {
         if(Sentinel::check())

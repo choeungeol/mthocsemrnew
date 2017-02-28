@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTaxDeductionTables extends Migration
+class CreateVacationAdd extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,14 @@ class CreateTaxDeductionTables extends Migration
      */
     public function up()
     {
-        Schema::create('tax_deductions', function(Blueprint $table) {
+        Schema::create('vacationadds', function(Blueprint $table)
+        {
             $table->increments('id');
-            $table->string('title');
-            $table->boolean('is_check')->default(0);
+            $table->integer('pinfo_id');
+            $table->string('vacation_title');
+            $table->string('use_date');
+            $table->boolean('pay_apply')->default(0);
+            $table->string('use_dates');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateTaxDeductionTables extends Migration
      */
     public function down()
     {
-        Schema::drop('tax_deductions');
+        Schema::drop('vacationadds');
     }
 }

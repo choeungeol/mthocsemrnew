@@ -139,6 +139,7 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
             Route::post('insert2', array('as' => 'insert/payitem2', 'uses' => 'HnlPayItemController@store2'));
             Route::post('insert3', array('as' => 'insert/payitem3', 'uses' => 'HnlPayItemController@store3'));
             Route::post('insert4', array('as' => 'insert/payitem4', 'uses' => 'HnlPayItemController@store4'));
+            Route::post('inserttax', array('as' => 'insert/payitemtax', 'uses' => 'HnlPayItemController@storetax'));
 
             Route::get('{payitemId}/confirm-delete', array('as' => 'confirm-delete/payitem', 'uses' => 'HnlPayItemController@getModalDelete'));
             Route::get('{payitemId}/delete', array('as' => 'delete/payitem', 'uses' => 'HnlPayItemController@destroy'));
@@ -156,7 +157,10 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
             Route::get('{payitemId}/delete4', array('as' => 'delete/payitem4', 'uses' => 'HnlPayItemController@destroy4'));
             Route::post('{payitemId}/update4', array('as' => 'update/payitem4', 'uses' => 'HnlPayItemController@update4'));
 
-            Route::post('{tdeductionId}/check}', array('as' => 'check/tdeduction', 'uses' => 'HnlPayItemController@clickcheck'));
+            Route::post('{tdeductionId}/check', array('as' => 'check/tdeduction', 'uses' => 'HnlPayItemController@clickcheck'));
+
+            Route::get('{payitemId}/confirm-delete_tax', array('as' => 'confirm-delete/tdeduction', 'uses' => 'HnlPayItemController@getModalDeleteTax'));
+            Route::get('{payitemId}/deletetax', array('as' => 'delete/tdeduction', 'uses' => 'HnlPayItemController@destroyTax'));
 
 
         });
@@ -166,6 +170,8 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
             Route::get('/', array('as' => 'paytype' , 'uses' => 'HnlPaytypeController@index'));
 
             Route::post('{paytypeId}/check', array('as' => 'check/paytype', 'uses' => 'HnlPaytypeController@clickcheck'));
+
+            Route::post('payaday', array('as' => 'check/payday', 'uses' => 'HnlPaytypeController@paydaycheck'));
 
 
         });
@@ -184,9 +190,6 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
             Route::get('/', array('as' => 'hnl', 'uses' => 'HnlWorktypeController@index1'));
 
             Route::post('insert' , array('as' => 'insert/worktype1', 'uses' => 'HnlWorktypeController@typeInsert1'));
-
-            Route::post('insertChange' , array('as' => 'insert/worktypechange', 'uses' => 'HnlWorktypeController@typeinsert1change'));
-
 
         });
 
@@ -240,6 +243,10 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
             Route::get('/{payinfoId?}', array('as' => 'payinfo_view', 'uses' => 'HnlPayinfoController@show'));
 
+            Route::post('insert', array('as' => 'insert/payinfo', 'uses' => 'HnlPayinfoController@insert_month_pay'));
+
+            Route::post('insert_payitem', array('as' => 'insert/payitem', 'uses' => 'HnlPayinfoController@insert_payitem'));
+
 
         });
 
@@ -257,7 +264,20 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
 
     #근태관리
-    Route::get('work/addwork', array('as' => 'hnl', 'uses' => 'WorkController@showAddwork'));
+    Route::group(array('prefix'=> 'work'),function() {
+
+        Route::group(array('prefix'=> 'addwork'),function() {
+
+            Route::get('/', array('as' => 'hnl', 'uses' => 'HnlGeuntaeController@index'));
+
+            Route::get('/{addworkId?}', array('as' => 'addwork_view', 'uses' => 'HnlGeuntaeController@show'));
+
+            Route::post('insert', array('as' => 'insert/addwork', 'uses' => 'HnlGeuntaeController@store'));
+
+
+
+        });
+    });
 
     Route::get('work/workaday', array('as' => 'hnl', 'uses' => 'WorkController@showWorkADay'));
 
@@ -313,8 +333,6 @@ Route::group(array('prefix' => 'ocs', 'middleware' => 'SentinelUser'), function 
     Route::get('/ad/nu', array('as' => 'ocs', 'uses' => 'PinfoController@showNlist'));
 
 });
-
-
 
 
 Route::group(array('prefix' => 'admin', 'middleware' => 'SentinelAdmin'), function () {

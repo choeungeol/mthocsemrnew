@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\CompanyBasicinfo;
 use App\Jobtitle;
+use App\Payinfo;
 use App\Pinfo;
 use App\Postitle;
+use App\Salary1;
+use App\Salary2;
+use App\Salary3;
+use App\Salary4;
 use App\Worktype;
 use Illuminate\Http\Request;
 
@@ -183,6 +188,13 @@ class HnlPinfoController extends Controller
             'account_name' => $request->get('account_name'),
         ]);
         $pinfo->save();
+
+        $lastid = $pinfo->id;
+
+        $payinfo = new Payinfo([
+            'pinfo_id' => $lastid,
+        ]);
+        $payinfo->save();
 
         return Redirect::to('hnl/pinfo/pinfo/')->with('success', Lang::get('users/message.success.create'));
 
