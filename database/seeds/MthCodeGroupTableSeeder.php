@@ -11,6 +11,8 @@ class MthCodeGroupTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
         DB::table('mth_code_groups')->truncate();
 
 
@@ -112,5 +114,7 @@ class MthCodeGroupTableSeeder extends Seeder
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+        
     }
 }

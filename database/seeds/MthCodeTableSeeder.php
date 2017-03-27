@@ -11,6 +11,7 @@ class MthCodeTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         DB::table('mth_codes')->truncate();
         // 장애분류코드
         DB::table('mth_codes')->insert([
@@ -897,5 +898,6 @@ class MthCodeTableSeeder extends Seeder
             'updated_at'        => \Carbon\Carbon::now(),
         ]);
 
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
