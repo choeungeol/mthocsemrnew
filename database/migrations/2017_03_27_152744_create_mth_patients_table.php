@@ -84,6 +84,6 @@ class CreateMthPatientsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('mth_patients');
+        Schema::dropIfExists('mth_patients');
     }
 }
