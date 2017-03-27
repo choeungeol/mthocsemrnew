@@ -32,7 +32,7 @@ class CreateCodeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mth_patients');
+
         Schema::drop('mth_codes');
     }
 }

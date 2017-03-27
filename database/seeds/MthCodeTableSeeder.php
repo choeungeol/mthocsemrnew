@@ -11,6 +11,7 @@ class MthCodeTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('mth_codes')->truncate();
         // 장애분류코드
         DB::table('mth_codes')->insert([
             'mth_code_group_id' => 1,
