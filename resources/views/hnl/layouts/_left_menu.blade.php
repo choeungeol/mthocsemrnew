@@ -89,7 +89,7 @@
                     직위 부서
                 </a>
             </li>
-            <li {!! (Request::is('hnl/basicinfo/payitem') ? 'class="active"' : '') !!}>
+            {{--<li {!! (Request::is('hnl/basicinfo/payitem') ? 'class="active"' : '') !!}>
                 <a href="{{ URL::to('hnl/basicinfo/payitem') }}">
                     <i class="fa fa-angle-double-right"></i>
                     급여 항목
@@ -100,8 +100,8 @@
                     <i class="fa fa-angle-double-right"></i>
                     급여 유형
                 </a>
-            </li>
-            <li  {!! (Request::is('hnl/basicinfo/worktype') || Request::is('hnl/basicinfo/worktype1') || Request::is('hnl/basicinfo/worktype2') || Request::is('hnl/basicinfo/worktype3') ||Request::is('hnl/basicinfo/worktype4') ? 'class="active"' : '') !!}>
+            </li>--}}
+            {{--<li  {!! (Request::is('hnl/basicinfo/worktype') || Request::is('hnl/basicinfo/worktype1') || Request::is('hnl/basicinfo/worktype2') || Request::is('hnl/basicinfo/worktype3') ||Request::is('hnl/basicinfo/worktype4') ? 'class="active"' : '') !!}>
                 <a href="#">
                     <i class="fa fa-angle-double-right"></i>
                     <span class="title">근무유형</span>
@@ -139,10 +139,10 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li>--}}
         </ul>
     </li>
-    <li {!! (Request::is('hnl/pinfo/pinfo') || Request::is('hnl/pinfo/payinfo') || Request::is('hnl/pinfo/pcard')  ? 'class="active"' : '') !!}>
+    <li {!! (Request::is('hnl/pinfo/pinfo') || Request::is('hnl/pinfo/payinfo') || Request::is('hnl/pinfo/pcard') || Request::is('hnl/work/addwork') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="users-add" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
@@ -150,18 +150,24 @@
             <span class="fa arrow"></span>
         </a>
         <ul class="sub-menu">
-            <li {!! (Request::is('hnl/pinfo/pinfo') || Request::is('hnl/pinfo/payinfo') || Request::is('hnl/pinfo/pcard')  ? 'class="active"' : '') !!}>
+            <li {!! (Request::is('hnl/pinfo/pinfo') || Request::is('hnl/pinfo/payinfo') || Request::is('hnl/pinfo/pcard') || Request::is('hnl/work/addwork') ? 'class="active"' : '') !!}>
                 <a href="{{ URL::to('hnl/pinfo/pinfo') }}">
                     <i class="fa fa-angle-double-right"></i>
                     사원 정보
                 </a>
             </li>
-            <li {!! (Request::is('hnl/pinfo/payinfo') ? 'class="active"' : '') !!}>
+            <li {!! (Request::is('hnl/work/addwork') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('hnl/work/addwork') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    근태관리
+                </a>
+            </li>
+            {{--<li {!! (Request::is('hnl/pinfo/payinfo') ? 'class="active"' : '') !!}>
                 <a href="{{ URL::to('hnl/pinfo/payinfo') }}">
                     <i class="fa fa-angle-double-right"></i>
                     급여 정보
                 </a>
-            </li>
+            </li>--}}
             <li {!! (Request::is('hnl/pinfo/pcard') ? 'class="active"' : '') !!}>
                 <a href="{{ URL::to('hnl/pinfo/pcard') }}">
                     <i class="fa fa-angle-double-right"></i>
@@ -170,7 +176,7 @@
             </li>
         </ul>
     </li>
-    <li {!! (Request::is('hnl/work/addwork') || Request::is('hnl/work/workaday') || Request::is('hnl/work/workatime') || Request::is('hnl/work/yearoff') ? 'class="active"' : '') !!}>
+    {{--<li {!! (Request::is('hnl/work/addwork') || Request::is('hnl/work/workaday') || Request::is('hnl/work/workatime') || Request::is('hnl/work/yearoff') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="inbox" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
@@ -184,7 +190,7 @@
                     연봉/월급제
                 </a>
             </li>
-            <li {!! (Request::is('hnl/work/workaday') ? 'class="active"' : '') !!}>
+            --}}{{--<li {!! (Request::is('hnl/work/workaday') ? 'class="active"' : '') !!}>
                 <a href="{{ URL::to('hnl/work/workaday') }}">
                     <i class="fa fa-angle-double-right"></i>
                     일용직
@@ -201,11 +207,10 @@
                     <i class="fa fa-angle-double-right"></i>
                     연차 사용
                 </a>
-            </li>
+            </li>--}}{{--
         </ul>
-    </li>
-    <li>
-    <li {!! (Request::is('hnl/pay/pmanage') || Request::is('hnl/pay/pchange') || Request::is('hnl/pay/plist')  || Request::is('hnl/pay/preceipt') ? 'class="active"' : '') !!}>
+    </li>--}}
+    {{--<li {!! (Request::is('hnl/pay/pmanage') || Request::is('hnl/pay/pchange') || Request::is('hnl/pay/plist')  || Request::is('hnl/pay/preceipt') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="money" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
@@ -238,8 +243,8 @@
                 </a>
             </li>
         </ul>
-    </li>
-    <li {!! (Request::is('hnl/retire/rcalc') || Request::is('hnl/retire/rinfo') || Request::is('hnl/retire/rreceipt')  ? 'class="active"' : '') !!}>
+    </li>--}}
+    {{--<li {!! (Request::is('hnl/retire/rcalc') || Request::is('hnl/retire/rinfo') || Request::is('hnl/retire/rreceipt')  ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="user-remove" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
@@ -266,7 +271,7 @@
                 </a>
             </li>
         </ul>
-    </li>
+    </li>--}}
     <li>
         <a href="#">
             <i class="livicon" data-name="notebook" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"

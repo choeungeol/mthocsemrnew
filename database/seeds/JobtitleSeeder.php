@@ -18,67 +18,129 @@ class JobtitleSeeder extends Seeder
 
 
 
-        //1. 본사
+        //1. 내과
         DB::table('jobtitles')->insert([
             'jobcode'      => '001',
             'code'    => '01',
-            'name'       => '본사',
+            'name'       => '내과',
             'use'       => 1,
-            'memo'       => '본사',
+            'memo'       => '내과',
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
-        //2. 지사
+        //2. 소아청소년과
         DB::table('jobtitles')->insert([
             'jobcode'      => '002',
             'code'    => '02',
-            'name'       => '지사',
+            'name'       => '소아청소년과',
             'use'       => 1,
-            'memo'       => '지사',
+            'memo'       => '소아청소년과',
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
-        //3. 총무
+        //3. 신경과
         DB::table('jobtitles')->insert([
             'jobcode'      => '003',
             'code'    => '03',
-            'name'       => '총무',
+            'name'       => '신경과',
             'use'       => 1,
-            'memo'       => '총무',
+            'memo'       => '신경과',
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
-        //4. 경영지원
+        //4. 정신과
         DB::table('jobtitles')->insert([
             'jobcode'      => '004',
             'code'    => '04',
-            'name'       => '경영지원',
+            'name'       => '정신과',
             'use'       => 1,
-            'memo'       => '경영지원',
+            'memo'       => '정신과',
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
-        //5. 생산부
+        //5. 피부과
         DB::table('jobtitles')->insert([
             'jobcode'      => '005',
             'code'    => '05',
-            'name'       => '생산부',
+            'name'       => '피부과',
             'use'       => 1,
-            'memo'       => '생산부',
+            'memo'       => '피부과',
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
-        //6. 관리부
+        //6. 외과
         DB::table('jobtitles')->insert([
             'jobcode'      => '006',
             'code'    => '06',
-            'name'       => '관리부',
+            'name'       => '외과',
             'use'       => 1,
-            'memo'       => '관리부',
+            'memo'       => '외과',
+            'created_at'    => \Carbon\Carbon::now(),
+            'updated_at'    => \Carbon\Carbon::now(),
+        ]);
+        //7. 산부인과
+        DB::table('jobtitles')->insert([
+            'jobcode'      => '007',
+            'code'    => '07',
+            'name'       => '산부인과',
+            'use'       => 1,
+            'memo'       => '산부인과',
+            'created_at'    => \Carbon\Carbon::now(),
+            'updated_at'    => \Carbon\Carbon::now(),
+        ]);
+        //8. 안과
+        DB::table('jobtitles')->insert([
+            'jobcode'      => '008',
+            'code'    => '08',
+            'name'       => '안과',
+            'use'       => 1,
+            'memo'       => '안과',
+            'created_at'    => \Carbon\Carbon::now(),
+            'updated_at'    => \Carbon\Carbon::now(),
+        ]);
+        //9. 이비인후과
+        DB::table('jobtitles')->insert([
+            'jobcode'      => '009',
+            'code'    => '09',
+            'name'       => '이비인후과',
+            'use'       => 1,
+            'memo'       => '이비인후과',
+            'created_at'    => \Carbon\Carbon::now(),
+            'updated_at'    => \Carbon\Carbon::now(),
+        ]);
+        //10. 비뇨기과
+        DB::table('jobtitles')->insert([
+            'jobcode'      => '010',
+            'code'    => '10',
+            'name'       => '비뇨기과',
+            'use'       => 1,
+            'memo'       => '비뇨기과',
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
 
+        //11. 원무과
+        DB::table('jobtitles')->insert([
+            'jobcode'      => '011',
+            'code'    => '11',
+            'name'       => '원무과',
+            'use'       => 1,
+            'memo'       => '원무과',
+            'created_at'    => \Carbon\Carbon::now(),
+            'updated_at'    => \Carbon\Carbon::now(),
+        ]);
+
+
+        //12. 자재과
+        DB::table('jobtitles')->insert([
+            'jobcode'      => '012',
+            'code'    => '12',
+            'name'       => '자재과',
+            'use'       => 1,
+            'memo'       => '자재과',
+            'created_at'    => \Carbon\Carbon::now(),
+            'updated_at'    => \Carbon\Carbon::now(),
+        ]);
 /*        DB::statement('SET FOREIGN_KEY_CHECKS = 1'); // enable foreign key constraints*/
 
     }

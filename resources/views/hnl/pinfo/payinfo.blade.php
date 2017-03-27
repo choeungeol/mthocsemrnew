@@ -236,43 +236,65 @@
                             <form class="panel-body" action="{{ route('insert/payitem') }}" method="POST">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                 <input type="hidden" name="id" value="{{ $id }}">
-                                    <table class="table table-condensed table-bordered">
+                                <table class="table table-bordered">
                                     <tr>
                                         <th rowspan="2">통상임금</th>
                                         @foreach($payitem1 as $p1)
-                                            <th>{{ $p1->title }}</th>
+                                            <th>{!! $p1->title !!}</th>
                                         @endforeach
                                     </tr>
                                     <tr>
-                                        @foreach($payitem1 as $k => $p1)
-                                            @if(!$mtotal)
-                                            <td><input type="text" class="form-control input-sm" name="inputA{{ $k }}" {!! ($p1->title === '기본급') || ($p1->title === '주휴수당') ? 'readonly' : '' !!} ></td>
-                                            @else
-                                            <td><input type="text" class="form-control input-sm" name="inputA{{ $K }}" value="{!! ($p1->title === '기본급') ? $mtotal: '' !!}{!! ($p1->title === '주휴수당') ? $mbreak: '' !!}" {!! ($p1->title === '기본급') || ($p1->title === '주휴수당') ? 'readonly' : '' !!} ></td>
-                                            @endif
-                                        @endforeach
+                                        @forelse($nw as $p1)
+                                            <td>
+                                                <input type="text" class="form-control input-sm" name="inputA{{$p1->payitem_id}}"
+                                                       value="{{ $p1->price }}" {!! ($p1->title === '기본급') || ($p1->title === '주휴수당') ? 'readonly' : '' !!} >
+                                            </td>
+                                        @empty
+                                            @foreach($payitem1 as $p1)
+                                            <td>
+                                                <input type="text" class="form-control input-sm" name="inputA{{$p1->id}}"
+                                                       value="{!! ($p1->title === '기본급') ? $mtotal: '' !!}{!! ($p1->title === '주휴수당') ? $mbreak: ''!!}" {!! ($p1->title === '기본급') || ($p1->title === '주휴수당') ? 'readonly' : '' !!} >
+                                            </td>
+                                            @endforeach
+                                        @endforelse
                                     </tr>
                                     <tr>
                                         <th rowspan="2">법정수당</th>
                                         @foreach($payitem2 as $p2)
-                                            <th>{{  $p2->title }}</th>
+                                            <th>{{ $p2->title }}</th>
                                         @endforeach
                                     </tr>
                                     <tr>
-                                        @foreach($payitem2 as $p2)
-                                            <td><input type="text" class="form-control input-sm" name="inputB{{ $p2->id }}" value=""{!! ($p2->title === '연장수당') || ($p2->title === '야간수당') || ($p2->title === '휴일수당') || ($p2->title === '휴일연장') || ($p2->title === '휴일야간') || ($p2->title === '연차수당') ? '' : 'readonly' !!}></td>
-                                        @endforeach
+                                        @forelse($sa as $p2)
+                                            <td><input type="text" class="form-control input-sm"
+                                                       value="{{ $p2->price }}"
+                                                       name="inputB{{$p2->payitem_id}}"
+                                                        {!! ($p2->title === '연장수당') || ($p2->title === '야간수당') || ($p2->title === '휴일수당') || ($p2->title === '휴일연장') || ($p2->title === '휴일야간') || ($p2->title === '연차수당') ? 'readonly' : '' !!}></td>
+                                        @empty
+                                            @foreach($payitem2 as $p2)
+                                                <td>
+                                                    <input type="text" class="form-control input-sm" name="inputB{{$p2->id}}"
+                                                           value="{{ ($p2->title === '연장수당') ? $mover : '' }}{{ ($p2->title === '야간수당') ? $mnight : '' }}{{ ($p2->title === '휴일수당') ? $mwwork : '' }}{{ ($p2->title === '휴일연장') ? $mwover : '' }}{{ ($p2->title === '휴일야간') ? $mwnight : '' }}{{ ($p2->title === '연차수당') ? $mwbt : '' }}" {!! ($p2->title === '연장수당') || ($p2->title === '야간수당') || ($p2->title === '휴일수당') || ($p2->title === '휴일연장') || ($p2->title === '휴일야간') || ($p2->title === '연차수당') ? 'readonly' : '' !!} >
+                                                </td>
+                                            @endforeach
+                                        @endforelse
                                     </tr>
                                     <tr>
                                         <th rowspan="2">복리후생</th>
                                         @foreach($payitem3 as $p3)
-                                            <th>{{  $p3->title }}</th>
+                                            <th>{{ $p3->title }}</th>
                                         @endforeach
                                     </tr>
                                     <tr>
-                                        @foreach($payitem3 as $p3)
-                                            <td><input type="text" class="form-control input-sm" name="inputC{{ $p3->id }}" value=""></td>
-                                        @endforeach
+                                        @forelse($bf as $p3)
+                                            <td><input type="text" class="form-control input-sm" value="{{ $p3->price }}" name="inputC{{$p3->payitem_id}}"></td>
+                                        @empty
+                                            @foreach($payitem3 as $p3)
+                                                <td>
+                                                    <input type="text" class="form-control input-sm" name="inputC{{$p3->id}}">
+                                                </td>
+                                            @endforeach
+                                        @endforelse
                                     </tr>
                                     <tr>
                                         <th rowspan="2">약정수당</th>
@@ -281,9 +303,15 @@
                                         @endforeach
                                     </tr>
                                     <tr>
-                                        @foreach($payitem4 as $p4)
-                                            <td><input type="text" class="form-control input-sm" name="inputD{{ $p4->id }}" value=""></td>
-                                        @endforeach
+                                        @forelse($ca as $p4)
+                                            <td><input type="text" class="form-control input-sm" value="{{ $p4->price }}" name="inputD{{$p4->payitem_id}}"></td>
+                                        @empty
+                                            @foreach($payitem4 as $p4)
+                                                <td>
+                                                    <input type="text" class="form-control input-sm" name="inputD{{$p4->id}}" >
+                                                </td>
+                                            @endforeach
+                                        @endforelse
                                     </tr>
                                 </table>
                                 <button class="btn btn-default col-lg-12" type="submit">등 록</button>
@@ -299,18 +327,30 @@
                                 <div class="col-lg-6">
                                     <table class="table table-condensed table-bordered col-lg-6">
                                         <tr>
-                                            <td>월 급여액</td>
+                                            <td>월 급여액(변동금액)</td>
                                             <td>
-                                                @if($payinfo)
-                                                    <input type="text" class="form-control input-sm" value="{{ $payinfo->paymonth }}" readonly>
+                                                @if($getpitemsa)
+                                                    <input type="text" class="form-control input-sm" value="{{ $getpitemsa->month_price }}" readonly>
                                                 @else
-                                                    <input type="text" class="form-control input-sm" value="">
+                                                    <input type="text" class="form-control input-sm" value="" readonly>
                                                 @endif
                                             </td>
                                             <td>비과세액</td>
-                                            <td><input type="text" class="form-control input-sm"></td>
+                                            <td>
+                                                @if($getpitemsa)
+                                                    <input type="text" class="form-control input-sm" value="{{ $getpitemsa->none_tax_price }}" readonly>
+                                                @else
+                                                    <input type="text" class="form-control input-sm" value="" readonly>
+                                                @endif
+                                            </td>
                                             <td>보수총액</td>
-                                            <td><input type="text" class="form-control input-sm"></td>
+                                            <td>
+                                                @if($getpitemsa)
+                                                    <input type="text" class="form-control input-sm" value="{{ $getpitemsa->total_price }}" readonly>
+                                                @else
+                                                    <input type="text" class="form-control input-sm" value="" readonly>
+                                                @endif
+                                            </td>
                                         </tr>
                                     </table>
                                 </div>

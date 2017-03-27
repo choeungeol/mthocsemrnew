@@ -7,7 +7,16 @@
 
 {{-- page level styles --}}
 @section('header_styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/pages/tab.css') }}" />
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/dataTables.bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/buttons.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/colReorder.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/dataTables.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/rowReorder.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/buttons.bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/scroller.bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pages/tables.css') }}" />
+
 @stop
 
 
@@ -32,7 +41,7 @@
                 <div class="panel">
                     <div class="panel-body">
                         <div class="margin-bottom-10">
-                            <table class="table table-condensed table-border" style="font-size:12px;">
+                            <table class="table table-border" style="font-size:12px;" id="table2">
                                 <thead>
                                 <tr>
                                     <th>이름</th>
@@ -42,8 +51,8 @@
                                     <th>예약일시</th>
                                 </tr>
                                 </thead>
-{{--                                <tbody>
-                                @foreach($patients as $p)
+                                <tbody>
+                                @forelse($mth_patient as $p)
                                     <tr>
                                         <td>{{ $p->name }}</td>
                                         <td>{{ $p->birthday }}</td>
@@ -51,14 +60,18 @@
                                         <td></td>
                                         <td></td>
                                     </tr>
-                                @endforeach
-                                </tbody>--}}
+                                @empty
+                                    <tr>
+                                        <td colspan="5">No List</td>
+                                    </tr>
+                                @endforelse
+                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <form role="form" method="POST" action="receipt/store" >
+            <form role="form" method="POST" action="" >
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-lg-12">
@@ -77,7 +90,7 @@
                                                 <tr context="context1">
                                                     <td><input type="text" class="form-control input-sm" placeholder="수진자명" name="name" required></td>
                                                     <td><input type="text" class="form-control input-sm" placeholder="전화번호" name="phone" required></td>
-                                                    <td><input type="text" class="form-control input-sm" placeholder="혈액형" ></td>
+                                                    <td><input type="text" class="form-control input-sm" placeholder="혈액형" name="blood"></td>
                                                     <td><input type="text" class="form-control input-sm" placeholder="주민등록번호" name="id_num" required></td>
                                                     <td><input type="text" class="form-control input-sm" placeholder="내원사유" name="vhreason" required></td>
                                                     <td><input type="text" class="form-control input-sm" placeholder="이메일" name="email" required></td>
@@ -85,7 +98,7 @@
                                                 <tr context="context2">
                                                     <td><input type="text" class="form-control input-sm" placeholder="휴대전화" name="cellphone" required></td>
                                                     <td><input type="text" class="form-control input-sm" placeholder="생년월일" name="birthday" required></td>
-                                                    <td><input type="text" class="form-control input-sm" placeholder="미수금"></td>
+                                                    <td><input type="text" class="form-control input-sm" placeholder="미수금" readonly></td>
                                                     <td><input type="text" class="form-control input-sm" placeholder="나이"></td>
                                                     <td><input type="text" class="form-control input-sm" placeholder="사업자등록번호" name="buss_num" required></td>
                                                     <td><input type="text" class="form-control input-sm" placeholder="사업장명칭" name="buss_nam" required></td>
@@ -252,5 +265,23 @@
 
 
 @section('footer_scripts')
+
     <script src="js/rclick.js"></script>
+
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/jeditable/js/jquery.jeditable.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.buttons.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.colReorder.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.responsive.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.rowReorder.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/buttons.colVis.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/buttons.html5.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/buttons.print.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/buttons.bootstrap.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/buttons.print.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/pdfmake.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/vfs_fonts.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.scroller.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/js/pages/table-advanced.js') }}" ></script>
 @stop

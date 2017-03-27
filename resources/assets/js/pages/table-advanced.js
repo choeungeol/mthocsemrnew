@@ -7,13 +7,30 @@ $(document).ready(function() {
         ]
     });
 
+    var table = $('.table1').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+
 
     //re-order columns
     var table2 = $('#table2').dataTable({
-        responsive:true
+        responsive:true,
+
     });
 
     new $.fn.dataTable.ColReorder(table2);
+
+
+    //re-order columns
+    var table_re = $('.table2').dataTable({
+        responsive:true
+
+    });
+
+    new $.fn.dataTable.ColReorder(table_re);
 
 
     // add row, delete row example

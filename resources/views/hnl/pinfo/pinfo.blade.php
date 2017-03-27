@@ -222,33 +222,10 @@
                                                                 <input type="text" class="form-control input-sm" name="renewal" placeholder="재갱신횟수">
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3">근무유형:</label>
-                                                            <div class="col-md-9">
-                                                                <select class="form-control input-sm" name="worktype">
-                                                                    <option value="A">A타입</option>
-                                                                    <option value="B">B타입</option>
-                                                                    <option value="C">C타입</option>
-                                                                    <option value="D">D타입</option>
-                                                                    <option value="E">E타입</option>
-                                                                    <option value="F">F타입</option>
-                                                                    <option value="G">G타입</option>
-                                                                    <option value="H">H타입</option>
-                                                                    <option value="I">I타입</option>
-                                                                    <option value="J">J타입</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3">취업장소:</label>
-                                                            <div class="col-md-9">
-                                                                <input type="text" class="form-control input-sm" name="location" placeholder="취업장소">
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">직위:</label>
+                                                            <label class="control-label col-md-3">직위 :</label>
                                                             <div class="col-md-9">
                                                                 <select class="form-control input-sm" name="position">
                                                                     @foreach($position as $pos)
@@ -258,8 +235,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">급여형태:</label>
-                                                            <div class="col-md-3">
+                                                            <label class="control-label col-md-3">급여형태 :</label>
+                                                            <div class="col-md-9">
                                                                 <select class="form-control input-sm" name="paytype">
                                                                     <option value="A">연봉</option>
                                                                     <option value="B">월급</option>
@@ -267,50 +244,19 @@
                                                                     <option value="D">시급</option>
                                                                 </select>
                                                             </div>
-                                                            <label class="control-label col-md-3">수습급여비율:</label>
-                                                            <div class="col-md-3">
-                                                                <select class="form-control input-sm" name="first_pay">
-                                                                    <option value="A">해당없음</option>
-                                                                    <option value="B">90%</option>
-                                                                    <option value="C">80%</option>
-                                                                    <option value="D">70%</option>
-                                                                    <option value="E">60%</option>
-                                                                    <option value="F">50%</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3">근로시간:</label>
-                                                            <div class="col-md-4">
-                                                                <input type="text" class="form-control input-sm datetime2" name="swtime" placeholder="시작">
-                                                            </div>
-                                                            <div class="col-md-1"> ~ </div>
-                                                            <div class="col-md-4">
-                                                                <input type="text" class="form-control input-sm datetime2" name="ewtime" placeholder="종료">
-                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">사업장:</label>
-                                                            <div class="col-md-9">
-                                                                <input type="text" class="form-control input-sm" name="workplace" placeholder="사업장">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3">담당업무</label>
+                                                            <label class="control-label col-md-3">담당업무 :</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" class="form-control input-sm" name="active_partner" placeholder="담당업무">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">휴게시간:</label>
-                                                            <div class="col-md-4">
-                                                                <input type="text" class="form-control input-sm datetime2" name="sbtime" placeholder="시작">
-                                                            </div>
-                                                            <div class="col-md-1"> ~ </div>
-                                                            <div class="col-md-4">
-                                                                <input type="text" class="form-control input-sm datetime2" name="ebtime" placeholder="종료">
+                                                                <label class="control-label col-md-3">취업장소 :</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control input-sm" name="location" placeholder="취업장소">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -519,15 +465,8 @@
                                                                 <th>이름</th>
                                                                 <th>담당업무</th>
                                                                 <th>취업장소</th>
-                                                                <th>출근시각</th>
-                                                                <th>퇴근시각</th>
-                                                                <th>총휴게시간</th>
-                                                                <th>근무유형</th>
                                                                 <th>급여유형</th>
-                                                                <th>급여액</th>
                                                                 <th>채용형태</th>
-                                                                <th>수습여부</th>
-                                                                <th>수습율</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -537,15 +476,8 @@
                                                                 <td>{{ $p->name }}</td>
                                                                 <td>{{ $p->active_partner }}</td>
                                                                 <td>{{ $p->location }}</td>
-                                                                <td>{{ $p->swtime }}</td>
-                                                                <td>{{ $p->ewtime }}</td>
-                                                                <td>{{ $p->btime }}시간</td>
-                                                                <td>{{ $p->worktype }}</td>
                                                                 <td>{{ $p->paytype }}</td>
-                                                                <td></td>
                                                                 <td>{{ $p->employee_type }}</td>
-                                                                <td></td>
-                                                                <td>{{ $p->first_pay }}</td>
                                                             </tr>
                                                         @endforeach
                                                         </tbody>

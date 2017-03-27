@@ -21,7 +21,7 @@ gulp.task('delete', function()
     ]);
 });
 
-/*ㄱ
+/*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
  |--------------------------------------------------------------------------
@@ -192,9 +192,8 @@ elixir(function (mix) {
 
     //angularjs
     mix.copy(vendors + 'angular', destVendors + 'angular');
-    
-    mix.copy(vendors + 'jquerytimepicker', destVendors + 'jquerytimepicker');
 
+    mix.copy(vendors + 'jquerytimepicker', destVendors + 'jquerytimepicker');
     //angularjs app
     mix.copy(srcJs + 'hnl', destJs + 'hnl');
 

@@ -21,17 +21,11 @@ class OcsController extends Controller
     }
     public function showBasicBiopsy()
     {
-        if(Sentinel::check())
-            return view('ocs.basicbiopsy');
-        else
-            return Redirect::to('admin/signin')->with('error','You must be logged in!');
+
     }
     public function showReceipt()
     {
-        if(Sentinel::check())
-            return view('ocs.receipt');
-        else
-            return Redirect::to('admin/signin')->with('error','You must be logged in!');
+
     }
     public function showHealthCare()
     {

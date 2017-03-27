@@ -266,7 +266,7 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
     #근태관리
     Route::group(array('prefix'=> 'work'),function() {
 
-        Route::group(array('prefix'=> 'addwork'),function() {
+        Route::group(array('prefix' => 'addwork'), function () {
 
             Route::get('/', array('as' => 'hnl', 'uses' => 'HnlGeuntaeController@index'));
 
@@ -274,21 +274,50 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
             Route::post('insert', array('as' => 'insert/addwork', 'uses' => 'HnlGeuntaeController@store'));
 
+            Route::get('/{addworkId}/confirm-delete1', array('as' => 'confirm-delete/ework1', 'uses' => 'HnlGeuntaeController@getModalDelete1'));
+            Route::get('/{addworkId}/confirm-delete2', array('as' => 'confirm-delete/ework2', 'uses' => 'HnlGeuntaeController@getModalDelete2'));
+            Route::get('/{addworkId}/confirm-delete3', array('as' => 'confirm-delete/ework3', 'uses' => 'HnlGeuntaeController@getModalDelete3'));
+
+            Route::get('/{addworkId}/delete1', array('as' => 'delete/ework1', 'uses' => 'HnlGeuntaeController@destroy1'));
+            Route::get('/{addworkId}/delete2', array('as' => 'delete/ework2', 'uses' => 'HnlGeuntaeController@destroy2'));
+            Route::get('/{addworkId}/delete3', array('as' => 'delete/ework3', 'uses' => 'HnlGeuntaeController@destroy3'));
+
+        });
+
+        Route::group(array('prefix' => 'workaday'), function () {
+
+            Route::get('/', array('as' => 'hnl', 'uses' => 'HnlWorkdayController@index'));
 
 
         });
-    });
 
-    Route::get('work/workaday', array('as' => 'hnl', 'uses' => 'WorkController@showWorkADay'));
+    });
 
     Route::get('work/workatime', array('as' => 'hnl', 'uses' => 'WorkController@showWorkATime'));
 
     Route::get('work/yearoff', array('as' => 'hnl', 'uses' => 'WorkController@showYearOff'));
 
     #급여관리
-    Route::get('pay/pmanage', array('as' => 'hnl', 'uses' => 'PayController@showPayManager'));
+    Route::group(array('prefix' => 'pay'), function() {
 
-    Route::get('pay/pchange', array('as' => 'hnl','uses' => 'PayController@showPayChange'));
+        Route::group(array('prefix' => 'pmanage'), function() {
+
+            Route::get('/', array('as' => 'hnl', 'uses' => 'HnlPmanageController@index'));
+
+        });
+
+        Route::group(array('prefix' => 'pchange'), function() {
+
+            Route::get('/', array('as' => 'hnl','uses' => 'HnlPchangeController@index'));
+
+            Route::get('/{pchangeId?}', array('as' => 'pchange_view', 'uses' => 'HnlPchangeController@show'));
+
+            Route::post('insert_pchange', array('as' => 'insert/pchange', 'uses' => 'HnlPchangeController@insert_pchange'));
+
+        });
+
+    });
+
 
     Route::get('pay/plist', array('as' => 'hnl','uses' => 'PayController@showPayList'));
 
@@ -306,16 +335,31 @@ Route::group(array('prefix' => 'hnl', 'middleware' => 'SentinelUser'), function 
 
 });
 
+
 Route::group(array('prefix' => 'ocs', 'middleware' => 'SentinelUser'), function () {
+
     # ocs / Index
     Route::get('/', array('as' => 'ocs', 'uses' => 'OcsController@showOcs'));
 
     Route::get('/test', array('as' => 'ocs', 'uses' => 'OcsController@showTest'));
 
     #ocs / basicbiopsy
-    Route::get('/bb', array('as' => 'ocs', 'uses' => 'OcsController@showBasicBiopsy'));
+
+    Route::group(array('prefix' => 'bb'), function() {
+
+        Route::get('/', array('as' => 'bb', 'uses' => 'OcsBasicinfoController@index'));
+
+
+    });
+
     #ocs / receipt
-    Route::get('/rc', array('as' => 'ocs', 'uses' => 'OcsController@showReceipt'));
+    Route::group(array('prefix' => 'rc'), function() {
+
+        Route::get('/', array('as' => 'rc', 'uses' => 'OcsReceiptController@index'));
+
+
+    });
+
     #ocs / healthcare
     Route::get('/hc', array('as' => 'ocs', 'uses' => 'OcsController@showHealthCare'));
     #ocs / nurseroom

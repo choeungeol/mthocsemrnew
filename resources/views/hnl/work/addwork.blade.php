@@ -16,6 +16,7 @@
     <link href="{{ asset('assets/vendors/airDatepicker/css/datepicker.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/vendors/flatpickrCalendar/css/flatpickr.min.css') }}" rel="stylesheet" type="text/css"/>
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/iCheck/css/all.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/iCheck/css/line/line.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/bootstrap-switch/css/bootstrap-switch.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/switchery/css/switchery.css') }}"/>
@@ -32,6 +33,10 @@
     <style>
         .table th{
             text-align:center;
+        }
+        .table-middle td, th{
+            vertical-align: middle !important;
+            text-align: center;
         }
     </style>
 
@@ -58,40 +63,29 @@
                     <div class="panel-heading border-light">
                         <h4 class="panel-title">
                             <i class="livicon" data-name="doc-portrait" data-size="18" data-color="white" data-hc="white"
-                               data-l="true"></i> 직원 정보
+                               data-l="true"></i> 사원정보
                         </h4>
-                        <span class="pull-right">
-                            <i class="glyphicon glyphicon-chevron-up showhide clickable" title="Hide Panel content"></i>
-                        </span>
+                            <span class="pull-right">
+                                <i class="glyphicon glyphicon-chevron-up showhide clickable" title="Hide Panel content"></i>
+                            </span>
                     </div>
                     <div class="panel-body">
                         <a class="btn btn-raised btn-info btn-large" data-toggle="modal" data-href="#searchmember" href="#searchmember">검색</a>
-                        <table class="table table-bordered">
-                            <caption class="bg-primary">&nbsp;&nbsp;직원 정보&nbsp;&nbsp;</caption>
+                        <table class="table table-bordered table-middle">
                             <tr>
-                                <th>공제 유형</th>
-                                <th>급여 반영</th>
-                                <th>공제 시급</th>
-                                <th>공제 시간</th>
-                                <th>공제 금액</th>
-                                <th>적용 일자</th>
-                                <th>삭제</th>
+                                <th>사번</th>
+                                <th>이름</th>
+                                <th>근무상태</th>
+                                <th>채용형태</th>
                             </tr>
-                            @foreach($geuntaeadd as $ga)
                             <tr>
-                                <td>{{ $ga->geuntae_title }}</td>
-                                <td>
-                                    {{ $ga->pay_apply == 0 ? '아니오':'예' }}
-                                </td>
-                                <td>{{ $ga->minus_timepay }}</td>
-                                <td>{{ $ga->minus_time }}</td>
-                                <td>{{ $ga->minus_pay }}</td>
-                                <td>{{ $ga->use_date }}</td>
-                                <td>
-                                    <a href="{{ $ga->id }}" class="btn btn-warning btn-sm">삭제</a>
-                                </td>
+                                @if($searchp)
+                                    <td>{{ $searchp->employee_num }}</td>
+                                    <td>{{ $searchp->name }}</td>
+                                    <td>{{ $searchp->work_condition }}</td>
+                                    <td>{{ $searchp->employee_type }}</td>
+                                @endif
                             </tr>
-                            @endforeach
                         </table>
                     </div>
                 </div>
@@ -103,91 +97,219 @@
                     <div class="panel-heading border-light">
                         <h4 class="panel-title">
                             <i class="livicon" data-name="doc-portrait" data-size="18" data-color="white" data-hc="white"
-                               data-l="true"></i> 기본등록
+                               data-l="true"></i> 공제근태
                         </h4>
                         <span class="pull-right">
                             <i class="glyphicon glyphicon-chevron-up showhide clickable" title="Hide Panel content"></i>
                         </span>
                     </div>
                     <div class="panel-body">
+                        <table class="table table-bordered table-middle">
+                            <caption class="bg-primary">&nbsp;&nbsp;공제근태 내역&nbsp;&nbsp;</caption>
+                            <tr>
+                                <th>공제 유형</th>
+                                <th>급여 반영</th>
+                                <th>공제 시급</th>
+                                <th>공제 시간</th>
+                                <th>공제 금액</th>
+                                <th>적용 일자</th>
+                                <th>삭제</th>
+                            </tr>
+                            @forelse($geuntaeadd as $ga)
+                            <tr>
+                                <td>{{ $ga->geuntae_title }}</td>
+                                <td>
+                                    {{ $ga->pay_apply == 0 ? '아니오':'예' }}
+                                </td>
+                                <td>{{ $ga->minus_timepay }}</td>
+                                <td>{{ $ga->minus_time }}</td>
+                                <td>{{ $ga->minus_pay }}</td>
+                                <td>{{ $ga->use_date }}</td>
+                                <td>
+                                    <a href="{{ route('confirm-delete/ework1', $ga->id) }}" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#delete_confirm">삭제</a>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="7">No List</td>
+                            </tr>
+                            @endforelse
+                        </table>
+                        <table class="table table-bordered table-middle">
+                            <form action="{{ route('insert/addwork') }}" method="POST">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                <input type="hidden" name="id" value="{{ $id }}">
+                                <input type="hidden" name="where" value="geuntae">
+                                <caption class="bg-primary">&nbsp;&nbsp;공제근태 입력&nbsp;&nbsp;</caption>
+                                <tr>
+                                    <th>&nbsp;&nbsp;공제근태&nbsp;&nbsp;</th>
+                                    <td>
+                                        <select class="form-control input-sm" name="gtitle">
+                                            @foreach($geuntae as $g)
+                                                <option value="{{ $g->title }}">{{ $g->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <th>적용일자</th>
+                                    <td>
+                                        <input type="text" class="datetime4 form-control input-sm" name="udate"/>
+                                    </td>
+                                    <th>급여반영</th>
+                                    <td><input type="checkbox" class="switch" value="1" name="papply" data-size="small"></td>
+                                    <th>공제시급</th>
+                                    <td><input type="text" class="form-control input-sm" name="mpaytime"></td>
+                                    <th>공제시간</th>
+                                    <td><input type="text" class="form-control input-sm" name="mtime"></td>
+                                    <th>공제금액</th>
+                                    <td><input type="text" class="form-control input-sm" name="mpay"></td>
+                                    <th>
+                                        <button class="btn btn-primary" type="submit">등록</button>
+                                    </th>
+                                </tr>
+                            </form>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading border-light">
+                        <h4 class="panel-title">
+                            <i class="livicon" data-name="doc-portrait" data-size="18" data-color="white" data-hc="white"
+                               data-l="true"></i> 추가근무
+                        </h4>
+                        <span class="pull-right">
+                            <i class="glyphicon glyphicon-chevron-up showhide clickable" title="Hide Panel content"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered table-middle">
+                            <caption class="bg-primary">&nbsp;&nbsp;추가근무 내역&nbsp;&nbsp;</caption>
+                            <tr>
+                                <th>공제 유형</th>
+                                <th>급여 반영</th>
+                                <th>공제 시간</th>
+                                <th>공제 금액</th>
+                                <th>적용 일자</th>
+                                <th>삭제</th>
+                            </tr>
+                            @forelse($extraworkadd as $aw)
+                                <tr>
+                                    <td>{{ $aw->extrawork_title }}</td>
+                                    <td>
+                                        {{ $aw->pay_apply == 0 ? '아니오':'예' }}
+                                    </td>
+                                    <td>{{ $aw->add_time }}</td>
+                                    <td>{{ $aw->add_pay }}</td>
+                                    <td>{{ $aw->use_date }}</td>
+                                    <td>
+                                        <a href="{{ route('confirm-delete/ework2', $aw->id) }}" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#delete_confirm">삭제</a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6">No List</td>
+                                </tr>
+                            @endforelse
+                        </table>
                         <form action="{{ route('insert/addwork') }}" method="POST">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             <input type="hidden" name="id" value="{{ $id }}">
-                            <table class="table table-bordered">
-                            <caption class="bg-primary">&nbsp;&nbsp;공제근태&nbsp;&nbsp;</caption>
-                            <tr>
-                                <th class="success">공제유형</th>
-                                <td>
-                                    <select class="form-control input-sm" name="gtitle">
-                                        @foreach($geuntae as $g)
-                                        <option value="{{ $g->title }}">{{ $g->title }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <th class="success">적용일자</th>
-                                <td>
-                                    <input type="text" class="disabled-days form-control input-sm" name="udate"/>
-                                </td>
-                                <th class="success">급여반영</th>
-                                <td><input type="checkbox" class="switch" value="1" name="papply"></td>
-                                <th class="success">공제시급</th>
-                                <td><input type="text" class="form-control input-sm" name="mpaytime"></td>
-                                <th class="success">공제시간</th>
-                                <td><input type="text" class="form-control input-sm" name="mtime"></td>
-                                <th class="success">공제금액</th>
-                                <td><input type="text" class="form-control input-sm" name="mpay"></td>
-                                <th>
-                                    <button class="btn btn-primary" type="submit">등록</button>
-                                </th>
-                            </tr>
-                            </table>
-                        </form>
-                        <form>
-                            <table class="table table-bordered">
-                                <caption class="bg-primary">&nbsp;&nbsp;추가근무&nbsp;&nbsp;</caption>
+                            <input type="hidden" name="where" value="addwork">
+                            <table class="table table-bordered table-middle">
+                                <caption class="bg-primary">&nbsp;&nbsp;추가근무 입력&nbsp;&nbsp;</caption>
                                 <tr>
-                                    <th class="success">추가유형</th>
+                                    <th>추가유형</th>
                                     <td>
-                                        <select class="form-control input-sm">
+                                        <select class="form-control input-sm" name="etitle">
                                             @foreach($addextrawork as $a)
                                                 <option value="{{ $a->title }}">{{ $a->title }}</option>
                                             @endforeach
                                         </select>
                                     </td>
-                                    <th class="success">적용일자</th>
+                                    <th>적용일자</th>
                                     <td>
-                                        <input type="text" class="form-control input-sm" />
+                                        <input type="text" class="datetime4 form-control input-sm" name="udate"/>
                                     </td>
-                                    <th class="success">급여반영</th>
-                                    <td><input type="checkbox" class="switch" data-size="small"></td>
-                                    <th class="success">추가 근무시간</th>
-                                    <td><input type="text" class="form-control input-sm"></td>
-                                    <th class="success">추가 근무수당</th>
-                                    <td><input type="text" class="form-control input-sm"></td>
+                                    <th>급여반영</th>
+                                    <td><input type="checkbox" class="switch" value="1" name="papply" data-size="small"></td>
+                                    <th>추가 근무시간</th>
+                                    <td><input type="text" class="form-control input-sm" name="ex_worktime"></td>
+                                    <th>추가 근무수당</th>
+                                    <td><input type="text" class="form-control input-sm" name="ex_workpay"></td>
                                     <th>
                                         <button class="btn btn-primary">등록</button>
                                     </th>
                                 </tr>
                             </table>
                         </form>
-                        <form>
-                            <table class="table table-bordered">
-                                <caption class="bg-primary">&nbsp;&nbsp;휴가휴직&nbsp;&nbsp;</caption>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading border-light">
+                        <h4 class="panel-title">
+                            <i class="livicon" data-name="doc-portrait" data-size="18" data-color="white" data-hc="white"
+                               data-l="true"></i> 휴가휴직
+                        </h4>
+                        <span class="pull-right">
+                            <i class="glyphicon glyphicon-chevron-up showhide clickable" title="Hide Panel content"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered table-middle">
+                            <caption class="bg-primary">&nbsp;&nbsp;휴가휴직 내역&nbsp;&nbsp;</caption>
+                            <tr>
+                                <th>공제 유형</th>
+                                <th>급여 반영</th>
+                                <th>적용 일자</th>
+                                <th>반영 일수</th>
+                                <th>삭제</th>
+                            </tr>
+                            @forelse($vacationadd as $va)
                                 <tr>
-                                    <th class="success">휴가·휴직 유형</th>
+                                    <td>{{ $va->vacation_title }}</td>
                                     <td>
-                                        <select class="form-control input-sm">
+                                        {{ $va->pay_apply == 0 ? '아니오':'예' }}
+                                    </td>
+                                    <td>{{ $va->use_date }}</td>
+                                    <td>{{ $va->use_dates }}</td>
+                                    <td>
+                                        <a href="{{ route('confirm-delete/ework3', $va->id) }}" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#delete_confirm">삭제</a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5">No List</td>
+                                </tr>
+                            @endforelse
+                        </table>
+                        <form action="{{ route('insert/addwork') }}" method="POST">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                            <input type="hidden" name="id" value="{{ $id }}">
+                            <input type="hidden" name="where" value="vacation">
+                            <table class="table table-bordered table-middle">
+                                <caption class="bg-primary">&nbsp;&nbsp;휴가휴직 입력&nbsp;&nbsp;</caption>
+                                <tr>
+                                    <th>휴가·휴직 유형</th>
+                                    <td>
+                                        <select class="form-control input-sm" name="vtitle">
                                             @foreach($vacation as $v)
                                                 <option value="{{ $v->title }}">{{ $v->title }}</option>
                                             @endforeach
                                         </select>
                                     </td>
-                                    <th class="success">적용일자</th>
-                                    <td><input type="text" class="disabled-days form-control input-sm" /></td>
-                                    <th class="success">급여반영</th>
-                                    <td><input type="checkbox" class="switch" data-size="small"></td>
-                                    <th class="success">반영일수</th>
-                                    <td><input type="text" class="form-control input-sm"></td>
+                                    <th>적용일자</th>
+                                    <td><input type="text" class="datetime4 form-control input-sm"  name="udate"/></td>
+                                    <th>급여반영</th>
+                                    <td><input type="checkbox" class="switch" value="1" name="papply" data-size="small"></td>
+                                    <th>반영일수</th>
+                                    <td><input type="text" class="form-control input-sm" name="apply_date"></td>
                                     <th>
                                         <button class="btn btn-primary">등록</button>
                                     </th>
@@ -249,13 +371,23 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+        <!--  confirm modal -->
         <!-- END modal-->
     </section>
 @stop
 
+
+
 {{-- page level scripts --}}
 @section('footer_scripts')
 
+    <script language="javascript" type="text/javascript" src="{{ asset('assets/vendors/iCheck/js/icheck.js') }}"></script>
     <script language="javascript" type="text/javascript" src="{{ asset('assets/vendors/bootstrap-switch/js/bootstrap-switch.js') }}"></script>
     <script language="javascript" type="text/javascript" src="{{ asset('assets/vendors/switchery/js/switchery.js') }}" ></script>
     <script language="javascript" type="text/javascript" src="{{ asset('assets/vendors/bootstrap-maxlength/js/bootstrap-maxlength.js') }}"></script>

@@ -82,32 +82,6 @@ class HnlPinfoController extends Controller
                 break;
         }   //급여형태
 
-        switch($request->first_pay){
-            case 'A':
-                $first_pay = '해당없음';
-                break;
-
-            case 'B':
-                $first_pay = '90%';
-                break;
-
-            case 'C':
-                $first_pay = '80%';
-                break;
-
-            case 'D':
-                $first_pay = '70%';
-                break;
-
-            case 'E':
-                $first_pay = '60%';
-                break;
-
-            case 'F':
-                $first_pay = '50%';
-                break;
-
-        }   //수습급여비율
 
         switch($request->work_condition){
             case 'A':
@@ -126,7 +100,7 @@ class HnlPinfoController extends Controller
                 break;
 
             case 'B':
-                $employee_type = '계약직%';
+                $employee_type = '계약직';
                 break;
 
             case 'C':
@@ -163,13 +137,13 @@ class HnlPinfoController extends Controller
             'location' => $request->get('location'),
             'position' => $request->get('position'),
             'paytype' => $paytype,
-            'first_pay' => $first_pay,
-            'swtime' => $request->get('swtime'),
-            'ewtime' => $request->get('ewtime'),
+            'first_pay' => $request->first_pay,
+/*            'swtime' => $request->get('swtime'),
+            'ewtime' => $request->get('ewtime'),*/
             'workplace' => $request->get('workplace'),
             'active_partner' => $request->get('active_partner'),
-            'sbtime' => $request->get('sbtime'),
-            'ebtime' => $request->get('ebtime'),
+/*            'sbtime' => $request->get('sbtime'),
+            'ebtime' => $request->get('ebtime'),*/
             'btime' => $btimes,
             'last_ability' => $request->get('last_ability'),
             'ismarried' => $request->get('ismarried'),
@@ -187,6 +161,7 @@ class HnlPinfoController extends Controller
             'have_family' => $request->get('have_family'),
             'account_name' => $request->get('account_name'),
         ]);
+
         $pinfo->save();
 
         $lastid = $pinfo->id;

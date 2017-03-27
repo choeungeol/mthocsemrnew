@@ -30,7 +30,7 @@
 @section('content')
 
     <section class="content-header">
-        <h1>노무 관리</h1>
+        <h1>사원 관리</h1>
         <ol class="breadcrumb">
             <li class="active">
                 <a href="#">

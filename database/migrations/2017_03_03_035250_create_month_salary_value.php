@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVacationAdd extends Migration
+class CreateMonthSalaryValue extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,14 @@ class CreateVacationAdd extends Migration
      */
     public function up()
     {
-        Schema::create('vacationadds', function(Blueprint $table)
+        Schema::create('monthsalaryvalues', function(Blueprint $table)
         {
             $table->increments('id');
             $table->integer('pinfo_id');
-            $table->string('vacation_title');
-            $table->string('use_date');   //적용일자
-            $table->boolean('pay_apply')->default(0);
-            $table->string('use_dates');  //반영일수
+            $table->mediumText('normal_wage');
+            $table->mediumText('statutory_allowance');
+            $table->mediumText('benefits');
+            $table->mediumText('commit_allowance');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateVacationAdd extends Migration
      */
     public function down()
     {
-        Schema::drop('vacationadds');
+        Schema::drop('monthsalaryvalues');
     }
 }

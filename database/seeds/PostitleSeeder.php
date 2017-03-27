@@ -19,9 +19,9 @@ class PostitleSeeder extends Seeder
         DB::table('postitles')->insert([
             'pos_code'    => '001',
             'pos_div_code' => '01',
-            'pos_name'       => '대표',
+            'pos_name'       => '원장',
             'pos_use'       => 1,
-            'pos_memo'       => '대표',
+            'pos_memo'       => '원장',
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
@@ -29,9 +29,9 @@ class PostitleSeeder extends Seeder
         DB::table('postitles')->insert([
             'pos_code'    => '002',
             'pos_div_code' => '02',
-            'pos_name'       => '부사장',
+            'pos_name'       => '부서장',
             'pos_use'       => 1,
-            'pos_memo'       => '부사장',
+            'pos_memo'       => '부서장',
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
@@ -39,9 +39,9 @@ class PostitleSeeder extends Seeder
         DB::table('postitles')->insert([
             'pos_code'    => '003',
             'pos_div_code' => '03',
-            'pos_name'       => '이사',
+            'pos_name'       => '의사',
             'pos_use'       => 1,
-            'pos_memo'       => '이사',
+            'pos_memo'       => '의사',
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
@@ -49,9 +49,9 @@ class PostitleSeeder extends Seeder
         DB::table('postitles')->insert([
             'pos_code'    => '004',
             'pos_div_code' => '04',
-            'pos_name'       => '전무',
+            'pos_name'       => '전임의사',
             'pos_use'       => 1,
-            'pos_memo'       => '전무',
+            'pos_memo'       => '전임의사',
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
@@ -59,9 +59,9 @@ class PostitleSeeder extends Seeder
         DB::table('postitles')->insert([
             'pos_code'    => '005',
             'pos_div_code' => '05',
-            'pos_name'       => '상무',
+            'pos_name'       => '인턴',
             'pos_use'       => 1,
-            'pos_memo'       => '상무',
+            'pos_memo'       => '인턴',
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
@@ -69,9 +69,9 @@ class PostitleSeeder extends Seeder
         DB::table('postitles')->insert([
             'pos_code'    => '006',
             'pos_div_code' => '06',
-            'pos_name'       => '부장',
+            'pos_name'       => '간호부장',
             'pos_use'       => 1,
-            'pos_memo'       => '부장',
+            'pos_memo'       => '간호부장',
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
@@ -79,9 +79,9 @@ class PostitleSeeder extends Seeder
         DB::table('postitles')->insert([
             'pos_code'    => '007',
             'pos_div_code' => '07',
-            'pos_name'       => '차장',
+            'pos_name'       => '간호사',
             'pos_use'       => 1,
-            'pos_memo'       => '차장',
+            'pos_memo'       => '간호사',
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
@@ -89,41 +89,12 @@ class PostitleSeeder extends Seeder
         DB::table('postitles')->insert([
             'pos_code'    => '008',
             'pos_div_code' => '08',
-            'pos_name'       => '실장',
+            'pos_name'       => '일반 직원',
             'pos_use'       => 1,
-            'pos_memo'       => '실장',
+            'pos_memo'       => '일반 직원',
             'created_at'    => \Carbon\Carbon::now(),
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
 
-        DB::table('postitles')->insert([
-            'pos_code'    => '009',
-            'pos_div_code' => '09',
-            'pos_name'       => '과장',
-            'pos_use'       => 1,
-            'pos_memo'       => '과장',
-            'created_at'    => \Carbon\Carbon::now(),
-            'updated_at'    => \Carbon\Carbon::now(),
-        ]);
-
-        DB::table('postitles')->insert([
-            'pos_code'    => '010',
-            'pos_div_code' => '10',
-            'pos_name'       => '대리',
-            'pos_use'       => 1,
-            'pos_memo'       => '대리',
-            'created_at'    => \Carbon\Carbon::now(),
-            'updated_at'    => \Carbon\Carbon::now(),
-        ]);
-
-        DB::table('postitles')->insert([
-            'pos_code'    => '011',
-            'pos_div_code' => '11',
-            'pos_name'       => '사원',
-            'pos_use'       => 1,
-            'pos_memo'       => '사원',
-            'created_at'    => \Carbon\Carbon::now(),
-            'updated_at'    => \Carbon\Carbon::now(),
-        ]);
     }
 }
