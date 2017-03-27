@@ -29,7 +29,7 @@ $factory->define(App\MthPatient::class, function (Faker\Generator $faker) {
 
     //보훈구분키
     $vetCodes = App\MthCodeGroup::find(8)->mth_codes()->pluck('id')->toArray();
-    
+
     return [
         'name'          => $faker->name,
         'id_num'        => $faker->regexify('[0-9]{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[01])-[012349][0-9]{6}'),
@@ -50,7 +50,6 @@ $factory->define(App\MthPatient::class, function (Faker\Generator $faker) {
         'postal_code'   => $faker->postcode,
         'addr'          => $faker->address,
         'addr_detail'   => $faker->streetAddress,
-        'blood'         => $faker->streetAddress,
         'vet_id'        => $faker->randomElement($vetCodes),
         'vet_num'       => $faker->regexify('[1-9]{2}'),
         'memo'          => $faker->paragraph,
