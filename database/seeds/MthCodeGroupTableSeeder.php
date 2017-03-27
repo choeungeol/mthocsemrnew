@@ -115,6 +115,6 @@ class MthCodeGroupTableSeeder extends Seeder
             'updated_at'    => \Carbon\Carbon::now(),
         ]);
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-        
+
     }
 }
