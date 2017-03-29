@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-/*        $this->call('AdminSeeder');*/
+        $this->call('AdminSeeder');
 /*       $this->call('DatatablesSeeder');*/
         $this->call('JobtitleSeeder');
         $this->call('PostitleSeeder');
@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call('TaxdeductionSeeder');
         $this->call('PayDayTimeSeeder');
         $this->call('GeuntaeSeeder');
-/*        $this->call('MthCodeGroupTableSeeder');
-        $this->call('MthCodeTableSeeder');*/
+        $this->call('MthCodeGroupTableSeeder');
+        $this->call('MthCodeTableSeeder');
 
         Model::reguard();
     }
