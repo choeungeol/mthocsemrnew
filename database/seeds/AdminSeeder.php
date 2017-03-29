@@ -4,7 +4,6 @@ class AdminSeeder extends DatabaseSeeder {
 
 	public function run()
 	{
-		DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 		DB::table('users')->truncate(); // Using truncate function so all info will be cleared when re-seeding.
 		DB::table('roles')->truncate();
 		DB::table('role_users')->truncate();
@@ -37,7 +36,6 @@ class AdminSeeder extends DatabaseSeeder {
 
 		$admin->roles()->attach($adminRole);
 		$admin1->roles()->attach($adminRole);
-		DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 		$this->command->info('Admin User created with username admin@admin.com and password admin');
 	}
 

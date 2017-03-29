@@ -50,17 +50,21 @@
                             </tr>
                             </thead>
                             <tbody>
-                           {{-- @foreach($noflag as $nf)
-                                <tr ng-click="getInfo()">
-                                    <td id="id">{{ $nf->id }}</td>
-                                    <td id="name">{{ $nf->name }}</td>
-                                    <td id="birthday">{{ $nf->birthday }}</td>
-                                    <td id="age"></td>
-                                    <td id="gender"></td>
-                                    <td id="blood"></td>
-                                    <td id="memo">{{ $nf->memo }}</td>
+                            @forelse($chart as $c)
+                                <tr>
+                                    <td id="id"><a href="{{ route('show/bb',$c->id) }}">{{ $c->medical_chart }}</a></td>
+                                    <td id="name">{{ $c->name }}</td>
+                                    <td id="birthday">{{ $c->birthday }}</td>
+                                    <td id="age">{{ $c->age }}</td>
+                                    <td id="gender">{{ $c->gender }}</td>
+                                    <td id="blood">{{ $c->blood }}</td>
+                                    <td id="memo">{{ $c->memo }}</td>
                                 </tr>
-                            @endforeach--}}
+                            @empty
+                                <tr>
+                                    <td colspan="7">No List</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -79,22 +83,41 @@
                 <div class="panel-body">
                     <div class="table-responsive">
                         <table class="table table-condensed">
+                            @forelse($get as $g)
                             <tr>
                                 <th>차트번호</th>
-                                <td><input type="text" class="form-control input-sm" readonly ng-model="cno"></td>
+                                <td><input type="text" class="form-control input-sm" readonly value="{{ $g->medical_chart }}"></td>
                                 <th>수진자명</th>
-                                <td><input type="text" class="form-control input-sm" readonly ng-model="pname"></td>
+                                <td><input type="text" class="form-control input-sm" readonly value="{{ $g->name }}"></td>
                                 <th>생년월일</th>
-                                <td><input type="text" class="form-control input-sm" readonly ng-model="birthday"></td>
+                                <td><input type="text" class="form-control input-sm" readonly value="{{ $g->birthday }}"></td>
                                 <th>성별</th>
-                                <td><input type="text" class="form-control input-sm" readonly ng-model="age"></td>
+                                <td><input type="text" class="form-control input-sm" readonly value="{{ $g->gender }}"></td>
                                 <th>혈액형</th>
-                                <td><input type="text" class="form-control input-sm" readonly ng-model="blood"></td>
+                                <td><input type="text" class="form-control input-sm" readonly value="{{ $g->blood }}"></td>
                             </tr>
                             <tr>
                                 <th>메모</th>
-                                <td colspan="9"><textarea class="form-control input-sm" rows="1" readonly ng-model="memo"></textarea></td>
+                                <td colspan="9"><textarea class="form-control input-sm" rows="1" readonly ng-model="memo">{{ $g->memo }}</textarea></td>
                             </tr>
+                            @empty
+                                <tr>
+                                    <th>차트번호</th>
+                                    <td><input type="text" class="form-control input-sm" readonly></td>
+                                    <th>수진자명</th>
+                                    <td><input type="text" class="form-control input-sm" readonly></td>
+                                    <th>생년월일</th>
+                                    <td><input type="text" class="form-control input-sm" readonly></td>
+                                    <th>성별</th>
+                                    <td><input type="text" class="form-control input-sm" readonly></td>
+                                    <th>혈액형</th>
+                                    <td><input type="text" class="form-control input-sm" readonly></td>
+                                </tr>
+                                <tr>
+                                    <th>메모</th>
+                                    <td colspan="9"><textarea class="form-control input-sm" rows="1" readonly ng-model="memo"></textarea></td>
+                                </tr>
+                            @endforelse
                         </table>
 
                     </div>
@@ -102,9 +125,12 @@
             </div>
         </div>
     </div>
-        <form role="form" method="POST" action="bb/store" class="row">
+        <form role="form" method="POST" action="{{ route('insert/bb') }}" class="row">
             {{ csrf_field() }}
-            <input type="text" ng-model="cno" name="chart_id" style="display:none;">
+            @forelse($get as $g)
+            <input type="hidden" name="chart_id" value="{{ $g->id }}">
+            @empty
+            @endforelse
                 <div class="col-lg-12">
                     <div class="panel">
                         <div class="panel-heading">
@@ -173,7 +199,6 @@
                 </div>
             </div>
         </form>
-
     </div>
 
 </section>

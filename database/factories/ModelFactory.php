@@ -52,6 +52,8 @@ $factory->define(App\MthPatient::class, function (Faker\Generator $faker) {
         'addr_detail'   => $faker->streetAddress,
         'vet_id'        => $faker->randomElement($vetCodes),
         'vet_num'       => $faker->regexify('[1-9]{2}'),
+        'gender'        => $faker-> randomElement($array = array ( 'male', 'female')),
+        'blood'         => $faker-> randomElement($array = array ( 'A', 'B','AB','O')),
         'memo'          => $faker->paragraph,
         'created_at'    => $faker->dateTimeBetween($startDate = '-3 years', $endDate = '-1 years'),
         'updated_at'    => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),

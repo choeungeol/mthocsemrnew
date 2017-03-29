@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Redirect;
-use Sentinel;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\MthCodeGroup;
 
-class OcsBasicinfoController extends Controller
+class MthCodeGroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +15,9 @@ class OcsBasicinfoController extends Controller
      */
     public function index()
     {
+        $codeGroups = MthCodeGroup::all();
 
-
-        if(Sentinel::check())
-            return view('ocs.basicbiopsy');
-        else
-            return Redirect::to('admin/signin')->with('error','You must be logged in!');
+        return response()->json($codeGroups);
     }
 
     /**
@@ -54,7 +49,9 @@ class OcsBasicinfoController extends Controller
      */
     public function show($id)
     {
-        //
+        $codeGroup = MthCodeGroup::findOrFail($id);
+
+        return response()->json($codeGroup);
     }
 
     /**

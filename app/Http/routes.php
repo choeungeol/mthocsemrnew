@@ -347,15 +347,22 @@ Route::group(array('prefix' => 'ocs', 'middleware' => 'SentinelUser'), function 
 
     Route::group(array('prefix' => 'bb'), function() {
 
-        Route::get('/', array('as' => 'bb', 'uses' => 'OcsBasicinfoController@index'));
+        Route::get('/', array('as' => 'bb', 'uses' => 'OcsBasicBiopsyController@index'));
+
+        Route::post('insert_bb', array('as' => 'insert/bb', 'uses' => 'OcsReceiptController@update'));
+
+        Route::get('{bbId}/show', array('as' => 'show/bb', 'uses' => 'OcsBasicBiopsyController@show'));
+
 
 
     });
 
     #ocs / receipt
-    Route::group(array('prefix' => 'rc'), function() {
+     Route::group(array('prefix' => 'rc'), function() {
 
         Route::get('/', array('as' => 'rc', 'uses' => 'OcsReceiptController@index'));
+
+        Route::post('insert_rc', array('as' => 'insert/rc', 'uses' => 'OcsReceiptController@store'));
 
 
     });

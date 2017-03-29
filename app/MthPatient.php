@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class MthPatient extends Model
 {
+
+    protected $guarded  = ['id'];
+
+    public function mth_charts()
+    {
+        return $this->hasMany(MthChart::class);
+    }
+
     /**
      * 입력한 주민번호를 암호화
      * @param type $value 주민등록번호
@@ -62,4 +70,5 @@ class MthPatient extends Model
     {
         return \Crypt::decrypt($value);
     }
+
 }

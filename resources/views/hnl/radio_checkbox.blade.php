@@ -209,7 +209,6 @@
                                 <input type="radio" name="r2" class="line" disabled/>
                                 <label>Disabled
                                 </label>
-
                             </div>
                         </div>
                         <!-- /.box-body -->

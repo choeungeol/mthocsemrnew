@@ -197,6 +197,8 @@ elixir(function (mix) {
     //angularjs app
     mix.copy(srcJs + 'hnl', destJs + 'hnl');
 
+    mix.copy(srcJs + 'mth', destJs + 'mth');
+
     //copy frontend skins to public
     mix.copy(srcCss + 'frontend/skins', destCss + 'frontend/skins');
 
@@ -309,7 +311,7 @@ elixir(function (mix) {
 
     // blueimp-gallery-with-desc
     mix.copy(paths.blueimpgallery + 'css/blueimp-gallery.min.css',  destVendors + 'blueimp-gallery-with-desc/css');
-    mix.copy(paths.blueimpgallery + 'js/jquery.blueimp-gallery.min.js',  destVendors + 'blueimp-gallery-with-desc/js');
+     mix.copy(paths.blueimpgallery + 'js/jquery.blueimp-gallery.min.js',  destVendors + 'blueimp-gallery-with-desc/js');
 
 
     // file upload page

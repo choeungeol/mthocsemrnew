@@ -65,13 +65,15 @@ class CreateMthPatientsTable extends Migration
             $table->string('postal_code', 20);  //우편번호 - validation
             $table->string('addr', 50);         //주소
             $table->string('addr_detail', 100); //상세주소
-            $table->string('blood', 10)->nullable(); //혈액형
             $table->integer('vet_id')
                 ->unsigned()
                 ->nullable();                 //보훈구분키
             $table->foreign('vet_id')->references('id')->on('mth_codes');
             $table->string('vet_num', 30)
                 ->nullable()           ;      //보훈번호 ->validation
+            $table->string('gender', 10)->nullable(); //성별
+            $table->string('blood', 10)->nullable(); //혈액형
+            $table->string('age', 10)->nullable(); //나이
             $table->text('memo')->nullable();   //메모
             $table->timestamps();
         });
