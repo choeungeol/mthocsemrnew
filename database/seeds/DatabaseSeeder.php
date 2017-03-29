@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-/*        Model::unguard();*/
+        Model::unguard();
 
         $this->call('AdminSeeder');
 /*       $this->call('DatatablesSeeder');*/
@@ -30,6 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call('MthCodeGroupTableSeeder');
         $this->call('MthCodeTableSeeder');
 
-/*        Model::reguard();*/
+        Model::reguard();
     }
 }
