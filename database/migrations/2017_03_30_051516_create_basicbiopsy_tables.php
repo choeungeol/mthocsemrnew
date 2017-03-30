@@ -22,10 +22,10 @@ class CreateBasicbiopsyTables extends Migration
         $table->decimal('minimal_pressure', 3, 0)->nullable();
         $table->decimal('maximum_pressure', 3, 0)->nullable();
         $table->decimal('pulse', 3, 0)->nullable();
-        $table->decimal('weight', 3, 2)->nullable();
-        $table->decimal('temperature', 3, 1)->nullable();
-        $table->decimal('breath', 3, 2)->nullable();
-        $table->decimal('height', 3, 2)->nullable();
+        $table->decimal('weight', 3, 0)->nullable();
+        $table->decimal('temperature', 3, 0)->nullable();
+        $table->decimal('breath', 3, 0)->nullable();
+        $table->decimal('height', 3, 0)->nullable();
         $table->boolean('chk_diabetes')->nullable()->default(0);
         $table->timestamps();
         });
