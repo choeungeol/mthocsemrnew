@@ -29,9 +29,9 @@ class OcsBasicBiopsyController extends Controller
             ->where('basicbiopsy_flag','=',0)
             ->get();
 
-/*        $charts = MthChart::findOrFail(1);
+        $charts = MthChart::findOrFail(1);
         $charts->basicbiopsy_flag = 1;
-        $charts->save();*/
+        $charts->save();
 
         /*$chart = MthChart::where('basicbiopsy_flag','=',0)->get();*/
 
