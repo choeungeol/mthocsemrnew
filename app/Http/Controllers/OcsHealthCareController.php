@@ -3,17 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\MthBasicBiopsy;
-use App\MthChart;
-use App\MthPatient;
-use Illuminate\Http\Request;
 use DB;
-use Illuminate\Support\Facades\Lang;
-use Redirect;
 use Sentinel;
+use Redirect;
+use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class OcsBasicBiopsyController extends Controller
+class OcsHealthCareController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,26 +20,17 @@ class OcsBasicBiopsyController extends Controller
     public function index()
     {
         $get = array();
+        $basicbiopsy = array();
 
         $chart = DB::table('mth_charts')
             ->join('mth_patients', 'mth_charts.mth_patient_id', '=', 'mth_patients.id')
-            ->where('basicbiopsy_flag','=',0)
+            ->where('basicbiopsy_flag','=',1)
             ->get();
 
-/*        $charts = MthChart::findOrFail(1);
-        $charts->basicbiopsy_flag = 1;
-        $charts->save();*/
-
-        /*$chart = MthChart::where('basicbiopsy_flag','=',0)->get();*/
-
         if(Sentinel::check())
-
-            return view('ocs.basicbiopsy', compact('get','chart'));
-
+            return view('ocs.healthcare', compact('chart','get','basicbiopsy','patient'));
         else
-
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
-
     }
 
     /**
@@ -63,34 +51,7 @@ class OcsBasicBiopsyController extends Controller
      */
     public function store(Request $request)
     {
-
-        $chart_id = $request->get('chart_id');
-
-        $bb = new MthBasicBiopsy([
-
-        'chart_id' => $chart_id,
-        'minimal_pressure' => $request->get('minbp'),
-        'maximum_pressure' => $request->get('maxbp'),
-        'pulse' => $request->get('pb'),
-        'weight' => $request->get('weight'),
-        'temperature' => $request->get('temp'),
-        'breath' => $request->get('brate'),
-        'height' => $request->get('height'),
-        'chk_diabetes' => $request->get('diabetes'),
-
-        ]);
-        $bb->save();
-
-        $chart = MthChart::findOrFail($chart_id);
-        $chart->basicbiopsy_flag = 1;
-        $chart->save();
-
-
-        if(Sentinel::check())
-            return Redirect::route('bb')->with('success', Lang::get('groups/message.success.update'));
-        else
-            return Redirect::to('admin/signin')->with('error','You must be logged in!');
-
+        //
     }
 
     /**
@@ -102,22 +63,28 @@ class OcsBasicBiopsyController extends Controller
     public function show($id)
     {
 
-/*        $get = MthPatient::find($id)->mth_charts;*/
-
-
-        $get =  DB::table('mth_charts')
+        $get = array();
+/*        $get = DB::table('mth_charts')
             ->where('mth_charts.id',$id)
-            ->join('mth_patients', 'mth_charts.mth_patient_id', '=', 'mth_patients.id')
-            ->where('basicbiopsy_flag','=',0)
-            ->get();
+            ->join('mth_diseases', 'mth_charts.chart_id', '=', 'mth_diseases.id')
+            ->get();*/
+
+        $basicbiopsy = MthBasicBiopsy::where('chart_id','=',$id)->get();
+
+        /*$patient = DB::table('mth_charts')
+            ->where('mth_charts.id',$id)
+            ->join('mth_prescribes', 'mth_charts.chart_id', '=', 'mth_prescribes.id')
+            ->get();*/
 
         $chart = DB::table('mth_charts')
             ->join('mth_patients', 'mth_charts.mth_patient_id', '=', 'mth_patients.id')
-            ->where('basicbiopsy_flag','=',0)
+            ->where('basicbiopsy_flag','=',1)
             ->get();
 
+        $patient = array();
+
         if(Sentinel::check())
-            return view('ocs.basicbiopsy', compact('get','chart'));
+            return view('ocs.healthcare', compact('chart','get','patient','basicbiopsy'));
         else
             return Redirect::to('admin/signin')->with('error','You must be logged in!');
 
@@ -131,7 +98,7 @@ class OcsBasicBiopsyController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -141,10 +108,9 @@ class OcsBasicBiopsyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id = null)
+    public function update(Request $request, $id)
     {
-
-
+        //
     }
 
     /**

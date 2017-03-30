@@ -349,7 +349,7 @@ Route::group(array('prefix' => 'ocs', 'middleware' => 'SentinelUser'), function 
 
         Route::get('/', array('as' => 'bb', 'uses' => 'OcsBasicBiopsyController@index'));
 
-        Route::post('insert_bb', array('as' => 'insert/bb', 'uses' => 'OcsReceiptController@update'));
+        Route::post('insert_bb', array('as' => 'insert/bb', 'uses' => 'OcsBasicBiopsyController@store'));
 
         Route::get('{bbId}/show', array('as' => 'show/bb', 'uses' => 'OcsBasicBiopsyController@show'));
 
@@ -368,7 +368,14 @@ Route::group(array('prefix' => 'ocs', 'middleware' => 'SentinelUser'), function 
     });
 
     #ocs / healthcare
-    Route::get('/hc', array('as' => 'ocs', 'uses' => 'OcsController@showHealthCare'));
+    Route::group(array('prefix' => 'hc'), function()  {
+
+        Route::get('/', array('as' => 'hc', 'uses' => 'OcsHealthCareController@index'));
+
+        Route::get('{hcId}/show', array('as' => 'show/hc', 'uses' => 'OcsHealthCareController@show'));
+
+    });
+
     #ocs / nurseroom
     Route::get('/nr', array('as' => 'ocs', 'uses' => 'OcsController@showNurseRoom'));
     #ocs / pharmacy

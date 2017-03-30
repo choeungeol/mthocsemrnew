@@ -24,6 +24,47 @@
     </section>
     <section class="content">
         <div class="row">
+            <div class="col-lg-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h5>대기자 명단</h5>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-condensed table-hover nowrap" width="100%">
+                            <thead>
+                            <tr>
+                                <th>차트번호</th>
+                                <th>수진자명</th>
+                                <th>생년월일</th>
+                                <th>나이(만)</th>
+                                <th>성별</th>
+                                <th>혈액형</th>
+                                <th>메모</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse($chart as $c)
+                                <tr>
+                                    <td id="id"><a href="{{ route('show/hc',$c->id) }}">{{ $c->medical_chart }}</a></td>
+                                    <td id="name">{{ $c->name }}</td>
+                                    <td id="birthday">{{ $c->birthday }}</td>
+                                    <td id="age">{{ $c->age }}</td>
+                                    <td id="gender">{{ $c->gender }}</td>
+                                    <td id="blood">{{ $c->blood }}</td>
+                                    <td id="memo">{{ $c->memo }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7">No List</td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-lg-7">
                 <div class="panel">
                     <div class="panel-heading">
@@ -33,7 +74,7 @@
                         <table class="table table-condensed thead-default">
                             <thead>
                             <tr>
-                                <th>등록번호</th>
+                                <th>차트번호</th>
                                 <th>수진자명</th>
                                 <th>생년월일</th>
                                 <th>나이(만)</th>
@@ -72,20 +113,26 @@
                                 <th>맥박</th>
                                 <th>키(cm)</th>
                                 <th>체중(kg)</th>
-                                <th>내역</th>
+                                <th>호흡수</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>20160902</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            @forelse($basicbiopsy as $bb)
+                                <tr>
+                                    <td>{{ date('Y-m-d',strtotime($bb->updated_at)) }}</td>
+                                    <td>{{ $bb->temperature }}</td>
+                                    <td>{{ $bb->minimal_pressure }}</td>
+                                    <td>{{ $bb->maximum_pressure }}</td>
+                                    <td>{{ $bb->pulse }}</td>
+                                    <td>{{ $bb->height }}</td>
+                                    <td>{{ $bb->weight }}</td>
+                                    <td>{{ $bb->breath }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="8">No List</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
