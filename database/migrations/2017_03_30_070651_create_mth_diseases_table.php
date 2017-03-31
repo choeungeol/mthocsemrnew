@@ -33,8 +33,12 @@ class CreateMthDiseasesTable extends Migration
      *
      * @return void
      */
+
+
     public function down()
     {
+
         Schema::drop('mth_diseases');
+
     }
 }

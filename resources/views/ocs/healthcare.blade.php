@@ -8,6 +8,16 @@
 {{-- page level styles --}}
 @section('header_styles')
 
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/dataTables.bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/buttons.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/colReorder.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/dataTables.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/rowReorder.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/buttons.bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/scroller.bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pages/tables.css') }}" />
+
 @stop
 
 @section('content')
@@ -89,9 +99,26 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @forelse($get as $g)
                             <tr>
-                                <td>asd</td>
+                                <td>{{ $g->medical_chart }}</td>
+                                <td>{{ $g->name }}</td>
+                                <td>{{ $g->birthday }}</td>
+                                <td>{{ $g->age }}</td>
+                                <td>{{ $g->gender }}</td>
+                                <td>{{ $g->blood }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td colspan="8">No List</td>
+                            </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -200,6 +227,8 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 </table>
                             </div>
@@ -214,8 +243,42 @@
                     <div class="panel-heading">
                         <h5>진료-상병</h5>
                     </div>
+                    <form action="{{ route('insert/d') }}" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                        @forelse($chart as $c)
+                            <input type="hidden" name="chart_id" value="{{ $c->id }}" />
+                        @empty
+                        @endforelse
                     <div class="panel-body">
-                        <table class="table table-condensed thead-default">
+                        <table class="table table-condensed table2">
+                            <thead>
+                                <tr>
+                                    <th>사용자코드</th>
+                                    <th>상병명칭</th>
+                                    <th>특정기호</th>
+                                    <th>주상병</th>
+                                    <th>수술여부</th>
+                                    <th>경과</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @forelse($dis as  $d)
+                                <tr>
+                                    <td>{{ $d->user_code }}</td>
+                                    <td>{{ $d->sname }}</td>
+                                    <td>{{ $d->ssymbol }}</td>
+                                    <td>{{ $d->msick }}</td>
+                                    <td>{{ $d->ostatus }}</td>
+                                    <td>{{ $d->goby }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6"></td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
+                        <table class="table table-condensed">
                             <thead>
                             <tr>
                                 <th>사용자코드</th>
@@ -227,21 +290,24 @@
                                 <th></th>
                             </tr>
                             </thead>
+                            <tbody>
                             <tr>
-                                <td>124asd</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><input type="text" class="form-control input-sm" name="user_code" /> </td>
+                                <td><input type="text" class="form-control input-sm" name="sname" /> </td>
+                                <td><input type="text" class="form-control input-sm" name="ssymbol" /> </td>
+                                <td><input type="text" class="form-control input-sm" name="msick" /> </td>
+                                <td><input type="text" class="form-control input-sm" name="ostatus" /> </td>
+                                <td><input type="text" class="form-control input-sm" name="goby" /> </td>
                             </tr>
+                            </tbody>
                         </table>
                     </div>
                     <div class="panel-footer">
-                        <button class="btn btn-sm btn-primary">전체선택</button>
-                        <button class="btn btn-sm btn-success">등록</button>
-                        <button class="btn btn-sm btn-danger">삭제</button>
+                        <a class="btn btn-sm btn-primary">전체선택</a>
+                        <button class="btn btn-sm btn-success" type="submit">등록</button>
+                        <a class="btn btn-sm btn-danger">삭제</a>
                     </div>
+                    </form>
                 </div>
             </div>
             <div class="col-lg-7">
@@ -249,7 +315,51 @@
                     <div class="panel-heading">
                         <h5>진료-처방</h5>
                     </div>
+                    <form action="{{ route('insert/p') }}" method="POST" >
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                        @forelse($chart as $c)
+                            <input type="hidden" name="chart_id" value="{{ $c->id }}" />
+                        @empty
+                        @endforelse
                     <div class="panel-body">
+                        <table class="table table-condensed table2">
+                            <thead>
+                            <tr>
+                                <th>특</th>
+                                <th>코드</th>
+                                <th>코드명</th>
+                                <th>가격</th>
+                                <th>투여량</th>
+                                <th>횟수</th>
+                                <th>일수</th>
+                                <th>청구구분</th>
+                                <th>원내/외</th>
+                                <th>검체</th>
+                                <th>용법</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse($pre as  $p)
+                                <tr>
+                                    <td>{{ $p->teuk }}</td>
+                                    <td>{{ $p->code }}</td>
+                                    <td>{{ $p->code_name }}</td>
+                                    <td>{{ $p->price }}</td>
+                                    <td>{{ $p->dosage }}</td>
+                                    <td>{{ $p->part }}</td>
+                                    <td>{{ $p->pday }}</td>
+                                    <td>{{ $p->cdvision }}</td>
+                                    <td>{{ $p->iohospital }}</td>
+                                    <td>{{ $p->cspecimen }}</td>
+                                    <td>{{ $p->useage }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6"></td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
                         <table class="table table-condensed thead-default">
                             <thead>
                             <tr>
@@ -268,16 +378,17 @@
                             </tr>
                             </thead>
                             <tr>
-                                <td>124asd</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><input type="text" class="form-control input-sm" name="teuk"> </td>
+                                <td><input type="text" class="form-control input-sm" name="code"> </td>
+                                <td><input type="text" class="form-control input-sm" name="code_name"> </td>
+                                <td><input type="text" class="form-control input-sm" name="price"> </td>
+                                <td><input type="text" class="form-control input-sm" name="dosage"> </td>
+                                <td><input type="text" class="form-control input-sm" name="part"> </td>
+                                <td><input type="text" class="form-control input-sm" name="pday"> </td>
+                                <td><input type="text" class="form-control input-sm" name="cdvision"> </td>
+                                <td><input type="text" class="form-control input-sm" name="iohospital"> </td>
+                                <td><input type="text" class="form-control input-sm" name="cspecimen"> </td>
+                                <td><input type="text" class="form-control input-sm" name="useage"> </td>
                             </tr>
                         </table>
                     </div>
@@ -286,6 +397,7 @@
                         <button class="btn btn-sm btn-success">등록</button>
                         <button class="btn btn-sm btn-danger">삭제</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -334,5 +446,22 @@
 
 {{-- page level scripts --}}
 @section('footer_scripts')
+
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/jeditable/js/jquery.jeditable.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.buttons.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.colReorder.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.responsive.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.rowReorder.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/buttons.colVis.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/buttons.html5.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/buttons.print.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/buttons.bootstrap.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/buttons.print.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/pdfmake.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/vfs_fonts.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.scroller.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/js/pages/table-advanced.js') }}" ></script>
 
 @stop

@@ -374,6 +374,9 @@ Route::group(array('prefix' => 'ocs', 'middleware' => 'SentinelUser'), function 
 
         Route::get('{hcId}/show', array('as' => 'show/hc', 'uses' => 'OcsHealthCareController@show'));
 
+        Route::post('insert_disesae', array('as' => 'insert/d', 'uses' => 'OcsHealthCareController@insert_d'));
+        Route::post('insert_prescribes', array('as' => 'insert/p', 'uses' => 'OcsHealthCareController@insert_p'));
+
     });
 
     #ocs / nurseroom
